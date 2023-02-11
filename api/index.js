@@ -18,10 +18,16 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
+const { saveAllVideogames, getAllVideogames } = require("./src/controllers/videogames/saveVideogames.js")
+const { saveAllGenres } = require('./src/controllers/genre.js');
+const { saveAllPlatforms } = require('./src/controllers/platforms.js')
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: true }).then(async () => {
+  await saveAllVideogames("");
+  await saveAllGenres()
+  await saveAllPlatforms()
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
