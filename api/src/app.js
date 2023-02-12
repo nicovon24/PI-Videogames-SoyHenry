@@ -6,8 +6,8 @@ const routesVideogames = require('./routes/videogames.js');
 const routesGenres = require('./routes/genre.js');
 const routerPlatforms = require('./routes/platforms.js');
 
-
 const server = express();
+let idNewGames = 1000000 
 
 server.name = 'API';
 
@@ -36,4 +36,4 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(status).send(message);
 });
 
-module.exports = server;
+module.exports = server, {idNewGames};

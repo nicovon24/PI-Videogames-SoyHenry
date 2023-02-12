@@ -10,6 +10,10 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true
     },
+    idAPI: {
+      type: DataTypes.INTEGER,
+      unique: true
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -18,20 +22,27 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    // platforms: {
-    //   type: DataTypes.JSON, //¿como accedo a este json en psql?
-    //   allowNull: false,
-    // },
     image: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
     },
     released: {
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
+    genres: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: false
+    },
     rating: {
       type: DataTypes.FLOAT,
       allowNull: false,
+      min: 1,
+      max: 5
     },
+    platforms: {
+      type: DataTypes.ARRAY(DataTypes.STRING), //¿como accedo a este json en psql?
+      allowNull: false,
+    }
   }, {timestamps: false});
 };

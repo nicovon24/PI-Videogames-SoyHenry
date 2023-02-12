@@ -33,6 +33,14 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Videogame, Genre, Platform } = sequelize.models;
 
+// TODO como hacer relaciones para arrays???
+// Videogame.hasOne(Genre) //one to one relationship
+// Genre.belongsToMany(Videogame, {through: 'genres', as: "videogamesFK"}) //one to many relationship
+
+// Videogame.hasMany(Platform) //one to one relationship
+// Platform.belongsToMany(Videogame, {through: 'platforms'}) //one to many relationship
+ 
+
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
