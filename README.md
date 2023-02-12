@@ -67,6 +67,7 @@ Está permitido, **bajo tu responsabilidad**, actualizar las dependencias a vers
        DB_USER=usuariodepostgres
        DB_PASSWORD=passwordDePostgres
        DB_HOST=localhost
+       ID_NEW_GAMES=1000000
    ```
 
 4. Reemplazar **`usuariodepostgres`** y **`passwordDePostgres`** con tus propias credenciales para conectarte a postgres. Este archivo va ser ignorado en la subida a github, ya que contiene información sensible (las credenciales).
