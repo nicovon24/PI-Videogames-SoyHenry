@@ -1,0 +1,106 @@
+.cards_container{
+    width: 100%;
+    height: auto;
+    background-color: rgb(15, 4, 51);
+    padding: 30px 0px;
+    /* background: #74b9a5; */
+    /* background: url('https://st3.depositphotos.com/1177973/12632/i/600/depositphotos_126328712-stock-photo-grey-abstract-texture-background.jpg'); */
+    /* background: url('https://w0.peakpx.com/wallpaper/793/1001/HD-wallpaper-synthwave-planet-retro-wave.jpg'); */
+    /* background: linear-gradient(90deg, rgb(232, 241, 236) 0%, rgb(225, 236, 227) 50%, rgb(222, 232, 223) 50%, rgb(220, 234, 220) 98%, rgb(227, 217, 220) 99%); */
+    background-position: center;
+    background-size: cover;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.cards_subcontainer{
+    padding: 60px 0px;
+    display: grid;
+    width: 80%;
+    margin: 0 auto;
+    grid-gap: 20px;
+    grid-row-gap: 30px;
+    text-align: center;
+    font-family: 'Retro';
+}
+.card_img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    cursor: pointer;
+}
+.card{
+    width: 100%;
+    height: 40vh;
+    box-shadow: aqua 0px 0px 8px;
+    background-image: url('https://media.istockphoto.com/id/1287121458/es/foto/fondo-azul-marino-negro-grunge-texturado-abstracto-estuco-marco-oscuro-pared-patr%C3%B3n-de.jpg?s=612x612&w=0&k=20&c=7MvJmS1lL9Xvra4vwYigSwS_sQm03Go4FFezjffoYfM=');
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 0.7rem;
+}
+.card:hover{
+    box-shadow: aqua 0px 0px 25px;
+    position: relative;
+    bottom: 5px;
+    transition: 0.5s;
+}
+.card_name{
+    padding: 15px 0px;
+    color: rgb(219, 190, 25);
+    font-size: 1rem;
+    width: 80%;
+    margin: 0 auto;
+} /* estilo juego en app.css con nombre de etiqueta .card_title */
+.star_img{
+    width: 20px;
+    margin-bottom: 10px;
+}
+.star_complete, .star_half{
+    color: gold;
+}
+.star_null{
+    color: white;
+}
+.rating_string{
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 10px;
+    color: rgb(247, 27, 27);
+}
+.rating_container{
+    margin: 15px;
+}
+.link{
+    text-decoration: none;
+}
+@media(min-width: 800px){
+    .cards_subcontainer{
+        grid-template-columns: 1fr 1fr;
+        width: 70%;
+        grid-gap: 50px;
+    }
+}
+@media(min-width: 1000px){
+    .cards_subcontainer{
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 90%;
+    }
+    .cards_container{
+        width: 100%;
+    }
+    .details{
+        width: 50%;
+        margin: 0 auto;
+    }
+}
+
+@media(min-width: 1500px){
+    .cards_subcontainer{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        width: 80%;
+        grid-column-gap: 70px;
+    }
+}

@@ -1,38 +1,187 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'retro';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Rick and Morty font'), url('./assets/fonts/prstart.ttf') format('woff');
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/*todo RETRO TEXT */
+/* text style retro as videopedia style */
+@-webkit-keyframes text-pop-up-top {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    text-shadow: none;
+  }
+  100% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #cccccc, 0 3px 0 #cccccc, 0 4px 0 #cccccc, 0 5px 0 #cccccc, 0 6px 0 #cccccc, 0 7px 0 #cccccc, 0 8px 0 #cccccc, 0 9px 0 #cccccc, 0 50px 30px rgba(0, 0, 0, 0.3);
+  }
+}
+@keyframes text-pop-up-top {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    text-shadow: none;
+  }
+  100% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #cccccc, 0 3px 0 #cccccc, 0 4px 0 #cccccc, 0 5px 0 #cccccc, 0 6px 0 #cccccc, 0 7px 0 #cccccc, 0 8px 0 #cccccc, 0 9px 0 #cccccc, 0 50px 30px rgba(0, 0, 0, 0.3);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+@-webkit-keyframes text-pop-up-top-title {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    text-shadow: none;
+  }
+  100% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+            text-shadow: 0 1px 0 rgb(192, 181, 181), 0 2px 0 rgb(192, 181, 181), 0 3px 0 rgb(192, 181, 181), 0 4px 0 rgb(192, 181, 181), 0 5px 0 rgb(192, 181, 181), 0 6px 0 rgb(192, 181, 181), 0 4px 0 rgb(192, 181, 181), 0 4px 0 rgb(192, 181, 181), 0 4px 0 rgb(192, 181, 181), 0 30px 30px rgba(0, 0, 0, 0.3);
+  }
+}
+@keyframes text-pop-up-top-title {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    text-shadow: none;
+  }
+  100% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+            text-shadow: 0 1px 0 rgb(192, 181, 181), 0 2px 0 rgb(192, 181, 181), 0 3px 0 rgb(192, 181, 181), 0 4px 0 rgb(192, 181, 181), 0 5px 0 rgb(192, 181, 181), 0 6px 0 rgb(192, 181, 181), 0 4px 0 rgb(192, 181, 181), 0 4px 0 rgb(192, 181, 181), 0 4px 0 rgb(192, 181, 181), 0 30px 30px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/46468218-feda-4974-a0c4-7b49b5e7785e/dceo5od-75de5c11-66e5-45a9-99e5-5f1ac6af190c.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQ2NDY4MjE4LWZlZGEtNDk3NC1hMGM0LTdiNDliNWU3Nzg1ZVwvZGNlbzVvZC03NWRlNWMxMS02NmU1LTQ1YTktOTllNS01ZjFhYzZhZjE5MGMuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.Pgo7a08_ZKqbZmMZTR-19NyfcEdGSfxf1I9w8zWdtug */
+  /* https://external-preview.redd.it/kbIWPkFZHT4lnwWPXpbQKQixrBx87zie7naj25w1ubg.jpg?auto=webp&s=6f716082920a634167304ac744864224a6fd6bfa
+  https://rare-gallery.com/uploads/posts/1186576-night-space-sky-Moon-moonlight-atmosphere-astronomy-Mega-Man-Mega-Man-X-star-screenshot-outer-space-astronomical-object.jpg
+  https://wallpaperaccess.com/full/1588775.jpg
+  https://ep01.epimg.net/verne/imagenes/2014/11/24/articulo/1416811151_000008_1417424307_sumario_normal.gif */
+
+
+/*todo BTN RETRO */
+.btn-retro-container{
+  width: 100%;
+  height: 20vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: flex-end;
+}
+.btn-retro {
+  border-bottom: 6px inset rgba(0, 0, 0, .5);
+  border-left: 6px inset rgba(0, 0, 0, .5);
+  border-right: 6px inset rgba(255, 255, 255, .5);
+  border-top: 6px inset rgba(255, 255, 255, .5);
+  border-radius: 1px;
+  box-sizing: border-box;
+  color: white;
+  display: inline-block;
+  font-size: 1.1rem;
+  margin: 1rem;
+  min-width: 130px;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  width: auto;
+  text-align: center;
+  font-family: 'retro';
+}
+.btn-retro:focus, .btn-retro:hover {
+  background: #bcbcbc;
+}
+.btn-retro-primary {
+  background: #881400;
+}
+.btn-retro-primary:focus, .btn-retro-primary:hover {
+  background: #a81000;
+}
+.btn-retro-secondary {
+  background: #005800;
+}
+.btn-retro-secondary:focus, .btn-retro-secondary:hover {
+  background: #006800;
+}
+.btn-retro-tertiary {
+  background: #0000bc;
+}
+.btn-retro-fourth {
+  background: rgb(231, 198, 13);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.btn-retro-tertiary:hover{
+  background-color: rgb(48, 48, 203);
+}
+.btn-retro-fourth:hover{
+  background-color: rgb(204, 178, 30);
+}
+.fondo-celeste{
+  /* background-color: #008081; */
+  background-image: url("https://i.pinimg.com/originals/f4/89/62/f48962a7504aab22bf52ef64711ef9de.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card_title{
+  position: relative;
+  top: 50px;
+  color: green; /*#008081*/
+  -webkit-animation: text-pop-up-top-title 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: text-pop-up-top-title 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
+
+/*todo RETRO INPUT*/
+.retro-input {
+  outline: none;
+  margin: 15px;
+  padding: 7px 0 7px 8px;
+  border: 3px solid rgb(150, 150, 150);
+  box-shadow: 0px 0px 0px 1px rgb(90, 90, 90),
+    inset 0px 0px 0px 1px rgb(90, 90, 90),
+    1px 2px 0px 2px rgb(100, 100, 100);
+  border-radius: 0.3em;
+  color: rgb(150, 150, 150);
+  font-family: 'retro';
+  font-weight: 700;
+}
+.retro-input:focus {
+  box-shadow: 0px 0px 0px 1px rgb(90, 90, 90),
+    inset 0px 0px 0px 1px rgb(90, 90, 90),
+    1px 2px 0px 1px rgb(100, 100, 100);
+}
+
+/* 
+https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/46468218-feda-4974-a0c4-7b49b5e7785e/dceo5od-75de5c11-66e5-45a9-99e5-5f1ac6af190c.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQ2NDY4MjE4LWZlZGEtNDk3NC1hMGM0LTdiNDliNWU3Nzg1ZVwvZGNlbzVvZC03NWRlNWMxMS02NmU1LTQ1YTktOTllNS01ZjFhYzZhZjE5MGMuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.Pgo7a08_ZKqbZmMZTR-19NyfcEdGSfxf1I9w8zWdtug
+https://external-preview.redd.it/kbIWPkFZHT4lnwWPXpbQKQixrBx87zie7naj25w1ubg.jpg?auto=webp&s=6f716082920a634167304ac744864224a6fd6bfa
+https://rare-gallery.com/uploads/posts/1186576-night-space-sky-Moon-moonlight-atmosphere-astronomy-Mega-Man-Mega-Man-X-star-screenshot-outer-space-astronomical-object.jpg
+https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyGmZxEgTe5hiXuUpGTiGq3PChitXJT1fR4Q&usqp=CAU
+https://wallpaperaccess.com/full/1588775.jpg
+https://ep01.epimg.net/verne/imagenes/2014/11/24/articulo/1416811151_000008_1417424307_sumario_normal.gif */

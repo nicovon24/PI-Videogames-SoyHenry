@@ -7,6 +7,16 @@ const getGameById = require('../controllers/videogames/getGameById.js');
 
 const routerVideogames = Router();
 
+routerVideogames.get("/all", async (req, res)=>{
+    try{
+        const allVideogames = await Videogame.findAll()
+        res.status(200).json(allVideogames)
+    }
+    catch(err){
+        res.status(400).json({error: err.message})
+    }
+})
+
 routerVideogames.get("/", async (req, res)=>{
     try{
         const {name, page} = req.query

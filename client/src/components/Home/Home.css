@@ -1,0 +1,43 @@
+.home{
+    width: 100%;
+    height: 100vh;
+    background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/46468218-feda-4974-a0c4-7b49b5e7785e/dceo5od-75de5c11-66e5-45a9-99e5-5f1ac6af190c.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQ2NDY4MjE4LWZlZGEtNDk3NC1hMGM0LTdiNDliNWU3Nzg1ZVwvZGNlbzVvZC03NWRlNWMxMS02NmU1LTQ1YTktOTllNS01ZjFhYzZhZjE5MGMuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.Pgo7a08_ZKqbZmMZTR-19NyfcEdGSfxf1I9w8zWdtug");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+  .title{
+    font-size: 1.5rem;
+    font-family: 'retro';
+    color: green;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 80vh;
+    -webkit-animation: text-pop-up-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: text-pop-up-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+  
+  @media(min-width: 800px){
+    /* .loader{
+      width: 600px;
+    } */
+    .title{
+      font-size: 2rem;
+    }
+  }
+  
+  @media(min-width: 1000px){
+    /* .loader{
+      width: 800px;
+    } */
+    .btn-retro-container{
+      height: 15vh;
+    }
+    .btn-retro {
+      font-size: 1.3rem;
+      min-width: 150px;
+      margin-right: 20px;
+    }
+  }
+  

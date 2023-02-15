@@ -6,7 +6,7 @@ const getGameById = async (idApi, idDB)=>{
     const dataVideogame = await axios(`https://api.rawg.io/api/games/${idApi}?key=${KEY_NAME}`)
 
     const {data} = dataVideogame
-    const {name, description, released, background_image, rating, genres, platforms} = data
+    const {name, description_raw, released, background_image, rating, genres, platforms} = data
 
     let arrPlatforms = []
     platforms.forEach(platf=>{ //getting only platforms name
@@ -19,7 +19,7 @@ const getGameById = async (idApi, idDB)=>{
     })
 
 
-    return {id: Number(idDB), idAPI: idApi, name, description,  
+    return {id: Number(idDB), idAPI: idApi, name, description: description_raw,  
     platforms: arrPlatforms, image: background_image, genres: arrGenres, released, rating}
 }
 

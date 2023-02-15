@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const printHomeMessage = require("./controllers/home.js")
 const routesVideogames = require('./routes/videogames.js');
 const routesGenres = require('./routes/genre.js');
 const routerPlatforms = require('./routes/platforms.js');
@@ -23,7 +24,18 @@ server.use((req, res, next) => {
   next();
 });
 
+//*home
+server.get("/", (req,res)=>{
+  try{
+    const messageHome = printHomeMessage()
+    res.status(200).json(messageHome)
+  }
+  catch(err){
+    res.status(400).json({error: err.message})
+  }
+})
 
+//*other routes
 server.use('/videogames', routesVideogames);
 server.use('/genres', routesGenres);
 server.use('/platforms', routerPlatforms)
