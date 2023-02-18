@@ -49,7 +49,7 @@
  /** animation */
   transform-origin: 16px 22px;
   transform: rotate(70deg);
-  animation: right_arm 10s ease-in-out infinite;
+  animation: right_arm 6s ease-in-out infinite;
 }
 .right-arm .right-hand {
   position: absolute;
@@ -62,7 +62,7 @@
  /** animation */
   transform-origin: center center;
   transform: rotate(-40deg);
-  animation: right_hand 10s ease-in-out infinite;
+  animation: right_hand 6s ease-in-out infinite;
 }
 .right-arm .right-hand::after {
   content: "";
@@ -75,7 +75,7 @@
   background: #f1c5b4;
  /** Animation */
   transform: translateY(16px);
-  animation: right_finger 10s ease-in-out infinite;
+  animation: right_finger 6s ease-in-out infinite;
 }
 .left-arm {
   position: absolute;
@@ -88,7 +88,7 @@
  /** animation */
   transform-origin: 60px 26px;
   transform: rotate(-70deg);
-  animation: left_arm 10s ease-in-out infinite;
+  animation: left_arm 6s ease-in-out infinite;
 }
 .left-arm .left-hand {
   position: absolute;
@@ -112,7 +112,7 @@
  /** Animation */
   transform-origin: right bottom;
   transform: scaleX(0);
-  animation: left_finger 10s ease-in-out infinite;
+  animation: left_finger 6s ease-in-out infinite;
 }
 .head {
   position: absolute;
@@ -123,7 +123,7 @@
  /** Animation */
   transform-origin: center center;
   transform: rotate(-3deg);
-  animation: head 10s ease-in-out infinite;
+  animation: head 6s ease-in-out infinite;
 }
 .head .beard {
   position: absolute;
@@ -282,7 +282,7 @@
   bottom: 15px;
   left: 108px;
 }
-/** 10s animation - 10% = 1s */
+/** 6s animation - 10% = 1s */
 @keyframes right_arm {
   0% {
     transform: rotate(70deg);
@@ -472,7 +472,7 @@
   border-radius: 50%;
  /** Animation */
   transform: rotate(-360deg);
-  animation: path_square 10s ease-in-out infinite;
+  animation: path_square 6s ease-in-out infinite;
 }
 .square::after {
   content: "";
@@ -492,7 +492,7 @@
   border-radius: 50%;
  /** Animation */
   transform: rotate(-360deg);
-  animation: path_circle 10s ease-in-out infinite;
+  animation: path_circle 6s ease-in-out infinite;
 }
 .circle::after {
   content: "";
@@ -513,7 +513,7 @@
   border-radius: 50%;
  /** Animation */
   transform: rotate(-360deg);
-  animation: path_triangle 10s ease-in-out infinite;
+  animation: path_triangle 6s ease-in-out infinite;
 }
 .triangle::after {
   content: "";
@@ -526,7 +526,7 @@
   border-width: 0 28px 48px 28px;
   border-color: transparent transparent #89beb3 transparent;
 }
-/** 10s animation - 10% = 1s */
+/** 6s animation - 10% = 1s */
 @keyframes path_circle {
   0% {
     transform: translateY(0);
@@ -593,7 +593,7 @@
   width: 0;
   height: 100%;
   background: red;
-  animation: progress 20s linear infinite;
+  animation: progress 6s linear infinite;
 }
 @keyframes progress {
   from {

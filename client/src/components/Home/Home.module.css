@@ -13,24 +13,37 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    height: 80vh;
+    height: 75vh;
     -webkit-animation: text-pop-up-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	        animation: text-pop-up-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   }
+
+  /* todo PROBAR ESTOS SIN ANDA MAL EL BTN VIDEOGAMES */
+
+  /* .btn_retro_container{
+    width: 100%;
+    position: relative;
+    top: 10%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn_start{
+    background: rgb(231, 198, 13);
+    font-family: 'retro';
+    border: 3px solid rgb(104, 98, 98);
+    color: rgb(104, 98, 98);
+    padding: 10px 20px;
+    border-radius: 7px;
+  } */
   
   @media(min-width: 800px){
-    /* .loader{
-      width: 600px;
-    } */
     .title{
       font-size: 2rem;
     }
   }
   
   @media(min-width: 1000px){
-    /* .loader{
-      width: 800px;
-    } */
     .btn-retro-container{
       height: 15vh;
     }

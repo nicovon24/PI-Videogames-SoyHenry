@@ -1,8 +1,9 @@
+import styles from "./Details.module.css"
 import { useEffect } from "react"
 import {useParams} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import {getGameByID} from "../../../redux/actions.js"
-import styles from "./Details.module.css"
+import Nav from "../../Nav/Nav.jsx"
 
 export default function Details(){
     const {id} = useParams()
@@ -19,21 +20,24 @@ export default function Details(){
     return(
         <div className={styles.details_container}>
             {game &&
-            <div className={styles.details}>
-                <div className={styles.details_image_container}>
-                    <img src={game.image} alt="detail img"/>
-                    <div className={styles.details_info}>
-                        <h1>{game.name}</h1>
-                        {platforms && <p><b>Platforms:</b> {platforms.join(",")}</p>}
-                        {genres && <p><b>Genres:</b> {genres.join(",")}</p>}
-                        <p><b>Rating:</b> {game.rating}</p>
-                        <p><b>Released:</b> {game.released}</p>
+            <>
+                <Nav/>
+                <div className={styles.details}>
+                    <div className={styles.details_image_container}>
+                        <img src={game.image} alt="detail img"/>
+                        <div className={styles.details_info}>
+                            <h1>{game.name}</h1>
+                            {platforms && <p><b>Platforms:</b> {platforms.join(",")}</p>}
+                            {genres && <p><b>Genres:</b> {genres.join(",")}</p>}
+                            <p><b>Rating:</b> {game.rating}</p>
+                            <p><b>Released:</b> {game.released}</p>
+                        </div>
+                    </div>
+                    <div className={styles.description} id="description">
+                        {description}
                     </div>
                 </div>
-                <div className={styles.description} id="description">
-                    {description}
-                </div>
-            </div>}
+            </>}
         </div>
     )
 }

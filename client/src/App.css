@@ -111,6 +111,7 @@
   width: auto;
   text-align: center;
   font-family: 'retro';
+  cursor: pointer;
 }
 .btn-retro:focus, .btn-retro:hover {
   background: #bcbcbc;

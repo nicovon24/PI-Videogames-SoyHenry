@@ -1,0 +1,39 @@
+.create_container{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #0f0433;
+}
+
+.create_container_form{
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 120px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.create_container button{
+    width: 100px;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.genres_container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.genres_inputs{
+    color: white;
+}
+
+@media(max-width: 800px){
+    .genres_container{
+        font-size: 0.9rem;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    .create_container_form{
+        width: 85%;
+    }
+}

@@ -1,33 +1,54 @@
 import styles from "./Games.module.css"
 import {useDispatch, useSelector} from "react-redux"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { getInitialGames } from "../../../redux/actions"
 import Card from "./Card.jsx"
-import Menu from "../Pages/Menu.jsx"
+import Menu from "../Menu/Menu.jsx"
 import Forms from "../Forms/Forms.jsx"
+import Loader from "../../Loader/Loader.jsx"
+import Nav from "../../Nav/Nav"
 
 export default function Games(){
     const dispatch = useDispatch()
+    const [isLoaded, setIsLoaded] = useState(false)
     
     useEffect(()=>{
         dispatch(getInitialGames())
+        setTimeout(()=>{
+            setIsLoaded(true)
+        }, [6100])
     }, [dispatch])
 
-    const {pageGames} = useSelector(state=>state)
+    const {page, currentPages} = useSelector(state=>state)
+
+    let data = currentPages[page-1]
 
     return(
         <div>
-            <div className={styles.cards_container}>
+            {isLoaded ? 
+            <>
+                <Nav/>
+                <div className={styles.cards_container}>
                 <div>
                     <Forms/>
                 </div>
-                <div className={styles.cards_subcontainer}>
-                    {pageGames.map(game=>{
-                        return <Card game={game} key={game.id}/>
-                    })}
+                {data && data[1].length!==0 ?
+                <>
+                    <Menu/>
+                    <div className={styles.cards_subcontainer}>
+                        {data[1].map(game=>{
+                            return <Card game={game} key={game.id}/>
+                        })}
+                    </div>
+                </>
+                : 
+                <div className={styles.none_videogames_container}>
+                    <h1 className={styles.none_videogames}>None videogames left</h1>
                 </div>
-                <Menu/>
-            </div>
+                }
+                </div>
+            </>
+            : <Loader/>}
         </div>
     )
 }

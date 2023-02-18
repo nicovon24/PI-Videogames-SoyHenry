@@ -1,12 +1,13 @@
 import { 
-GET_ALL_GAMES, GET_INITIAL_GAMES_PAGE, GET_GAME_BY_ID, GET_INITIAL_GAMES, GET_PAGES_PER_GAME, GET_FILTERED_GAMES, GET_PLATFORMS_GENRES,
-INCREASE_PAGE, DECREASE_PAGE } from "./action-types.js"
+GET_ALL_GAMES, GET_GAME_BY_ID, GET_INITIAL_GAMES,  FILTER_GAMES, GET_PLATFORMS_GENRES,
+INCREASE_PAGE, DECREASE_PAGE, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, CHANGE_PAGE, SEARCH_GAME, DELETE_GAME } from "./action-types.js"
 
 const initialState = {
     allGames: [],
     initialGames: [],
-    pageGames: [],
-    gamesPerPage: [],
+    pageGames: [], //todo VER COMO BORRAR
+    currentPages: [],
+    filteredPages: [],
     detailsGame: {},
     platforms: [],
     genres: [],
@@ -23,30 +24,47 @@ const rootReducer = (state = initialState, {type, payload})=>{
 
         case GET_INITIAL_GAMES: return {
             ...state,
-            initialGames: payload,
             pageGames: payload,
+            initialGames: payload,
             page: 1
         }
 
-        case GET_PAGES_PER_GAME: return {
+        case GET_CURRENT_PAGES: return { //
             ...state,
-            pages: Math.ceil(state.gamesPerPage.length / 20),
-            gamesPerPage: payload
+            currentPages: payload,
+            pages: payload.length
         }
 
-        case GET_INITIAL_GAMES_PAGE: return {
-            ...state, 
-            pageGames: payload
+        case SEARCH_GAME: return {
+            ...state,
+            currentPages: payload,
+            pages: payload.length,
+            page: 1
         }
 
-        case GET_FILTERED_GAMES: return {
+        case RESTART_CURRENT_PAGE: return {
+            ...state,
+            currentPages: payload,
+            pages: payload.length,
+            page: 1,
+        }
+
+        case FILTER_GAMES: return { //filtering games
             ...state, 
-            pageGames: payload
+            currentPages: payload,
+            filteredPages: payload,
+            page: 1,
+            pages: payload.length
         }
 
         case GET_GAME_BY_ID: return {
             ...state,
             detailsGame: {...payload}
+        }
+
+        case DELETE_GAME: return {
+            ...state,
+            allGames: state.allGames.filter(g=>g.id!==payload)
         }
 
         case INCREASE_PAGE: return {
@@ -57,6 +75,11 @@ const rootReducer = (state = initialState, {type, payload})=>{
         case DECREASE_PAGE: return {
             ...state, 
             page: state.page>1 ? state.page-1 : state.page
+        }
+
+        case CHANGE_PAGE: return {
+            ...state,
+            page: payload
         }
 
         case GET_PLATFORMS_GENRES: return { //for filter options

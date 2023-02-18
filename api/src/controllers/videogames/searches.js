@@ -31,7 +31,7 @@ const searchByName = async (req, res, name, page, havePage)=> {
     
     // if(gamesDB.length>0 || gamesAPI.length>0) res.status(200).json([...gamesDB, ...gamesAPIRelevantData])
 
-    if(gamesDB.length>0 || gamesAPI.length>0) res.status(200).json([...gamesDB])
+    if(gamesDB.length>0) res.status(200).json([...gamesDB])
     else res.status(400).json({error: `Game with name ${name} does not exist in the database`})
 
 }

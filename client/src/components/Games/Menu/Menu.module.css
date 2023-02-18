@@ -7,23 +7,25 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    box-shadow: aqua 0px 0px 8px;
+    /* box-shadow: aqua 0px 0px 8px; */
 }
 .menu button{
     border: none;
     background-color: transparent;
     color: white;
-    box-shadow: red 0px 0px 8px;
     height: 30px;
-    width: 25px;
     text-align: center;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
     border-radius: 50%;
-    
 }
-.menu label{
-    color: white;
+.menu .page_btn{
+    outline: none;
+    border: none;
+}
+.menu .page_btn_active{
     box-shadow: red 0px 0px 8px;
-    width: 25px;
-    padding: 5px 0px;
-    text-align: center;
 }

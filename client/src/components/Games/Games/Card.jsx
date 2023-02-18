@@ -2,8 +2,11 @@ import styles from "./Games.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faStarHalfStroke } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { deleteGame } from "../../../redux/actions"
 
 export default function Card({game}){
+    //*getting stars img of the game
     const {rating} = game
     let ratingStars = ""
     if(rating===5) ratingStars = getStars(5)
@@ -18,25 +21,35 @@ export default function Card({game}){
     else if(rating>0.5) ratingStars = getStars(0, 1, 4)
     else if(rating>0) ratingStars = getStars(0, 0, 5)
 
+    const dispatch = useDispatch()
+    
+    const handleDeleteGame = (id) => {
+        dispatch(deleteGame(id))
+    }
+
     return(
-        <div className={styles.card}>
-            <NavLink to={`/videogames/${game.id}`} style={{textDecoration: "none"}}>
-                <img src={game.image} className={styles.card_img} alt="videogame img"/>
-            </NavLink>
-            <h1 className={`${styles.card_name} card_title`}>{game.name}</h1>
-            <ul>
-                {game.genres.map((el, index)=>{
-                    if(game.genres.length-1===index) return <span key={index}>{el}</span>
-                    else return <span key={index}>{el}, </span>
-                })}
-            </ul>
-            {ratingStars}
-            <span className={styles.rating_string}>Rating: {game.rating}</span>
-            {/* <p>{game.released}</p> */}
+        <div>
+            <div className={styles.card}>
+                <NavLink to={`/videogames/${game.id}`} style={{textDecoration: "none"}}>
+                    <img src={game.image} className={styles.card_img} alt="videogame img"/>
+                </NavLink>
+                <h1 className={`${styles.card_name} card_title`}>{game.name}</h1>
+                <ul>
+                    {game.genres.map((el, index)=>{
+                        if(game.genres.length-1===index) return <span key={index}>{el}</span>
+                        else return <span key={index}>{el}, </span>
+                    })}
+                </ul>
+                {ratingStars}
+                <span className={styles.rating_string}>Rating: {game.rating}</span>
+                <button className={styles.btn_delete} onClick={(id)=>handleDeleteGame(game.id)}>Delete</button>
+                {/* <p>{game.released}</p> */}
+            </div>
         </div>
     )
 }
 
+//*getting stars img of the game
 function getStars(num, numHalfStar, numNullStars){
     let imgsCompleteStar = []
     for(let i = 0; i < num; i++){
