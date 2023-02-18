@@ -4,9 +4,11 @@ const {KEY_NAME} = process.env
 
 const getGameById = async (idApi, idDB)=>{
     const dataVideogame = await axios(`https://api.rawg.io/api/games/${idApi}?key=${KEY_NAME}`)
+    console.log(dataVideogame.data);
 
     const {data} = dataVideogame
     const {name, description_raw, released, background_image, rating, genres, platforms} = data
+    // console.log({name, description_raw, released, background_image, rating, genres, platforms});
 
     let arrPlatforms = []
     platforms.forEach(platf=>{ //getting only platforms name

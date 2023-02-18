@@ -20,7 +20,11 @@ const getAllPlatforms = async ()=>{
 const saveAllPlatforms = async ()=>{
     try{
         const allPlatforms = await getAllPlatforms()
-        await Platform.bulkCreate(allPlatforms)
+        allPlatforms.forEach(p=>{
+            Platform.findOrCreate({
+                where: {name: p.name}
+            })
+        })
         return allPlatforms
     }
     catch(err){

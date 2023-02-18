@@ -1,9 +1,10 @@
 const axios = require("axios");
 const {Videogame} = require("../../db.js");
 const {KEY_NAME} = process.env;
-const getRevelantDataFromAPI = require('../../functions/getRevelantData.js')
+const getRevelantDataFromAPI = require('../../functions/getRevelantData.js');
+const Genre = require("../../models/Genre.js");
 
-const getAllVideogames = async ()=>{
+const getApiVideogames = async ()=>{ //getApiInfo
     try{
         let arrVideogames = []
         for(let i = 1; i <= 5; i++){ //trayendo primeros 100 personajes
@@ -19,21 +20,39 @@ const getAllVideogames = async ()=>{
     }
 }
 
-const saveAllVideogames = async (name)=>{
+const getDbVideogames = async ()=>{ //getApiInfo
+    try{
+        return await Videogame.findAll()
+        // return await Videogame.findAll([{
+            //   model :Genre,
+            //   attributes: ['name'],
+            //   through : {
+            //     attributes : [],
+            //   }
+            // },{ // ----
+            //   model :Platform,
+            //   attributes: ['name'],
+            //   through : {
+            //     attributes : [],
+            //   }
+            // }]
+    }
+    catch(err){
+        throw new Error(err)
+    }
+}
+
+const getAllVideogames = async ()=>{
     try {
-        if(!name){
-            const allVideogames = await getAllVideogames();
-            await Videogame.bulkCreate(allVideogames); //passing all the game objects to the db
-            return allVideogames
-        }
-        else{
-            const allVideogames = await getAllVideogames(name);
-            await Videogame.bulkCreate(allVideogames);
-            return allVideogames
-        }
+        // const allVideogames = await getApiVideogames();
+        // await Videogame.bulkCreate(allVideogames); //passing all the game objects to the db
+        // return allVideogames
+        const apiGames = await getApiVideogames()
+        const dbGames  = await getDbVideogames()
+        return [...apiGames, ...dbGames]
     } catch (error) {
         return { error: error.message };
     }
 }
 
-module.exports = {getAllVideogames, saveAllVideogames}
+module.exports = {getApiVideogames, getAllVideogames}

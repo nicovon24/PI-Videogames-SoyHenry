@@ -22,10 +22,15 @@ const getAllGenres = async ()=>{
 const saveAllGenres = async ()=>{
     try{
         const allGenres = await getAllGenres()
-        await Genre.bulkCreate(allGenres)
+        allGenres.forEach(g=>{
+            Genre.findOrCreate({
+                where: {name: g.name}
+            })
+        })
         return allGenres
     }
     catch(err){
+        console.log(err);
         throw new Error(err)
     }
 }

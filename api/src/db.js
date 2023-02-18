@@ -36,13 +36,16 @@ const { Videogame, Genre, Platform } = sequelize.models;
 // TODO como hacer relaciones para arrays???
 // Videogame.hasOne(Genre) //one to one relationship
 // Genre.belongsToMany(Videogame, {through: 'genres', as: "videogamesFK"}) //one to many relationship
-
-// Videogame.hasMany(Platform) //one to one relationship
-// Platform.belongsToMany(Videogame, {through: 'platforms'}) //one to many relationship
  
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
+// Videogame.belongsToMany(Platform, {through: 'games_platforms'}) 
+// Platform.belongsToMany (Videogame, {through: 'games_platforms'}) 
+//*through: tabla por la que se relaciona
+
+Videogame.belongsToMany(Genre, {through: 'games_platforms'}) 
+Genre.belongsToMany(Videogame, {through: 'games_genres'}) 
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

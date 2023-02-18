@@ -5,10 +5,10 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Videogame', {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      allowNull: false,
-      primaryKey: true
+      type: DataTypes.UUID,
+      allowNull: true,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
     },
     idAPI: {
       type: DataTypes.INTEGER,
@@ -30,6 +30,10 @@ module.exports = (sequelize) => {
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
+    platforms: {
+      type: DataTypes.ARRAY(DataTypes.STRING), 
+      allowNull: false,
+    },
     genres: {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false
@@ -40,9 +44,9 @@ module.exports = (sequelize) => {
       min: 1,
       max: 5
     },
-    platforms: {
-      type: DataTypes.ARRAY(DataTypes.STRING), //¿como accedo a este json en psql?
-      allowNull: false,
+    createdByUser: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     }
   }, {timestamps: false});
 };
