@@ -27,19 +27,6 @@ const searchByName = async (req, res, name, page, havePage)=> {
         if(g.name.toLowerCase().includes(name.toLowerCase())) results.push(g)
     })
 
-    // const gamesDB = await Videogame.findAll({ //finding the videogames with name...
-    //     where: {
-    //         "name": { 
-    //             [Op.like]: {[Op.any]: nameCombinations  } //all posible combinations
-    //         }
-    //     }
-    // })
-    // todo, agregar??? 
-    // const gamesAPI = await axios(`https://api.rawg.io/api/games?key=9418ffce5c744c1db900bab3e248fdc7&search=${urlQuery}&page_size=15`)
-    // const gamesAPIRelevantData = getRevelantDataFromAPI(gamesAPI.data.results, true)
-    
-    // if(gamesDB.length>0 || gamesAPI.length>0) res.status(200).json([...gamesDB, ...gamesAPIRelevantData])
-
     if(results.length>0) res.status(200).json([...results])
     else res.status(400).json({error: `Game with name ${name} does not exist in the database`})
 

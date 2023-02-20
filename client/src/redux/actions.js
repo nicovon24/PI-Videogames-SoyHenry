@@ -1,5 +1,5 @@
 import axios from "axios"
-import { GET_ALL_GAMES, GET_INITIAL_GAMES, GET_GAME_BY_ID, SEARCH_GAME, INCREASE_PAGE, DECREASE_PAGE, GET_PLATFORMS_GENRES, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, FILTER_GAMES, CHANGE_PAGE, DELETE_GAME } from "./action-types.js"
+import { GET_ALL_GAMES, GET_INITIAL_GAMES, GET_GAME_BY_ID, SEARCH_GAME, INCREASE_PAGE, DECREASE_PAGE, GET_PLATFORMS_GENRES, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, FILTER_GAMES, CHANGE_PAGE, DELETE_GAME, CREATE_GAME } from "./action-types.js"
 
 export const getAllGames = ()=>{ //the 100 games
     return async function(dispatch){
@@ -59,7 +59,6 @@ export function getCurrentPages(currentGames){ //pages, getting the data for the
         throw new Error('Could not get the current pages')
     }
 }
-
 export function searchGame(search){
     return async function(dispatch){
         try{
@@ -149,6 +148,28 @@ export function filterGames(allGames, {genre, platform, order, originData}){ //f
             }
         }
 
+        if(originData){
+            switch(originData){
+                case "all":
+                    results = allGames
+                    break;
+                case "db": 
+                    results = results.filter(game=>{
+                        if(game.id.toString().length>10) return game
+                        return null
+                    })
+                    break;
+                case "api":
+                    results = results.filter(game=>{
+                        if(typeof(game.id)==="number") return game
+                        return null
+                    })
+                    break;
+                default:
+                    break;
+            }
+        }
+
         const passToPages = getCurrentPages(results).payload //lo paso a formato 
         //[[1: { [ {...}]} ]...]
 
@@ -165,18 +186,44 @@ export function filterGames(allGames, {genre, platform, order, originData}){ //f
 export function getGameByID(id){
     return async function(dispatch){
         try{
-            const response = await axios.get(`http://localhost:3001/videogames/${id}`)
-            return dispatch({
+            if(id){
+                const response = await axios.get(`http://localhost:3001/videogames/${id}`)
+                return dispatch({
+                        type: GET_GAME_BY_ID,
+                        payload: response.data
+                    }
+                )
+            }
+            else{
+                return dispatch({
                     type: GET_GAME_BY_ID,
-                    payload: response.data
+                    payload: {}
                 }
             )
+            }
         }
         catch(err){
             throw new Error('Could not find the videogame')
         }
     }
 }
+
+export function createGame(data){
+    return async function(dispatch){
+        try{
+            const response = await axios.post(`http://localhost:3001/videogames`, data)
+            return dispatch({
+                type: CREATE_GAME,
+                payload: response.data
+            }
+        )
+        }
+        catch(err){
+            throw new Error('Could not create the game')
+        }
+    }
+}
+
 
 export function deleteGame(id){
     return async function(dispatch){

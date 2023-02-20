@@ -3,6 +3,7 @@ const {Videogame} = require("../../db.js");
 const {KEY_NAME} = process.env;
 const getRevelantDataFromAPI = require('../../functions/getRevelantData.js');
 const Genre = require("../../models/Genre.js");
+const Platform = require("../../models/Platform.js")
 
 const getApiVideogames = async ()=>{ //getApiInfo
     try{
@@ -22,20 +23,32 @@ const getApiVideogames = async ()=>{ //getApiInfo
 
 const getDbVideogames = async ()=>{ //getApiInfo
     try{
-        return await Videogame.findAll()
-        // return await Videogame.findAll([{
-            //   model :Genre,
-            //   attributes: ['name'],
-            //   through : {
-            //     attributes : [],
-            //   }
-            // },{ // ----
-            //   model :Platform,
-            //   attributes: ['name'],
-            //   through : {
-            //     attributes : [],
-            //   }
-            // }]
+        return await Videogame.findAll(
+            {
+                attributes: ['id', 'name', //include this attributes
+                'description', 
+                'image', 
+                'platforms', 
+                'genres', 
+                'released',  
+                'rating', 
+                'createdByUser']
+            },
+            { //todo UN OBJETO POR MODELOOO
+                model: Genre,
+                attributes: ['name'],
+                through : {
+                    attributes : [],
+                }
+            },
+            {
+                model: Platform,
+                attributes: ['name'],
+                through : {
+                    attributes : [],
+                }
+            }
+        )
     }
     catch(err){
         throw new Error(err)

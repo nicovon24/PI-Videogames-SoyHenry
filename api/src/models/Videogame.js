@@ -10,10 +10,6 @@ module.exports = (sequelize) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
     },
-    idAPI: {
-      type: DataTypes.INTEGER,
-      unique: true
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -24,7 +20,8 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 'https://media.vandal.net/i/1280x720/1-2023/202312017362844_1.jpg'
     },
     released: {
       type: DataTypes.DATEONLY,

@@ -58,8 +58,13 @@
     width: 100%;
     opacity: 0.8;
     display: none;
+    position: relative;
+    z-index: 9000;
 }
 
+.header_container svg{
+    padding-right: 3px;
+}
 
 
 @media(max-width: 800px){

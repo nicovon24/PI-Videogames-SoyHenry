@@ -1,5 +1,5 @@
-import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
 // import Loader from "./components/Loader/Loader.jsx"
 import Home from "./components/Home/Home.jsx";
 import Games from "./components/Games/Games/Games.jsx"

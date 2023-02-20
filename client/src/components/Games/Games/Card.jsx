@@ -42,7 +42,10 @@ export default function Card({game}){
                 </ul>
                 {ratingStars}
                 <span className={styles.rating_string}>Rating: {game.rating}</span>
-                <button className={styles.btn_delete} onClick={(id)=>handleDeleteGame(game.id)}>Delete</button>
+                {   
+                    game.createdByUser &&
+                    <button className={styles.btn_delete} onClick={(id)=>handleDeleteGame(game.id)}>Delete</button>
+                }
                 {/* <p>{game.released}</p> */}
             </div>
         </div>

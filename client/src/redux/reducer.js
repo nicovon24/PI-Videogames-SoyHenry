@@ -1,6 +1,6 @@
 import { 
 GET_ALL_GAMES, GET_GAME_BY_ID, GET_INITIAL_GAMES,  FILTER_GAMES, GET_PLATFORMS_GENRES,
-INCREASE_PAGE, DECREASE_PAGE, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, CHANGE_PAGE, SEARCH_GAME, DELETE_GAME } from "./action-types.js"
+INCREASE_PAGE, DECREASE_PAGE, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, CHANGE_PAGE, SEARCH_GAME, DELETE_GAME, CREATE_GAME } from "./action-types.js"
 
 const initialState = {
     allGames: [],
@@ -39,6 +39,7 @@ const rootReducer = (state = initialState, {type, payload})=>{
             ...state,
             currentPages: payload,
             pages: payload.length,
+            counterGames: payload.length,
             page: 1
         }
 
@@ -61,6 +62,12 @@ const rootReducer = (state = initialState, {type, payload})=>{
             ...state,
             detailsGame: {...payload}
         }
+
+        case CREATE_GAME: return {
+            ...state,
+            allGames: [...state.allGames, payload]
+        }
+
 
         case DELETE_GAME: return {
             ...state,

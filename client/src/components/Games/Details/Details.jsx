@@ -4,24 +4,29 @@ import {useParams} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import {getGameByID} from "../../../redux/actions.js"
 import Nav from "../../Nav/Nav.jsx"
+import Loader from "../../Loader/Loader.jsx"
 
 export default function Details(){
     const {id} = useParams()
     const dispatch = useDispatch()
 
     useEffect(()=>{
+        dispatch(getGameByID())
         dispatch(getGameByID(id))
     }, [dispatch, id])
 
     const game = useSelector(state=>state.detailsGame)
 
+    console.log();
+
     const {description, platforms, genres} = game
 
     return(
-        <div className={styles.details_container}>
-            {game &&
+        <>
+            {Object.entries(game).length>0 ?
             <>
-                <Nav/>
+                <Nav showSearch={false}/>
+                <div className={styles.details_container}>
                 <div className={styles.details}>
                     <div className={styles.details_image_container}>
                         <img src={game.image} alt="detail img"/>
@@ -37,7 +42,9 @@ export default function Details(){
                         {description}
                     </div>
                 </div>
-            </>}
-        </div>
+                </div>
+            </> :
+            <Loader/>}
+        </>
     )
 }

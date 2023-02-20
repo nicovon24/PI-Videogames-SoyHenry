@@ -20,7 +20,7 @@ export function FilterBy(){
         })
     }
 
-    const {allGames, page, pages, pageGames, platforms, genres} = useSelector(state=>state)
+    let {allGames, page, pages, pageGames, platforms, genres} = useSelector(state=>state)
 
     useEffect(()=>{
         if(pageGames.length===0 && pages>page){
@@ -32,15 +32,12 @@ export function FilterBy(){
         e.preventDefault()
 
         //*filtering
-        if(filters.genre || filters.platform || filters.order){
+        if(filters.genre || filters.platform || filters.order || filters.originData){
             dispatch(filterGames(allGames, filters))
         }
-        if(!filters.genre && !filters.platform){
+        if(!filters.genre && !filters.platform && filters.order && filters.originData){
             dispatch(restartCurrentPage(allGames))
         }
-
-        //*order
-        // const {order, originData} = filters
     }
 
     const handleRestart = ()=>{

@@ -24,7 +24,7 @@ const { saveAllPlatforms } = require('./src/controllers/platforms.js')
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(async () => {
+conn.sync({ force: false }).then(async () => {
   // await saveAllVideogames("");
   await saveAllGenres()
   await saveAllPlatforms()

@@ -54,11 +54,19 @@ routerVideogames.get("/:id", async (req, res)=>{
     try{
         const {id} = req.params
         const allVideogames = await getAllVideogames()
-        const find = allVideogames.find(g=>g.id===Number(id))
-        if(find) {
-            const {id} = find
-            const dataVideogame = await getGameById(id)
-            res.status(200).json(dataVideogame)
+        const findApi = allVideogames.find(g=>g.id===Number(id)) //in api it is type num
+        const findDB = allVideogames.find(g=>g.id===id) //in db is type uuid (string)
+        if(findApi || findDB) {
+            if(findApi){
+                const {id} = findApi
+                const dataVideogame = await getGameById(id)
+                res.status(200).json(dataVideogame)
+            }
+            if(findDB){
+                const findDB = await Videogame.findByPk(id)
+                console.log(findDB);
+                res.status(200).json(findDB)
+            }
         }
         else throw new Error(`Videogame with id ${id} does not exist`)
     }
@@ -69,27 +77,42 @@ routerVideogames.get("/:id", async (req, res)=>{
 
 routerVideogames.post("/", async (req, res)=>{
     try{
-        const {name, description = "", image, released, rating, platforms, genres} = req.body
+        const {name, 
+            description = "", 
+            image, 
+            released, 
+            rating,
+            platforms, 
+            genres
+        } = req.body
+
         if(name && image && released && rating && platforms && genres){
             const exists = await Videogame.findOne({
                 where: {name: name}
             })
-            console.log(exists);
             if(!exists){
-                const newGame = await Videogame.create({name, description, image, platforms, genres, released,  rating, createdByUser: true})
+                const newGame = await Videogame.create({name, 
+                    description, 
+                    image, 
+                    platforms, 
+                    genres, 
+                    released,  
+                    rating, 
+                    createdByUser: true
+                })
 
-                // const genresDb = await Genre.findAll({
-                //     where: {name: genres.name}
-                // })
+                const genresDb = await Genre.findAll({
+                    where: {name: genres}
+                })
 
-                // const platformsDb = await Platform.findAll({
-                //     where: {name: platforms.name}
-                // })
+                const platformsDb = await Platform.findAll({
+                    where: {name: platforms}
+                })
 
-                // newGame.addGenre(genresDb)
-                // newGame.addPlatform(platformsDb)
+                newGame.addGenres(genresDb)
+                newGame.addPlatform(platformsDb)
 
-                res.status(200).json({success: true, data_added: {name, description, image, released, platforms, genres, rating, createdByUser: true}})
+                res.status(200).json({success: true, data_added: {name, description, image, released, rating, createdByUser: true}})
             }
             else{
                 throw new Error(`The videogame with name ${name} already exists`)
