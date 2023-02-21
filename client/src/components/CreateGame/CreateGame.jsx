@@ -109,6 +109,7 @@ export default function CreateGame(){
             <Nav showSearch={false}/>
 
             <div className={styles.create_container}>
+                <h1>Register your game!</h1>
                 <form className={styles.create_container_form} onSubmit={handleSubmitForm}>
                     <div className={styles.create_container_subform}>
                         <label htmlFor="name">Name</label>
@@ -195,7 +196,10 @@ export default function CreateGame(){
                                 name="description"
                                 id="description"
                                 r
-                                value={data.description} placeholder="Lorem ipsum..."
+                                value={data.description} placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                                numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                                optio, eaque rerum! Provident similique accusantium nemo autem...."
                                 onChange={handleChangeInput}> 
                         </textarea>
                         {errors.description && <label className={styles.errors}>{errors.description}</label>}      

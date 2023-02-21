@@ -34,15 +34,15 @@ const searchByName = async (req, res, name, page, havePage)=> {
 
 
 //todo search by page
-const searchByPage = async (req, res, page)=> {
-    const allVideogames = await getAllVideogames()
-    console.log(allVideogames);
+// const searchByPage = async (req, res, page)=> {
+//     const allVideogames = await getAllVideogames()
+//     console.log(allVideogames);
     
-    const firstVideogames = [...allVideogames.slice(20*(page-1), 20*page)] //20 siguientes juegos
+//     const firstVideogames = [...allVideogames.slice(20*(page-1), 20*page)] //20 siguientes juegos
 
-    if(firstVideogames.length>0) res.status(200).json(firstVideogames)
-    else res.status(400).json({error: `Page not found`})
-}
+//     if(firstVideogames.length>0) res.status(200).json(firstVideogames)
+//     else res.status(400).json({error: `Page not found`})
+// }
 
 
-module.exports = {searchByName, searchByPage}
+module.exports = {searchByName}

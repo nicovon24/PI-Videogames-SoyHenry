@@ -29,6 +29,16 @@
     border-radius: 6px;
     padding: 30px;
     transition: .2s linear;
+    font-size: 0.7rem;
+    font-family: 'retro';
+}
+
+.create_container h1{
+    color: rgb(150, 150, 150);
+    font-size: 1.3rem;
+    font-family: 'retro';
+    padding-bottom: 5px;
+    color: green;
 }
 
 .create_container_form:hover {
@@ -62,6 +72,11 @@
     color: rgb(150, 150, 150);
     min-height: 30px;
     padding-left: 8px;
+    font-size: 0.65rem;
+}
+
+.create_container input::placeholder{
+    color: rgb(150, 150, 150);
 }
 
 .description_mobile textarea{
@@ -80,7 +95,6 @@
     font-size: 0.8rem;
     border-radius: 4px;
 }
-
 
 .description_mobile{
     display: flex;
@@ -113,13 +127,13 @@
 
 @media(min-width: 1000px){
     .create_container_form{
-        width: 65%;
+        width: 70%;
     }
 }
 
 @media(min-width: 1200px){
     .create_container_form{
-        width: 55%;
+        width: 65%;
     }
 }
 

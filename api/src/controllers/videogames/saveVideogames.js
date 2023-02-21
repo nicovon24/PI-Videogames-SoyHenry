@@ -8,9 +8,14 @@ const Platform = require("../../models/Platform.js")
 const getApiVideogames = async ()=>{ //getApiInfo
     try{
         let arrVideogames = []
-        for(let i = 1; i <= 5; i++){ //trayendo primeros 100 personajes
-            let response = await axios(`https://api.rawg.io/api/games?key=${KEY_NAME}&page=${i}`)
+        let response = await axios(`https://api.rawg.io/api/games?key=${KEY_NAME}`) //first 20 games
+        let nextPage = response.data.next
+        let map = getRevelantDataFromAPI(response.data.results)
+        arrVideogames = [...arrVideogames, ...map]
+        for(let i = 1; i <= 4; i++){ //other 80 games
+            let response = await axios(nextPage)
             let map = getRevelantDataFromAPI(response.data.results)
+            nextPage = response.data.next
             arrVideogames = [...arrVideogames, ...map]
         }
         return arrVideogames;

@@ -5,6 +5,7 @@
     color: white;
     padding-top: 120px;
     line-height: 1.5;
+    font-family: 'roboto';
 }
 
 .about{
@@ -16,8 +17,7 @@
 
 .about h2{
     color: var(--font-orange);
-    font-size: 1.6rem;
-    font-family: 'Indie Flower', cursive;
+    font-size: 1.2rem;
 }
 
 .about_pic_container img{
@@ -47,14 +47,12 @@
 
 .about_descript{
     margin-bottom: 5px;
-    font-family: 'Gloria Hallelujah', cursive;
 }
 
 .about_name{
     font-size: 1.1rem;
     border-bottom: 2px solid var(--font-orange);
     font-family: 'Itim', cursive;
-    font-family: 'Gloria Hallelujah', cursive;
 }
 
 .about .about_profession{

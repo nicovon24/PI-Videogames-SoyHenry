@@ -5,6 +5,13 @@
   src: local('Rick and Morty font'), url('./assets/fonts/prstart.ttf') format('woff');
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+/* font-family: 'Fascinate', cursive;
+font-family: 'Fascinate Inline', cursive;
+font-family: 'Press Start 2P', cursive;
+font-family: 'Roboto', sans-serif; */
+
 *{
   box-sizing: border-box;
   margin: 0;

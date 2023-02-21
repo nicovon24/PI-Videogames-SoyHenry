@@ -21,28 +21,17 @@ routerVideogames.get("/all", async (req, res)=>{
 
 routerVideogames.get("/", async (req, res)=>{
     try{
-        const {name, page} = req.query
-        if(!name || !page){
+        const {name} = req.query
+        if(!name){
             //search all chars
-            if(!name && (!page || page===1)){
+            if(!name){
                 const allVideogames = await getAllVideogames()
                 const firstVideogames = [...allVideogames.slice(0, 20)] //20 first videogames
                 res.status(200).json(firstVideogames)
             }
-
-            //search by name, ?name=Gta
-            else if(name && !page){
-                searchByName(req, res, name)
-            }
-
-            else if(name && page){
-                searchByName(req, res, name, true)
-            }
-
-            //search by page, ?page=2
-            else if(!name && page){
-                searchByPage(req, res, page)
-            }
+        }
+        else{
+            searchByName(req, res, name)
         }
     }
     catch(err){
