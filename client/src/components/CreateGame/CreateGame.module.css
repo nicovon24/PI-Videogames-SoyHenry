@@ -50,7 +50,7 @@
     flex-direction: column;
 }
 
-.create_container button{
+.create_container .submit{
     width: 100px;
     height: 40px;
     margin-top: 20px;
@@ -59,9 +59,10 @@
 .errors{
     color: red;
 }
-.create_container label{
-    padding-top: 5px;
-    text-decoration: underline;
+.genre_platf_str {
+    padding-top: 15px;
+    color: white;
+    font-size: 0.6rem;
 }
 
 .create_container input, .create_container select, .create_container textarea{
@@ -88,7 +89,7 @@
     color: black;
 }
 
-.create_container button{
+.create_container .submit{
     background-color: #04b1b1;
     border: none;
     font-family: 'retro';
@@ -103,6 +104,10 @@
 
 .description_desktop{
     display: none;
+}
+.property{
+    padding-top: 5px;
+    text-decoration: underline;
 }
 
 @media(min-width: 800px){

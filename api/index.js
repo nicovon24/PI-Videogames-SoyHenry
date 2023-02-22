@@ -25,7 +25,6 @@ const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(async () => {
-  // await saveAllVideogames("");
   // await saveAllGenres()
   // await saveAllPlatforms()
   server.listen(3001, () => {

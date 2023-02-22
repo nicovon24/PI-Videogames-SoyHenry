@@ -103,6 +103,13 @@ export default function CreateGame(){
         })
         console.log('sended form');
     }
+
+    function deleteSelectValue(property, value){
+        setData({
+            ...data,
+            [property]: data[property].filter(p=>p!==value)
+        })
+    }
     
     return(
         <div className={styles.create_container}>
@@ -112,7 +119,7 @@ export default function CreateGame(){
                 <h1>Register your game!</h1>
                 <form className={styles.create_container_form} onSubmit={handleSubmitForm}>
                     <div className={styles.create_container_subform}>
-                        <label htmlFor="name">Name</label>
+                        <label htmlFor="name" className={styles.property}>Name</label>
                         <input type="text" 
                             id="name" 
                             name="name" 
@@ -121,7 +128,7 @@ export default function CreateGame(){
                         </input>
                         {errors.name && <label className={styles.errors}>{errors.name}</label>}
 
-                        <label htmlFor="image">Image</label>
+                        <label htmlFor="image" className={styles.property}>Image</label>
                         <input 
                             type="url" 
                             name="image" 
@@ -134,7 +141,7 @@ export default function CreateGame(){
                         {errors.image && <label className={styles.errors}>{errors.image}</label>}
 
                         <div className={styles.description_mobile}>
-                            <label htmlFor="description">Description</label>
+                            <label htmlFor="description" className={styles.property}>Description</label>
                             <textarea 
                                 type="text" 
                                 name="description"
@@ -146,23 +153,32 @@ export default function CreateGame(){
                             {errors.description && <label className={styles.errors}>{errors.description}</label>}      
                         </div>
 
-                        <label htmlFor="platforms">Genres</label>
+                        <label htmlFor="platforms" className={styles.property}>Genres</label>
                         <select className={styles.genres_container} 
                         name="genres" value={data.genres[data.genres.length-1]}
                         onChange={handleChangeGenres}>
                             <option>Select one or more options...</option>
-                            {genres.sort((a,b)=>a.name.localeCompare(b.name)).map(genre=>{
-                                return <option name={genre.name} key={genre.name} value={genre.name}>{genre.name}</option>
+                            {genres.sort((a,b)=>a?.name.localeCompare(b?.name)).map(genre=>{
+                                return <option name={genre?.name} key={genre?.name} value={genre?.name}>{genre?.name}</option>
                                 // return <option name={genre.name} key={genre.name} value={genre.name}>{genre.name}</option>
                             })}
                         </select>
-                        {errors.genres && <label className={styles.errors}>{errors.genres}</label>}
+                        {errors.genres ? <label className={styles.errors}>{errors.genres}</label>
+                        : <div className={styles.genre_platf_str}> 
+                            {data.genres.map((d,index)=>{
+                                return(<>
+                                    <button type="button" onClick={()=>deleteSelectValue("genres", d)}>x</button>
+                                    <label>{d}
+                                    {index===data?.genres.length-1 ? "" : ","}</label> {/* separando por coma menos al final */}
+                                </>)
+                            })}
+                        </div>}
 
-                        <label htmlFor="released">Released date</label>
+                        <label htmlFor="released" className={styles.property}>Released date</label>
                         <input type="date"
                             name="released" 
                             id="released"
-                            value={data.released}
+                            value={data?.released}
                             onChange={handleChangeInput}>
                         </input>
                         {errors.released && <label className={styles.errors}>{errors.released}</label>}
@@ -172,30 +188,38 @@ export default function CreateGame(){
                             name="rating" 
                             id="rating" 
                             min={1} max={5}
-                            value={data.rating} 
+                            value={data?.rating} 
                             onChange={handleChangeInput}
                             placeholder="4.5">
                         </input>
                         {errors.rating && <label className={styles.errors}>{errors.rating}</label>}
 
-                        <label htmlFor="platforms">Platforms</label>
+                        <label htmlFor="platforms" className={styles.property}>Platforms</label>
                         <select name="platforms" id="platforms" value={data.platforms[data.platforms.length-1]} onChange={handleChangePlatforms}>
                             <option>Select one or more options...</option>
                             {platforms.sort((a,b)=>a.name.localeCompare(b.name)).map(platf=>{
                                 return <option name={platf.name} key={platf.name} value={platf.name}>{platf.name}</option>
                             })}
                         </select>
-                        {errors.platforms && <label className={styles.errors}>{errors.platforms}</label>}
+                        {errors.platforms ? <label className={styles.errors}>{errors.platforms}</label>
+                        : <div className={styles.genre_platf_str}> 
+                            {data?.platforms.map((d,index)=>{
+                                return(<>
+                                    <button type="button" onClick={()=>deleteSelectValue("platforms", d)}>x</button>
+                                    <label>{d}
+                                    {index===data.platforms.length-1 ? "" : ","}</label> {/* separando por coma menos al final */}
+                                </>)
+                            })}
+                        </div>}
     
-                        <button type="submit">Submit</button>
+                        <button type="submit" className={styles.submit}>Submit</button>
                     </div>    
                     <div className={styles.description_desktop}>
-                        <label htmlFor="description">Description</label>  
+                        <label htmlFor="description" className={styles.property}>Description</label>  
                         <textarea 
                                 type="text" 
                                 name="description"
                                 id="description"
-                                r
                                 value={data.description} placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
                                 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
                                 numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium

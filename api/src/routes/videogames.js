@@ -53,7 +53,6 @@ routerVideogames.get("/:id", async (req, res)=>{
             }
             if(findDB){
                 const findDB = await Videogame.findByPk(id)
-                console.log(findDB);
                 res.status(200).json(findDB)
             }
         }
@@ -128,30 +127,30 @@ routerVideogames.post("/", async (req, res)=>{
 //     "createdByUser": "false"
 //   }
 
-// routerVideogames.put("/:id", async (req, res)=>{
-//     try{
-//         let {id} = req.params
-//         let {body} = req
+routerVideogames.put("/:id", async (req, res)=>{
+    try{
+        let {id} = req.params
+        let {body} = req
 
-//         if(id){
-//             const exists = await Videogame.findByPk(id)
-//             if(exists){
-//                 await putVideogame(id, body)
+        if(id){
+            const exists = await Videogame.findByPk(id)
+            if(exists){
+                await putVideogame(id, body)
 
-//                 res.status(200).json({success: true})
-//             }
-//             else{
-//                 throw new Error(`The videogame with id ${id} does not exist`)
-//             }
-//         }
-//         else{
-//             throw new Error(`Uncompleted data`)
-//         }
-//     }
-//     catch(err){
-//         res.status(400).json({error: err.message})
-//     }
-// })
+                res.status(200).json({success: true})
+            }
+            else{
+                throw new Error(`The videogame with id ${id} does not exist`)
+            }
+        }
+        else{
+            throw new Error(`Uncompleted data`)
+        }
+    }
+    catch(err){
+        res.status(400).json({error: err.message})
+    }
+})
 
 
 routerVideogames.delete("/:id", async (req, res)=>{

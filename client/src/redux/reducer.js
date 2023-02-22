@@ -1,6 +1,6 @@
 import { 
 GET_ALL_GAMES, GET_GAME_BY_ID, GET_INITIAL_GAMES,  FILTER_GAMES, GET_PLATFORMS_GENRES,
-INCREASE_PAGE, DECREASE_PAGE, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, CHANGE_PAGE, SEARCH_GAME, DELETE_GAME, CREATE_GAME } from "./action-types.js"
+INCREASE_PAGE, DECREASE_PAGE, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, CHANGE_PAGE, SEARCH_GAME, DELETE_GAME, CREATE_GAME, ADD_FAVORITE, REMOVE_FAVORITE, GET_FAVORITES } from "./action-types.js"
 
 const initialState = {
     allGames: [],
@@ -11,6 +11,7 @@ const initialState = {
     detailsGame: {},
     platforms: [],
     genres: [],
+    favorites: [],
     page: 1,  //current page
     pages: 5  //total pages
 }
@@ -93,6 +94,23 @@ const rootReducer = (state = initialState, {type, payload})=>{
             ...state,
             platforms: payload.platforms,
             genres: payload.genres
+        }
+
+        case GET_FAVORITES: 
+            return {
+                ...state,
+                favorites: payload
+            }
+
+        case ADD_FAVORITE: 
+            return {
+                ...state,
+                favorites: [...state.favorites, payload]
+            }
+
+        case REMOVE_FAVORITE: return {
+            ...state,
+            favorites: state.favorites.filter(fav=>fav.idGame!==payload.toString())
         }
 
         default: return {

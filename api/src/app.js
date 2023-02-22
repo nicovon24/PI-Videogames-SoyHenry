@@ -6,7 +6,8 @@ const printHomeMessage = require("./controllers/home.js")
 const routesVideogames = require('./routes/videogames.js');
 const routesGenres = require('./routes/genre.js');
 const routerPlatforms = require('./routes/platforms.js');
-const cors = require('cors')
+const cors = require('cors');
+const routerFavorites = require('./routes/favorites.js');
 
 const server = express();
 let idNewGames = 1000000 
@@ -42,6 +43,7 @@ server.get("/", (req,res)=>{
 server.use('/videogames', routesVideogames);
 server.use('/genres', routesGenres);
 server.use('/platforms', routerPlatforms)
+server.use('/favorites', routerFavorites)
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
@@ -51,4 +53,4 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(status).send(message);
 });
 
-module.exports = server, {idNewGames};
+module.exports = server;

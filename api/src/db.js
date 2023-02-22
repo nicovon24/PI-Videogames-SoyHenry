@@ -5,7 +5,6 @@ const path = require('path');
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
-const GenreModel = require("./models/Genre.js")
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -31,22 +30,20 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Videogame, Genre, Platform } = sequelize.models;
+const { Videogame, Genre, Platform, Favorite } = sequelize.models;
 
 // TODO como hacer relaciones para arrays???
-// Videogame.hasOne(Genre) //one to one relationship
-// Genre.belongsToMany(Videogame, {through: 'genres', as: "videogamesFK"}) //one to many relationship
  
-
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
 //*through: tabla por la que se relaciona
 
-Videogame.belongsToMany(Genre, {through: 'games_genres'}) 
-Genre.belongsToMany(Videogame, {through: 'games_genres'}) 
+Videogame.belongsToMany(Genre, {through: 'games_genres', timestamps: false}) 
+Genre.belongsToMany(Videogame, {through: 'games_genres', timestamps: false}) 
 
-Videogame.belongsToMany(Platform, {through: 'games_platforms'}) 
-Platform.belongsToMany(Videogame, {through: 'games_platforms'}) 
+Videogame.belongsToMany(Platform, {through: 'games_platforms', timestamps: false}) 
+Platform.belongsToMany(Videogame, {through: 'games_platforms', timestamps: false}) 
+
+Videogame.belongsToMany(Favorite, {through: 'games_favorites', timestamps: false}) 
+Favorite.belongsToMany(Videogame, {through: 'games_favorites', timestamps: false}) 
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

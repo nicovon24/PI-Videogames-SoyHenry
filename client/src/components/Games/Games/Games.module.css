@@ -74,7 +74,7 @@
     display: inline-block;
     margin-bottom: 20px;
     font-size: 10px;
-    color: rgb(247, 27, 27);
+    color: red;
 }
 .rating_container{
     margin: 15px;
@@ -86,10 +86,22 @@
     width: 100%;
     text-align: center;
     padding-top: 30px;
-    color: rgb(128, 121, 121);
+    color: gold;
 }
 .btn_delete{
     padding: 7px;
+}
+.fav_btn{
+    position: absolute;
+    z-index: 9000;
+    left: 90%;
+    top: 3px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+.fav_btn img{
+    width: 30px;
 }
 @media(min-width: 800px){
     .cards_subcontainer{

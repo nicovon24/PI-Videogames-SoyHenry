@@ -11,15 +11,15 @@ import Nav from "../../Nav/Nav"
 export default function Games(){
     const dispatch = useDispatch()
     const [isLoaded, setIsLoaded] = useState(false)
+
+    const {page, currentPages} = useSelector(state=>state)
     
     useEffect(()=>{
         dispatch(getInitialGames())
         setTimeout(()=>{
             setIsLoaded(true)
-        }, [6100])
+        }, [5000])
     }, [dispatch])
-
-    const {page, currentPages} = useSelector(state=>state)
 
     let data = currentPages[page-1]
 

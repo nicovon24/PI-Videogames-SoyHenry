@@ -4,7 +4,6 @@ const {KEY_NAME} = process.env
 
 const getGameById = async (idDB)=>{
     const dataVideogame = await axios(`https://api.rawg.io/api/games/${idDB}?key=${KEY_NAME}`)
-    console.log(dataVideogame.data);
 
     const {data} = dataVideogame
     const {name, description_raw, released, background_image, rating, genres, platforms} = data

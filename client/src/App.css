@@ -7,6 +7,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
+:root{
+  --background: rgb(15, 4, 51);
+  --retro-fonts: green;
+  --inputs: 
+  --gold: gold;
+  --pop-up-top: #cccccc;
+  --pop-up-title: var(--pop-up-title);
+
+}
+
 /* font-family: 'Fascinate', cursive;
 font-family: 'Fascinate Inline', cursive;
 font-family: 'Press Start 2P', cursive;
@@ -33,7 +43,7 @@ font-family: 'Roboto', sans-serif; */
             transform: translateY(-50px);
     -webkit-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
-    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #cccccc, 0 3px 0 #cccccc, 0 4px 0 #cccccc, 0 5px 0 #cccccc, 0 6px 0 #cccccc, 0 7px 0 #cccccc, 0 8px 0 #cccccc, 0 9px 0 #cccccc, 0 50px 30px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 0 var(--pop-up-top), 0 2px 0 var(--pop-up-top), 0 3px 0 var(--pop-up-top), 0 4px 0 var(--pop-up-top), 0 5px 0 var(--pop-up-top), 0 6px 0 var(--pop-up-top), 0 7px 0 var(--pop-up-top), 0 8px 0 var(--pop-up-top), 0 9px 0 var(--pop-up-top), 0 50px 30px rgba(0, 0, 0, 0.3);
   }
 }
 @keyframes text-pop-up-top {
@@ -49,7 +59,7 @@ font-family: 'Roboto', sans-serif; */
             transform: translateY(-50px);
     -webkit-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
-    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #cccccc, 0 3px 0 #cccccc, 0 4px 0 #cccccc, 0 5px 0 #cccccc, 0 6px 0 #cccccc, 0 7px 0 #cccccc, 0 8px 0 #cccccc, 0 9px 0 #cccccc, 0 50px 30px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 0 var(--pop-up-top), 0 2px 0 var(--pop-up-top), 0 3px 0 var(--pop-up-top), 0 4px 0 var(--pop-up-top), 0 5px 0 var(--pop-up-top), 0 6px 0 var(--pop-up-top), 0 7px 0 var(--pop-up-top), 0 8px 0 var(--pop-up-top), 0 9px 0 var(--pop-up-top), 0 50px 30px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -66,7 +76,7 @@ font-family: 'Roboto', sans-serif; */
             transform: translateY(-50px);
     -webkit-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
-            text-shadow: 0 1px 0 rgb(192, 181, 181), 0 2px 0 rgb(192, 181, 181), 0 3px 0 rgb(192, 181, 181), 0 4px 0 rgb(192, 181, 181), 0 5px 0 rgb(192, 181, 181), 0 6px 0 rgb(192, 181, 181), 0 4px 0 rgb(192, 181, 181), 0 4px 0 rgb(192, 181, 181), 0 4px 0 rgb(192, 181, 181), 0 30px 30px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 1px 0 var(--pop-up-title), 0 2px 0 var(--pop-up-title), 0 3px 0 var(--pop-up-title), 0 4px 0 var(--pop-up-title), 0 5px 0 var(--pop-up-title), 0 6px 0 var(--pop-up-title), 0 4px 0 var(--pop-up-title), 0 4px 0 var(--pop-up-title), 0 4px 0 var(--pop-up-title), 0 30px 30px rgba(0, 0, 0, 0.3);
   }
 }
 @keyframes text-pop-up-top-title {
@@ -82,7 +92,7 @@ font-family: 'Roboto', sans-serif; */
             transform: translateY(-50px);
     -webkit-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
-            text-shadow: 0 1px 0 rgb(192, 181, 181), 0 2px 0 rgb(192, 181, 181), 0 3px 0 rgb(192, 181, 181), 0 4px 0 rgb(192, 181, 181), 0 5px 0 rgb(192, 181, 181), 0 6px 0 rgb(192, 181, 181), 0 4px 0 rgb(192, 181, 181), 0 4px 0 rgb(192, 181, 181), 0 4px 0 rgb(192, 181, 181), 0 30px 30px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 1px 0 var(--pop-up-title), 0 2px 0 var(--pop-up-title), 0 3px 0 var(--pop-up-title), 0 4px 0 var(--pop-up-title), 0 5px 0 var(--pop-up-title), 0 6px 0 var(--pop-up-title), 0 4px 0 var(--pop-up-title), 0 4px 0 var(--pop-up-title), 0 4px 0 var(--pop-up-title), 0 30px 30px rgba(0, 0, 0, 0.3);
   }
 }
 

@@ -6,7 +6,7 @@ export default function Home(){
         <div className={styles.home}>
             <div className="btn-retro-container">
             <NavLink to="/videogames">
-              <button className="btn-retro btn-retro-fourth">Videogames</button>
+              <button className="btn-retro btn-retro-fourth">Start</button>
             </NavLink>
               {/* <button className="btn-retro btn-retro-tertiary">Sign up</button> */}
             </div>

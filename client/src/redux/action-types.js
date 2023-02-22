@@ -13,4 +13,8 @@ export const CHANGE_PAGE = 'CHANGE_PAGE' //move from page 3 to 1, for example
 export const GET_GAMES_PAGE= 'GET_GAMES_PAGE'
 export const FILTER_GAMES = 'FILTER_GAMES'
 
+export const GET_FAVORITES = 'GET_FAVORITES'
+export const ADD_FAVORITE = 'ADD_FAVORITE'
+export const REMOVE_FAVORITE = 'REMOVE_FAVORITE'
+
 export const GET_PLATFORMS_GENRES = 'GET_PLATFORMS_GENRES'

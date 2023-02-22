@@ -75,6 +75,10 @@
         padding-top: 20px;
         display: flex;
         flex-direction: column;
+        align-items: center;
+    }
+    .header_mobile li a{
+        font-size: 0.8rem;
     }
     .nav_mobile ul{
         display: flex;

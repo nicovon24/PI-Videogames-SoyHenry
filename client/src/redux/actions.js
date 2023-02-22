@@ -1,5 +1,5 @@
 import axios from "axios"
-import { GET_ALL_GAMES, GET_INITIAL_GAMES, GET_GAME_BY_ID, SEARCH_GAME, INCREASE_PAGE, DECREASE_PAGE, GET_PLATFORMS_GENRES, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, FILTER_GAMES, CHANGE_PAGE, DELETE_GAME, CREATE_GAME } from "./action-types.js"
+import { GET_ALL_GAMES, GET_INITIAL_GAMES, GET_GAME_BY_ID, SEARCH_GAME, INCREASE_PAGE, DECREASE_PAGE, GET_PLATFORMS_GENRES, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, FILTER_GAMES, CHANGE_PAGE, DELETE_GAME, CREATE_GAME, ADD_FAVORITE, REMOVE_FAVORITE, GET_FAVORITES } from "./action-types.js"
 
 export const getAllGames = ()=>{ //the 100 games
     return async function(dispatch){
@@ -211,10 +211,10 @@ export function getGameByID(id){
 export function createGame(data){
     return async function(dispatch){
         try{
-            const response = await axios.post(`http://localhost:3001/videogames`, data)
+            await axios.post(`http://localhost:3001/videogames`, data)
             return dispatch({
                 type: CREATE_GAME,
-                payload: response.data
+                payload: data
             }
         )
         }
@@ -272,6 +272,54 @@ export function getPlatformsGenres(){ //for selects
         }
         catch(err){
             throw new Error('Could not get all the platforms and games from the data base')
+        }
+    }
+}
+
+export const getFavorites = (character) => {
+    return async function(dispatch){
+        try{
+            const response = await axios.get(`http://localhost:3001/favorites`)
+            return dispatch({
+                type: GET_FAVORITES,
+                payload: response.data
+            }
+        )
+        }
+        catch(err){
+            throw new Error('Could not add the favorite')
+        }
+    }
+}
+
+export const addFavorite = (character) => {
+    return async function(dispatch){
+        try{
+            await axios.post(`http://localhost:3001/favorites`, character)
+            return dispatch({
+                type: ADD_FAVORITE,
+                payload: character
+            }
+        )
+        }
+        catch(err){
+            throw new Error('Could not add the favorite')
+        }
+    }
+}
+
+export const removeFavorite = (id) => {
+    return async function(dispatch){
+        try{
+            await axios.delete(`http://localhost:3001/favorites/${id}`)
+            return dispatch({
+                type: REMOVE_FAVORITE,
+                payload: id
+            }
+        )
+        }
+        catch(err){
+            throw new Error(`Could not remove the favorite with id ${id}`)
         }
     }
 }

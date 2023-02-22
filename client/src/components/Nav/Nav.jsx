@@ -2,7 +2,7 @@ import styles from "./Nav.module.css"
 import {NavLink} from "react-router-dom"
 import Search from "../Games/Forms/Search.jsx"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserPlus, faUser, faGamepad } from '@fortawesome/free-solid-svg-icons'
+import { faUserPlus, faUser, faGamepad, faHeart } from '@fortawesome/free-solid-svg-icons'
 
 export default function Nav({showSearch = true}){ //only search is active in games
     return(
@@ -16,6 +16,7 @@ export default function Nav({showSearch = true}){ //only search is active in gam
                         <li><NavLink to="/videogames" className={({isActive}) => isActive ? styles.active : ""}><FontAwesomeIcon icon={faGamepad}/>Games</NavLink></li>
                         <li><NavLink to="/create" className={({isActive}) => isActive ? styles.active : ""}><FontAwesomeIcon icon={faUserPlus}/>Create</NavLink></li>
                         <li><NavLink to="/about" className={({isActive}) => isActive ? styles.active : ""}><FontAwesomeIcon icon={faUser}/>About</NavLink></li>
+                        <li><NavLink to="/favorites" className={({isActive}) => isActive ? styles.active : ""}><FontAwesomeIcon icon={faHeart}/>Favorites</NavLink></li>
                     </ul>
                 </nav>
                 {showSearch &&
@@ -30,13 +31,14 @@ export default function Nav({showSearch = true}){ //only search is active in gam
             <div className={styles.header_mobile}>
                 <nav className={styles.nav_mobile}>
                     <ul>
-                        <li><NavLink to="/videogames" className={({isActive}) => isActive ? styles.active : ""}><FontAwesomeIcon icon={faGamepad}/>Games</NavLink></li>
-                        <li><NavLink to="/create" className={({isActive}) => isActive ? styles.active : ""}><FontAwesomeIcon icon={faUserPlus}/>Create</NavLink></li>
-                        <li><NavLink to="/about" className={({isActive}) => isActive ? styles.active : ""}><FontAwesomeIcon icon={faUser}/>About</NavLink></li>
+                        <li><NavLink to="/videogames" className={({isActive}) => isActive ? styles.active : ""}>Games</NavLink></li>
+                        <li><NavLink to="/create" className={({isActive}) => isActive ? styles.active : ""}>Create</NavLink></li>
+                        <li><NavLink to="/about" className={({isActive}) => isActive ? styles.active : ""}>About</NavLink></li>
+                        <li><NavLink to="/favorites" className={({isActive}) => isActive ? styles.active : ""}>Favorites</NavLink></li>
                     </ul>
                 </nav>
                 {showSearch &&
-                <div>
+                <div className={styles.search_container}>
                     <Search/>
                 </div>
                 }
