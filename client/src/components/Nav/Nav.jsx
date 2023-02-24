@@ -2,11 +2,13 @@ import styles from "./Nav.module.css"
 import {NavLink} from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus, faUser, faGamepad, faHeart } from '@fortawesome/free-solid-svg-icons'
-import { useDispatch} from "react-redux"
+import { useDispatch, useSelector} from "react-redux"
 import { toggleDarkMode } from "../../redux/actions"
 
 export default function Nav(){ //only search is active in games
     const dispatch = useDispatch()
+
+    const {favorites} = useSelector(s=>s)
 
     const handleChangeMode = ()=>{
         dispatch(toggleDarkMode())
@@ -23,7 +25,7 @@ export default function Nav(){ //only search is active in games
                         <li><NavLink to="/videogames" className={({isActive}) => isActive ? styles.active : ""}><FontAwesomeIcon icon={faGamepad}/>Games</NavLink></li>
                         <li><NavLink to="/create" className={({isActive}) => isActive ? styles.active : ""}><FontAwesomeIcon icon={faUserPlus}/>Create</NavLink></li>
                         <li><NavLink to="/about" className={({isActive}) => isActive ? styles.active : ""}><FontAwesomeIcon icon={faUser}/>About</NavLink></li>
-                        <li><NavLink to="/favorites" className={({isActive}) => isActive ? styles.active : ""}><FontAwesomeIcon icon={faHeart}/>Favorites</NavLink></li>
+                        <li><NavLink to="/favorites" className={({isActive}) => isActive ? styles.active : ""}><FontAwesomeIcon icon={faHeart}/>Favorites({favorites.length})</NavLink></li>
                         
                     </ul>
                 </nav>
@@ -40,7 +42,7 @@ export default function Nav(){ //only search is active in games
                         <li><NavLink to="/videogames" className={({isActive}) => isActive ? styles.active : ""}>Games</NavLink></li>
                         <li><NavLink to="/create" className={({isActive}) => isActive ? styles.active : ""}>Create</NavLink></li>
                         <li><NavLink to="/about" className={({isActive}) => isActive ? styles.active : ""}>About</NavLink></li>
-                        <li><NavLink to="/favorites" className={({isActive}) => isActive ? styles.active : ""}>Favorites</NavLink></li>
+                        <li><NavLink to="/favorites" className={({isActive}) => isActive ? styles.active : ""}>Favorites({favorites.length})</NavLink></li>
                     </ul>
                 </nav>
                 <button className={`light_mode_button`} aria-label="Toggle Light Mode" 
