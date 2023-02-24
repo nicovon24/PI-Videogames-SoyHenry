@@ -1,6 +1,6 @@
 require('dotenv').config();
 const axios = require('axios')
-const {Platform} = require('../db.js')
+const {Platform} = require('../../db.js')
 
 const {KEY_NAME} = process.env;
 

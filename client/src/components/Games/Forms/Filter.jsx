@@ -91,8 +91,8 @@ export function FilterBy(){
             </div>
 
             <div className={styles.btn_filters_container}>
-                <button type="submit" className={`${styles.btn_filters}`}>Submit</button>
-                <button onClick={()=>handleRestart()} className={`${styles.btn_filters}`}>Clear</button>
+                <button type="submit" className={`${styles.btn_filters} retro-input`}>Submit</button>
+                <button onClick={()=>handleRestart()} className={`${styles.btn_filters} retro-input`}>Clear</button>
             </div>
         </form>
     )

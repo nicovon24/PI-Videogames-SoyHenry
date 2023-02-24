@@ -1,6 +1,6 @@
 require('dotenv').config();
 const axios = require('axios')
-const {Genre} = require('../db.js')
+const {Genre} = require('../../db.js')
 
 const {
     KEY_NAME

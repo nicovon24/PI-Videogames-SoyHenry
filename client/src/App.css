@@ -8,13 +8,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 :root{
+  /** colors **/
+  --background: #c2dcdc;
+  --retro-fonts: blue;
+  --font-orange:  blue;
+  --gold: gold;
+  --pop-up-top: #cccccc;
+  --pop-up-title: var(--pop-up-title);
+  --retro-input-shadow: black;
+  --retro-input-shadow-darker: black;
+  --retro-input-color: black;
+  --retro-btn-color: rgb(240, 231, 231);
+  --white_black: black;
+  --white_black_darker: rgb(227, 219, 219); 
+  --border-nav: blue;
+  --font-profession: rgb(138, 131, 184);
+  --shadow-card: blue;
+  --shadow-menu: blue;
+  --background-form-create: #c2dcdc;
+  --description-font: black;
+
+  
+  /** images **/
+  --background-cards: #cee6e6;
+  --background-card: url('https://wallpapers.com/images/hd/minimalist-retro-hm7fpvquqm6a4avs.jpg');
+  --background-btn: url('https://wallpapers.com/images/hd/minimalist-retro-hm7fpvquqm6a4avs.jpg');
+  --background-details: rgb(194, 196, 214);
+}
+
+body .dark{
+  /** colors **/
   --background: rgb(15, 4, 51);
   --retro-fonts: green;
+  --font-orange: orange;
   --inputs: 
   --gold: gold;
   --pop-up-top: #cccccc;
   --pop-up-title: var(--pop-up-title);
+  --retro-input-shadow: rgb(90, 90, 90);
+  --retro-input-shadow-darker: rgb(100, 100, 100);
+  --retro-input-color: rgb(150, 150, 150);
+  --retro-btn-color: rgb(150, 150, 150);
+  --white_black: white;
+  --white_black_darker: rgb(227, 219, 219);
+  --border-nav: rgb(15, 4, 51); 
+  --font-profession: rgb(58, 220, 58);
+  --shadow-card: aqua;
+  --shadow-menu: red;
+  --retro-input-bgcolor: transparent;
+  --description-font: rgb(158, 149, 149);
 
+  /** images **/
+  --background-cards: rgb(15, 4, 51);
+  --background-create: url('https://rare-gallery.com/uploads/posts/4581200-mega-man-mega-man-x-retro-games-video-games-pixel-art.jpg');
+  --background-form-create: #2a2b38;
+  --background-card: url('https://media.istockphoto.com/id/1287121458/es/foto/fondo-azul-marino-negro-grunge-texturado-abstracto-estuco-marco-oscuro-pared-patr%C3%B3n-de.jpg?s=612x612&w=0&k=20&c=7MvJmS1lL9Xvra4vwYigSwS_sQm03Go4FFezjffoYfM=');
+  --background-details: url('https://besthqwallpapers.com/Uploads/31-3-2020/127068/violet-damask-pattern-vintage-floral-pattern-violet-vintage-background-floral-patterns-background-with-flowers.jpg');
+  --background-btn: transparent;
 }
 
 /* font-family: 'Fascinate', cursive;
@@ -171,7 +221,7 @@ font-family: 'Roboto', sans-serif; */
 .card_title{
   position: relative;
   top: 50px;
-  color: green; /*#008081*/
+  color: var(--retro-fonts); /*#008081*/
   -webkit-animation: text-pop-up-top-title 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	        animation: text-pop-up-top-title 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
@@ -181,19 +231,20 @@ font-family: 'Roboto', sans-serif; */
   outline: none;
   margin: 15px;
   padding: 7px 0 7px 8px;
-  border: 3px solid rgb(150, 150, 150);
-  box-shadow: 0px 0px 0px 1px rgb(90, 90, 90),
-    inset 0px 0px 0px 1px rgb(90, 90, 90),
-    1px 2px 0px 2px rgb(100, 100, 100);
+  border: 3px solid var(--retro-input-color);
+  box-shadow: 0px 0px 0px 1px var(--retro-input-shadow),
+    inset 0px 0px 0px 1px var(--retro-input-shadow),
+    1px 2px 0px 2px var(--retro-input-shadow-darker);
   border-radius: 0.3em;
-  color: rgb(150, 150, 150);
+  background: var(--background-btn);
+  color: var(--retro-input-color);
   font-family: 'retro';
   font-weight: 700;
 }
 .retro-input:focus {
-  box-shadow: 0px 0px 0px 1px rgb(90, 90, 90),
-    inset 0px 0px 0px 1px rgb(90, 90, 90),
-    1px 2px 0px 1px rgb(100, 100, 100);
+  box-shadow: 0px 0px 0px 1px var(--retro-input-shadow),
+    inset 0px 0px 0px 1px var(--retro-input-shadow),
+    1px 2px 0px 1px var(--retro-input-shadow-darker);
 }
 
 /* 
@@ -203,3 +254,59 @@ https://rare-gallery.com/uploads/posts/1186576-night-space-sky-Moon-moonlight-at
 https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyGmZxEgTe5hiXuUpGTiGq3PChitXJT1fR4Q&usqp=CAU
 https://wallpaperaccess.com/full/1588775.jpg
 https://ep01.epimg.net/verne/imagenes/2014/11/24/articulo/1416811151_000008_1417424307_sumario_normal.gif */
+
+.light_mode_button {
+    position: relative;
+    bottom: 8px;
+    background: 0;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 40px;
+    width: 100px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0);
+    margin-top: 20px;
+}
+
+.light_mode_button:focus {
+    outline: none; /* Not ideal for accessibility */
+}
+
+.light_mode_button span:nth-child(1) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 35px;
+    border-radius: 20px;
+    background-color: var(--white_black_darker);
+    box-shadow: inset 1px 1px 3px 0 rgb(0 0 0 / 40%);
+    transition: 0.3s;
+}
+
+.light_mode_button span:nth-child(2) {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 30px;
+    height: 28px;
+    background-color: var(--white_black);
+    border-radius: 50%;
+    box-shadow: 1px 1px 3px 0 rgb(3 3 3 / 40%);
+    transition: 0.3s;
+}
+
+.dark .light-mode-button{
+  background-color: red;
+}
+
+.dark .light_mode_button span:nth-child(1) {
+    background-color: #ced4e2;
+    color: #141516;
+}
+
+.dark .light_mode_button span:nth-child(2) {
+    left: 46px;
+    background-color: #141516;
+}

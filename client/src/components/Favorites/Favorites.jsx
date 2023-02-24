@@ -15,7 +15,7 @@ export default function Favorites(){
 
     return(
         <>
-            <Nav showSearch={false}/>
+            <Nav/>
             <div className={styles.cards_container}>
                 <div className={styles.cards_container2}>
                     {favorites.length>0 ? 

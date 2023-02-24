@@ -25,7 +25,7 @@ export default function Details(){
         <>
             {Object.entries(game).length>0 ?
             <>
-                <Nav showSearch={false}/>
+                <Nav/>
                 <div className={styles.details_container}>
                 <div className={styles.details}>
                     <div className={styles.details_image_container}>

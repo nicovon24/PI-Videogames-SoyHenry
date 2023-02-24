@@ -113,7 +113,7 @@ export default function CreateGame(){
     
     return(
         <div className={styles.create_container}>
-            <Nav showSearch={false}/>
+            <Nav/>
 
             <div className={styles.create_container}>
                 <h1>Register your game!</h1>

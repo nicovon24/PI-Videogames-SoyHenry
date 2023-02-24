@@ -1,7 +1,7 @@
 .cards_container{
     width: 100%;
     min-height: 100vh;
-    background-color: rgb(15, 4, 51);
+    background-color: var(--background);
     padding: 30px 0px;
     /* background: #74b9a5; */
     /* background: url('https://st3.depositphotos.com/1177973/12632/i/600/depositphotos_126328712-stock-photo-grey-abstract-texture-background.jpg'); */
@@ -35,7 +35,7 @@
     align-items: center;
 }
 .cards_container2 h1{
-    color: gold;
+    color: var(--gold);
     font-family: 'retro';
     font-size: 1.4rem;
     padding-bottom: 20px;
@@ -43,9 +43,9 @@
 .card{
     width: 100%;
     height: 300px;
-    box-shadow: aqua 0px 0px 8px;
-    background-image: url('https://media.istockphoto.com/id/1287121458/es/foto/fondo-azul-marino-negro-grunge-texturado-abstracto-estuco-marco-oscuro-pared-patr%C3%B3n-de.jpg?s=612x612&w=0&k=20&c=7MvJmS1lL9Xvra4vwYigSwS_sQm03Go4FFezjffoYfM=');
-    color: white;
+    box-shadow: var(--shadow-card) 0px 0px 8px;
+    background-image: var(--background-card);
+    color: var(--white_black);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -71,6 +71,6 @@
 .none_game{
     padding-top: 40px;
     font-size: 1.4rem;
-    color: gold;
+    color: var(--gold);
     font-family: 'roboto';
 }

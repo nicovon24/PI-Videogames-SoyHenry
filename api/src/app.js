@@ -2,12 +2,13 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const printHomeMessage = require("./controllers/home.js")
+const cors = require('cors');
+const printHomeMessage = require("./controllers/others/home.js")
 const routesVideogames = require('./routes/videogames.js');
 const routesGenres = require('./routes/genre.js');
 const routerPlatforms = require('./routes/platforms.js');
-const cors = require('cors');
 const routerFavorites = require('./routes/favorites.js');
+const routerUsers = require('./routes/users.js');
 
 const server = express();
 let idNewGames = 1000000 
@@ -44,6 +45,7 @@ server.use('/videogames', routesVideogames);
 server.use('/genres', routesGenres);
 server.use('/platforms', routerPlatforms)
 server.use('/favorites', routerFavorites)
+server.use('/users', routerUsers)
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars

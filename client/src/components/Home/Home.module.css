@@ -9,7 +9,7 @@
   .title{
     font-size: 1.5rem;
     font-family: 'retro';
-    color: green;
+    color: var(--retro-fonts);
     display: flex;
     justify-content: center;
     align-items: flex-end;

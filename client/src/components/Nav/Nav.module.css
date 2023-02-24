@@ -3,13 +3,14 @@
     position: fixed;
     top: 0;
     font-family: 'retro';
-    background-color: #0f0433;
+    background-color: var(--background);
+    border-bottom: 3px solid var(--border-nav);
 }
 .header_desktop{
     padding-top: 10px;
     width: 80%;
     margin: 0 auto;
-    color: rgb(150, 150, 150);
+    color: var(--retro-input-color);
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -35,12 +36,12 @@
 
 .nav_desktop a, .nav_mobile a{
     text-decoration: none;
-    color: rgb(150, 150, 150);
+    color: var(--retro-input-color);
 }
 
 .header_container .active{
-    color: green;
-    border-bottom: 1px solid green;
+    color: var(--retro-fonts);
+    border-bottom: 1px solid var(--retro-fonts);
 }
 
 .title{
@@ -51,7 +52,7 @@
 }
 
 .title a{
-    color: green;
+    color: var(--retro-fonts);
 }
 
 .header_mobile{
@@ -65,7 +66,6 @@
 .header_container svg{
     padding-right: 3px;
 }
-
 
 @media(max-width: 800px){
     .header_desktop{
@@ -83,5 +83,9 @@
     .nav_mobile ul{
         display: flex;
         justify-content: space-around;
+    }
+    .light_mode_button {
+        position: absolute;
+        top: 40px;
     }
 }

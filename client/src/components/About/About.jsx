@@ -5,7 +5,7 @@ import Nav from "../../components/Nav/Nav.jsx"
 export default function About(){
     return(
         <>
-            <Nav showSearch={false}/>
+            <Nav/>
             <div className={styles.aboutContainer}>
                 <div className={styles.about}>
                     <div className={styles.about_text}>

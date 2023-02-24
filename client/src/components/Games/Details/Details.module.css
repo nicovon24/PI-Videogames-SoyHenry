@@ -3,7 +3,7 @@
     min-height: 100vh;
     padding: 100px 0px;
     background-color: black;
-    background-image: url('https://besthqwallpapers.com/Uploads/31-3-2020/127068/violet-damask-pattern-vintage-floral-pattern-violet-vintage-background-floral-patterns-background-with-flowers.jpg');
+    background: var(--background-details);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -14,8 +14,8 @@
 }
 .details{
     width: 85%;
-    box-shadow: aqua 0px 0px 12px;
-    background-image: url('https://media.istockphoto.com/id/1287121458/es/foto/fondo-azul-marino-negro-grunge-texturado-abstracto-estuco-marco-oscuro-pared-patr%C3%B3n-de.jpg?s=612x612&w=0&k=20&c=7MvJmS1lL9Xvra4vwYigSwS_sQm03Go4FFezjffoYfM=');
+    box-shadow: var(--shadow-card) 0px 0px 12px;
+    background-image: var(--background-card);
     color: white;
     padding: 20px;
     display: grid;
@@ -25,7 +25,7 @@
 .details_container h1{
     padding: 10px 0px;
     font-size: 0.9rem;
-    color: gold;
+    color: var(--gold);
     text-decoration: underline;
     font-family: 'retro';
 }
@@ -35,10 +35,10 @@
 .description{
     font-size: 0.9rem;
     font-weight: 900;
-    color: rgb(158, 149, 149);
+    color: var(--description-font);
 }
 .details_info b{
-    color: gold;
+    color: var(--gold);
     font-family: 'retro';
     font-size: 0.6rem;
 }

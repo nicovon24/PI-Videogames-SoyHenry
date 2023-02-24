@@ -21,14 +21,14 @@ function App() {
     dispatch(getFavorites())
   }, [dispatch])
 
-  const {allGames} = useSelector(state=>state)
+  const {allGames, darkmode} = useSelector(state=>state)
 
   useEffect(()=>{
     dispatch(getCurrentPages(allGames))
   }, [dispatch, allGames])
 
   return (
-      <div className="App">
+      <div className={`${darkmode ? "dark" : ""}`}>
           <Routes>
             <Route exact path="/" element={<Home/>}></Route>
             <Route exact path="/videogames/" element={<Games/>}></Route>
