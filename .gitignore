@@ -111,4 +111,7 @@ package-lock.json
 otros
 
 #gitignore
-.gitignore
+/.gitignore
+
+#node_modules
+/node_modules
