@@ -10,6 +10,8 @@ import Favorites from './components/Favorites/Favorites';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllGames, getCurrentPages, getFavorites, getInitialGames, getPlatformsGenres } from './redux/actions.js';
+import axios from "axios"
+axios.defaults.baseURL = "http://localhost:3001/"
 
 function App() {
   const dispatch = useDispatch()

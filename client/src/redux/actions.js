@@ -4,7 +4,7 @@ import { GET_ALL_GAMES, GET_INITIAL_GAMES, GET_GAME_BY_ID, SEARCH_GAME, INCREASE
 export const getAllGames = ()=>{ //the 100 games
     return async function(dispatch){
         try{
-            const response = await axios.get(`http://localhost:3001/videogames/all`)
+            const response = await axios.get(`/videogames/all`)
             return dispatch({
                     type: GET_ALL_GAMES,
                     payload: response.data
@@ -20,7 +20,7 @@ export const getAllGames = ()=>{ //the 100 games
 export const getInitialGames = ()=>{ //the first 20 games
     return async function(dispatch){
         try{
-            const response = await axios.get(`http://localhost:3001/videogames`)
+            const response = await axios.get(`/videogames`)
             return dispatch({
                     type: GET_INITIAL_GAMES,
                     payload: [[1, response.data]]
@@ -63,7 +63,7 @@ export function searchGame(search){
     return async function(dispatch){
         try{
             const searchArr = search.split(" ")
-            const response = await axios.get(`http://localhost:3001/videogames?name=${searchArr.join("&")}`)
+            const response = await axios.get(`/videogames?name=${searchArr.join("&")}`)
             const currentPages = await getCurrentPages(response.data) //formato paginas
             if(currentPages){
                 return dispatch({
@@ -187,7 +187,7 @@ export function getGameByID(id){
     return async function(dispatch){
         try{
             if(id){
-                const response = await axios.get(`http://localhost:3001/videogames/${id}`)
+                const response = await axios.get(`/videogames/${id}`)
                 return dispatch({
                         type: GET_GAME_BY_ID,
                         payload: response.data
@@ -211,7 +211,7 @@ export function getGameByID(id){
 export function createGame(data){
     return async function(dispatch){
         try{
-            await axios.post(`http://localhost:3001/videogames`, data)
+            await axios.post(`/videogames`, data)
             return dispatch({
                 type: CREATE_GAME,
                 payload: data
@@ -228,7 +228,7 @@ export function createGame(data){
 export function deleteGame(id){
     return async function(dispatch){
         try{
-            await axios.delete(`http://localhost:3001/videogames/${id}`)
+            await axios.delete(`/videogames/${id}`)
             return dispatch({
                     type: DELETE_GAME,
                     payload: id
@@ -263,8 +263,8 @@ export function changePage(page){
 export function getPlatformsGenres(){ //for selects
     return async function(dispatch){
         try{
-            const platforms = await axios.get(`http://localhost:3001/platforms`)
-            const genres = await axios.get(`http://localhost:3001/genres`)
+            const platforms = await axios.get(`/platforms`)
+            const genres = await axios.get(`/genres`)
             return dispatch({
                 type: GET_PLATFORMS_GENRES,
                 payload: {
@@ -298,7 +298,7 @@ export function getPlatformsGenres(){ //for selects
 export const getFavorites = (character) => {
     return async function(dispatch){
         try{
-            const response = await axios.get(`http://localhost:3001/favorites`)
+            const response = await axios.get(`/favorites`)
             return dispatch({
                 type: GET_FAVORITES,
                 payload: response.data
@@ -314,7 +314,7 @@ export const getFavorites = (character) => {
 export const addFavorite = (character) => {
     return async function(dispatch){
         try{
-            await axios.post(`http://localhost:3001/favorites`, character)
+            await axios.post(`/favorites`, character)
             return dispatch({
                 type: ADD_FAVORITE,
                 payload: character
@@ -330,7 +330,7 @@ export const addFavorite = (character) => {
 export const removeFavorite = (id) => {
     return async function(dispatch){
         try{
-            await axios.delete(`http://localhost:3001/favorites/${id}`)
+            await axios.delete(`/favorites/${id}`)
             return dispatch({
                 type: REMOVE_FAVORITE,
                 payload: id
