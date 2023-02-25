@@ -104,6 +104,26 @@
 .fav_btn img{
     width: 30px;
 }
+.genres{
+    display: flex;
+    justify-content: center;
+    padding: 3px 0px;
+}
+.genres p{
+    padding-top: 3px;
+    position: absolute;
+    display: none;
+}
+.genres img:hover + p {
+    display: block;
+    transition: 0.5s;
+}
+.genre_img{
+    margin-right: 8px;
+    width: 32px;
+    border-radius: 50%;
+    border: 1px solid white;
+}
 @media(min-width: 800px){
     .cards_subcontainer{
         grid-template-columns: 1fr 1fr;

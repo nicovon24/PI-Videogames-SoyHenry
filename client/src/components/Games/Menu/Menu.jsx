@@ -26,7 +26,7 @@ export default function Menu(){
 
     return(
         <div className={styles.menu}>
-            <button onClick={()=>dispatch(decreasePage())}><FontAwesomeIcon icon={faArrowLeft}/></button>
+            {page!==1 && <button onClick={()=>dispatch(decreasePage())}><FontAwesomeIcon icon={faArrowLeft}/></button>}
             {
                 //all pages, and active page
                 arrPages.map((p, index)=>{
@@ -35,7 +35,7 @@ export default function Menu(){
                     onClick={()=>changePageFunct(p)}>{p}</button>
                 })
             }
-            <button onClick={()=>dispatch(increasePage())}><FontAwesomeIcon icon={faArrowRight}/></button>
+            {page!==pages && <button onClick={()=>dispatch(increasePage())}><FontAwesomeIcon icon={faArrowRight}/></button>}
         </div>
     )
 }

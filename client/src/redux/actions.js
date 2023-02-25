@@ -267,7 +267,26 @@ export function getPlatformsGenres(){ //for selects
             const genres = await axios.get(`http://localhost:3001/genres`)
             return dispatch({
                 type: GET_PLATFORMS_GENRES,
-                payload: {platforms: platforms.data, genres: genres.data}
+                payload: {
+                    platforms: platforms.data.sort((a,b)=>{
+                        if (a.name < b.name) {
+                            return -1;
+                          }
+                        if (a.name > b.name) {
+                            return 1;
+                        }
+                        return null
+                    }), 
+                    genres: genres.data.sort((a,b)=>{
+                        if (a.name < b.name) {
+                            return -1;
+                          }
+                        if (a.name > b.name) {
+                            return 1;
+                        }
+                        return null
+                    }), 
+                }
             })
         }
         catch(err){

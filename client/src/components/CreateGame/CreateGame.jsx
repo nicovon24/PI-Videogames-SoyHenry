@@ -6,7 +6,7 @@ import { createGame } from "../../redux/actions"
 
 function validate(input){
     let errors = {}
-    console.log(input.platforms);
+    // console.log(input.platforms);
     if(!input.name){
         errors.name = 'Name is required'
     } else if(!input.image){

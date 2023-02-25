@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 
 export default function Card({game}){
     let [isFavorite, setIsFavorite] = useState(false)
+                
 
     const dispatch = useDispatch()
     
@@ -59,6 +60,7 @@ export default function Card({game}){
         <>
         {Object.values(game).length>0 &&
         <div>
+            
             <div className={styles.card}>
                 <div className={styles.fav_btn}>
                     {!isFavorite 
@@ -73,10 +75,26 @@ export default function Card({game}){
                     <img src={game?.image} className={styles.card_img} alt="videogame img"/>
                 </NavLink>
                 <h1 className={`${styles.card_name} card_title`}>{game?.name}</h1>
-                <ul>
+                {/* <ul>
                     {game?.genres?.map((el, index)=>{
                         if(game?.genres?.length-1===index) return <span key={index}>{el}</span>
                         else return <span key={index}>{el}, </span>
+                    })}
+                </ul> */}
+                <ul className={styles.genres}>
+                    {game?.genres?.map((el, index)=>{
+                        const img = <img className={styles.genre_img}
+                        src={require(`../../../assets/genres/${el.split(" ").join("-")}.png`)} alt="img genre"/>
+                        
+                        if(img) {
+                            return (
+                                <div key={index}>
+                                    {img}
+                                    <p>{el}</p>
+                                </div>
+                            )
+                        }
+                        else return null
                     })}
                 </ul>
                 {ratingStars}

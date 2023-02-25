@@ -17,8 +17,6 @@ export default function Details(){
 
     const game = useSelector(state=>state.detailsGame)
 
-    console.log();
-
     const {description, platforms, genres} = game
 
     return(
@@ -27,21 +25,21 @@ export default function Details(){
             <>
                 <Nav/>
                 <div className={styles.details_container}>
-                <div className={styles.details}>
-                    <div className={styles.details_image_container}>
-                        <img src={game.image} alt="detail img"/>
-                        <div className={styles.details_info}>
-                            <h1>{game.name}</h1>
-                            {platforms && <p><b>Platforms:</b> {platforms.join(",")}</p>}
-                            {genres && <p><b>Genres:</b> {genres.join(",")}</p>}
-                            <p><b>Rating:</b> {game.rating}</p>
-                            <p><b>Released:</b> {game.released}</p>
+                    <div className={styles.details}>
+                        <div className={styles.details_image_container}>
+                            <img src={game.image} alt="detail img"/>
+                            <div className={styles.details_info}>
+                                <h1>{game.name}</h1>
+                                {platforms && <p><b>Platforms:</b> {platforms.join(",")}</p>}
+                                {genres && <p><b>Genres:</b> {genres.join(",")}</p>}
+                                <p><b>Rating:</b> {game.rating}</p>
+                                <p><b>Released:</b> {game.released}</p>
+                            </div>
+                        </div>
+                        <div className={styles.description} id="description">
+                            {description}
                         </div>
                     </div>
-                    <div className={styles.description} id="description">
-                        {description}
-                    </div>
-                </div>
                 </div>
             </> :
             <Loader/>}
