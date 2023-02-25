@@ -72,7 +72,8 @@ export default function Card({game}){
                 </div>
                 
                 <NavLink to={`/videogames/${game?.id}`} style={{textDecoration: "none"}}>
-                    <img src={game?.image} className={styles.card_img} alt="videogame img"/>
+                    {/* default image */}
+                    <img src={(game.image.match(/\.(jpeg|jpg|gif|png)$/) || !game.image) ? game?.image : "https://media.discordapp.net/attachments/1073407771166380107/1079132104325087362/xbox-series-x-controller.webp"} className={styles.card_img} alt="videogame img"/>
                 </NavLink>
                 <h1 className={`${styles.card_name} card_title`}>{game?.name}</h1>
                 {/* <ul>
