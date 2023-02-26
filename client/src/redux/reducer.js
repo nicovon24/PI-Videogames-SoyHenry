@@ -5,6 +5,7 @@ INCREASE_PAGE, DECREASE_PAGE, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, CHANGE_PA
 const initialState = {
     allGames: [],
     initialGames: [],
+    // isLoading: false,
     pageGames: [], //todo VER COMO BORRAR
     currentPages: [],
     filteredPages: [],
@@ -44,6 +45,11 @@ const rootReducer = (state = initialState, {type, payload})=>{
             counterGames: payload.length,
             page: 1
         }
+
+        // const CHANGE_IS_LOADING: return {
+        //     ...state,
+        //     isLoading: state.loading
+        // }
 
         case RESTART_CURRENT_PAGE: return {
             ...state,

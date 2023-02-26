@@ -15,14 +15,10 @@ export default function Games(){
     const {page, currentPages} = useSelector(state=>state)
     
     useEffect(()=>{
-        dispatch(getInitialGames())
-        setTimeout(()=>{
-            setIsLoaded(true)
-        }, [5000])
+        dispatch(getInitialGames()).then(d=>setIsLoaded(true))
     }, [dispatch])
 
     let data = currentPages[page-1]
-
     return(
         <div>
             {isLoaded ? 

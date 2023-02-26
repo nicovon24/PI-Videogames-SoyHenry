@@ -42,6 +42,11 @@
     font-family: 'retro';
     font-size: 0.6rem;
 }
+@media(max-width: 800px){
+    .details{
+        margin-top: 100px;
+    }
+}
 @media(min-width: 1000px){
     .details{
         /* grid-template-columns: 1fr 1fr; */

@@ -1,5 +1,5 @@
 import styles from "./Details.module.css"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import {useParams} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import {getGameByID} from "../../../redux/actions.js"
@@ -9,10 +9,14 @@ import Loader from "../../Loader/Loader.jsx"
 export default function Details(){
     const {id} = useParams()
     const dispatch = useDispatch()
+    const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(()=>{
         dispatch(getGameByID())
         dispatch(getGameByID(id))
+        setTimeout(()=>{
+            setIsLoaded(true)
+        }, [4500])
     }, [dispatch, id])
 
     const game = useSelector(state=>state.detailsGame)
@@ -21,7 +25,7 @@ export default function Details(){
 
     return(
         <>
-            {Object.entries(game).length>0 ?
+            {isLoaded ?
             <>
                 <Nav/>
                 <div className={styles.details_container}>

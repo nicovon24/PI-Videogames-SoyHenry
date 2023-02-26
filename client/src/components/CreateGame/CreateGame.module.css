@@ -61,7 +61,7 @@
 .genre_platf_str {
     padding-top: 15px;
     color: var(--white_black);
-    font-size: 0.6rem;
+    font-size: 0.6rem;;
 }
 
 .create_container input, .create_container select, .create_container textarea{
@@ -107,6 +107,9 @@
 .property{
     padding-top: 5px;
     text-decoration: underline;
+}
+.genres_container{
+    display: flex;
 }
 
 @media(min-width: 800px){

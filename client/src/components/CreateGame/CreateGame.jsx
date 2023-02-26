@@ -101,7 +101,7 @@ export default function CreateGame(){
             released: "",
             rating: ""
         })
-        console.log('sended form');
+        alert("You have created the game successfully!")
     }
 
     function deleteSelectValue(property, value){
@@ -167,7 +167,7 @@ export default function CreateGame(){
                         : <div className={styles.genre_platf_str}> 
                             {data.genres.map((d,index)=>{
                                 return(<>
-                                    <button type="button" onClick={()=>deleteSelectValue("genres", d)}>x</button>
+                                    <button key={index} type="button" onClick={()=>deleteSelectValue("genres", d)}>x</button>
                                     <label>{d}
                                     {index===data?.genres.length-1 ? "" : ","}</label> {/* separando por coma menos al final */}
                                 </>)
