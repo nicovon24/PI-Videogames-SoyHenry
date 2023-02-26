@@ -26,10 +26,10 @@ const { saveUsersData } = require('./src/controllers/others/users.js');
 const {PORT} = process.env
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(async () => {
-  // await saveAllGenres()
-  // await saveAllPlatforms()
-  // await saveUsersData()
+conn.sync({ force: true }).then(async () => {
+  await saveAllGenres()
+  await saveAllPlatforms()
+  await saveUsersData()
   server.listen(PORT, () => {
     console.log(`%s listening at ${PORT}`); // eslint-disable-line no-console
   });
