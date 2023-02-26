@@ -49,7 +49,7 @@ export default function Card({game}){
 
    //*checking if it is already in favorites
     useEffect(()=>{
-        const find = favorites.find(f=>{
+        const find = favorites?.find(f=>{
             return f?.idGame===game?.id?.toString()
         })
         if(find) setIsFavorite(true)
