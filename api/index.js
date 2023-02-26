@@ -25,10 +25,10 @@ const { conn } = require('./src/db.js');
 const { saveUsersData } = require('./src/controllers/others/users.js');
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(async () => {
-  // await saveAllGenres()
-  // await saveAllPlatforms()
-  // await saveUsersData()
+conn.sync({ force: true }).then(async () => {
+  await saveAllGenres()
+  await saveAllPlatforms()
+  await saveUsersData()
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
