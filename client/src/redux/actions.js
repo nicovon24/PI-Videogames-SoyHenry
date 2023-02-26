@@ -1,11 +1,10 @@
 import axios from "axios"
 import { GET_ALL_GAMES, GET_INITIAL_GAMES, GET_GAME_BY_ID, SEARCH_GAME, INCREASE_PAGE, DECREASE_PAGE, GET_PLATFORMS_GENRES, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, FILTER_GAMES, CHANGE_PAGE, DELETE_GAME, CREATE_GAME, ADD_FAVORITE, REMOVE_FAVORITE, GET_FAVORITES, TOGGLE_DARK_MODE } from "./action-types.js"
-const url = "https://pi-videogames-soyhenry-production-b313.up.railway.app/"
 
 export const getAllGames = ()=>{ //the 100 games
     return async function(dispatch){
         try{
-            const response = await axios.get(`${url}/videogames/all`)
+            const response = await axios.get(`/videogames/all`)
             return dispatch({
                     type: GET_ALL_GAMES,
                     payload: response.data
@@ -21,7 +20,7 @@ export const getAllGames = ()=>{ //the 100 games
 export const getInitialGames = ()=>{ //the first 20 games
     return async function(dispatch){
         try{
-            const response = await axios.get(`${url}/videogames`)
+            const response = await axios.get(`/videogames`)
             return dispatch({
                     type: GET_INITIAL_GAMES,
                     payload: [[1, response.data]]
@@ -64,7 +63,7 @@ export function searchGame(search){
     return async function(dispatch){
         try{
             const searchArr = search.split(" ")
-            const response = await axios.get(`${url}/videogames?name=${searchArr.join("&")}`)
+            const response = await axios.get(`/videogames?name=${searchArr.join("&")}`)
             const currentPages = await getCurrentPages(response.data) //formato paginas
             if(currentPages){
                 return dispatch({
@@ -188,7 +187,7 @@ export function getGameByID(id){
     return async function(dispatch){
         try{
             if(id){
-                const response = await axios.get(`${url}/videogames/${id}`)
+                const response = await axios.get(`/videogames/${id}`)
                 return dispatch({
                         type: GET_GAME_BY_ID,
                         payload: response.data
@@ -212,7 +211,7 @@ export function getGameByID(id){
 export function createGame(data){
     return async function(dispatch){
         try{
-            await axios.post(`${url}/videogames`, data)
+            await axios.post(`/videogames`, data)
             return dispatch({
                 type: CREATE_GAME,
                 payload: data
@@ -229,7 +228,7 @@ export function createGame(data){
 export function deleteGame(id){
     return async function(dispatch){
         try{
-            await axios.delete(`${url}/videogames/${id}`)
+            await axios.delete(`/videogames/${id}`)
             return dispatch({
                     type: DELETE_GAME,
                     payload: id
@@ -264,8 +263,8 @@ export function changePage(page){
 export function getPlatformsGenres(){ //for selects
     return async function(dispatch){
         try{
-            const platforms = await axios.get(`${url}/platforms`)
-            const genres = await axios.get(`${url}/genres`)
+            const platforms = await axios.get(`/platforms`)
+            const genres = await axios.get(`/genres`)
             return dispatch({
                 type: GET_PLATFORMS_GENRES,
                 payload: {
@@ -299,7 +298,7 @@ export function getPlatformsGenres(){ //for selects
 export const getFavorites = (character) => {
     return async function(dispatch){
         try{
-            const response = await axios.get(`${url}/favorites`)
+            const response = await axios.get(`/favorites`)
             return dispatch({
                 type: GET_FAVORITES,
                 payload: response.data
@@ -331,7 +330,7 @@ export const addFavorite = (character) => {
 export const removeFavorite = (id) => {
     return async function(dispatch){
         try{
-            await axios.delete(`${url}/favorites/${id}`)
+            await axios.delete(`/favorites/${id}`)
             return dispatch({
                 type: REMOVE_FAVORITE,
                 payload: id
