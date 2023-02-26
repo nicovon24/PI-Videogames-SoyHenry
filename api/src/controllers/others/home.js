@@ -1,13 +1,13 @@
 const printHomeMessage = ()=>{
     try{
         const message = [
-            {get_all_videogames: "http://localhost:3001/videogames/all"},
-            {get_initial_videogames: "http://localhost:3001/videogames"},
-            {get_videogames_per_name: "http://localhost:3001/videogames?name=the&witcher"},
-            {get_platform: "http://localhost:3001/platforms"},
-            {get_genres: "http://localhost:3001/genres"},
-            {get_favorites: "http://localhost:3001/favorites"},
-            {get_users: "http://localhost:3001/users"}
+            {get_all_videogames: `https://pi-videogames-soyhenry-production-b313.up.railway.app/videogames/all`},
+            {get_initial_videogames: `https://pi-videogames-soyhenry-production-b313.up.railway.app/videogames`},
+            {get_videogames_per_name: `https://pi-videogames-soyhenry-production-b313.up.railway.app/videogames?name=the&witcher`},
+            {get_platform: `https://pi-videogames-soyhenry-production-b313.up.railway.app/platforms`},
+            {get_genres: `https://pi-videogames-soyhenry-production-b313.up.railway.app/genres`},
+            {get_favorites: `https://pi-videogames-soyhenry-production-b313.up.railway.app/favorites`},
+            {get_users: `https://pi-videogames-soyhenry-production-b313.up.railway.app/users`}
         ]
         return message
     }
