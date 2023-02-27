@@ -27,11 +27,12 @@
   --shadow-menu: blue;
   --background-form-create: #c2dcdc;
   --description-font: black;
+  --responsive-nav: rgb(189, 205, 208);
 
   
   /** images **/
   --background-cards: #cee6e6;
-  --background-card: url('https://wallpapers.com/images/hd/minimalist-retro-hm7fpvquqm6a4avs.jpg');
+  /* --background-card: url('https://wallpapers.com/images/hd/minimalist-retro-hm7fpvquqm6a4avs.jpg'); */
   --background-btn: url('https://wallpapers.com/images/hd/minimalist-retro-hm7fpvquqm6a4avs.jpg');
   --background-details: rgb(194, 196, 214);
 }
@@ -57,6 +58,7 @@ body .dark{
   --shadow-menu: red;
   --retro-input-bgcolor: transparent;
   --description-font: rgb(158, 149, 149);
+  --responsive-nav: black;
 
   /** images **/
   --background-cards: rgb(15, 4, 51);

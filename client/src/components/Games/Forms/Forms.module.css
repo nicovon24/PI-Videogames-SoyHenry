@@ -1,7 +1,7 @@
 
 /* todo filter forms */
 .forms{
-    padding-top: 120px;
+    padding-top: 70px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,10 +13,11 @@
     align-items: center;
 }
 .select{
-    width: 130px;
+    width: 110px;
     height: 40px;
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     background-color: transparent;
+    border-radius: 10px;
 }
 
 /* todo search forms */
@@ -30,9 +31,10 @@
     /* background-image: url('https://media.istockphoto.com/id/1287121458/es/foto/fondo-azul-marino-negro-grunge-texturado-abstracto-estuco-marco-oscuro-pared-patr%C3%B3n-de.jpg?s=612x612&w=0&k=20&c=7MvJmS1lL9Xvra4vwYigSwS_sQm03Go4FFezjffoYfM='); */
 }
 .btn_search_container{
-    width: 250px;
+    width: 200px;
     height: 40px;
     display: flex;
+    border-radius: 10px;
 }
 .input_search{
     width: 90%;
@@ -41,7 +43,7 @@
     outline: none;
     background-color: transparent;
     color: white;
-    font-size: 0.7rem;
+    font-size: 0.55rem;
 }
 .btn_search{
     background-color: transparent;
@@ -55,14 +57,13 @@
     color: var(--retro-input-color);
 }
 .btn_filters{
-    height: 45px;
-    font-size: 0.6rem;
+    height: 35px;
+    font-size: 0.55rem;
     margin: 12px 0px;
     margin-right: 20px;
-    border-radius: 10px;
     font-family: 'retro';
     padding: 0px 10px;
-    width: 120px;
+    width: 100px;
     background-color: transparent;
     background: var(--background-btn);
     cursor: pointer;
@@ -70,6 +71,16 @@
 .btn_filters_container{
     display: flex;
     align-items: center;
+}
+.btn_restart{
+    background-color: transparent;
+    color: var(--retro-fonts);
+    font-family: 'retro';
+    font-size: 0.8rem;
+    border: 3px solid var(--retro-fonts);
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 3px 15px;
 }
 /* .btn_filters.btn-retro{
     width: 30px;

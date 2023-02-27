@@ -20,6 +20,10 @@ export function FilterBy(){
         })
     }
 
+    useEffect(()=>{
+        dispatch(filterGames(allGames, filters))
+    }, [dispatch, filters])
+
     let {allGames, page, pages, pageGames, platforms, genres} = useSelector(state=>state)
 
     useEffect(()=>{
@@ -28,17 +32,17 @@ export function FilterBy(){
         }
     }, [dispatch, pageGames, pages, page])
 
-    const handleSubmit = e=>{
-        e.preventDefault()
+    // const handleSubmit = e=>{
+    //     e.preventDefault()
 
-        //*filtering
-        if(filters.genre || filters.platform || filters.order || filters.originData){
-            dispatch(filterGames(allGames, filters))
-        }
-        if(!filters.genre && !filters.platform && filters.order && filters.originData){
-            dispatch(restartCurrentPage(allGames))
-        }
-    }
+    //     //*filtering
+    //     // if(filters.genre || filters.platform || filters.order || filters.originData){
+    //     //     dispatch(filterGames(allGames, filters))
+    //     // }
+    //     // if(!filters.genre && !filters.platform && filters.order && filters.originData){
+    //     //     dispatch(restartCurrentPage(allGames))
+    //     // }
+    // }
 
     const handleRestart = ()=>{
         setFilters({
@@ -51,7 +55,9 @@ export function FilterBy(){
     }
 
     return(
-        <form onSubmit={handleSubmit} className={styles.forms_filters}>
+        <form 
+            // onSubmit={handleSubmit} 
+            className={styles.forms_filters}>
             <div>
                 <select className={`${styles.select} retro-input`} name="genre" value={filters.genre} onChange={handleChangeValue}>
                     <option className={styles.option} value="" >genre</option>
@@ -91,8 +97,10 @@ export function FilterBy(){
             </div>
 
             <div className={styles.btn_filters_container}>
-                <button type="submit" className={`${styles.btn_filters} retro-input`}>Submit</button>
-                <button onClick={()=>handleRestart()} className={`${styles.btn_filters} retro-input`}>Clear</button>
+                {/* <button type="submit" className={`${styles.btn_filters} retro-input`}>Submit</button> */}
+                <button onClick={()=>handleRestart()} 
+                className={`${styles.btn_filters} retro-input`}
+                >Clear</button>
             </div>
         </form>
     )
