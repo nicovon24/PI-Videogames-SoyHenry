@@ -6,22 +6,32 @@ import { createGame } from "../../redux/actions"
 
 function validate(input){
     let errors = {}
-    // console.log(input.platforms);
+    const regexName = new RegExp('^[A-Za-z0-9]+$', 'i');
+    let today = new Date()
+    const month = today.getMonth()+1
+    today = today.getFullYear() + "-" + month  + "-" + today.getDate();
+    // console.log(today, input.released);
+    const isReleasedDateFromPast = Date.parse(today)>Date.parse(input.released);
+    console.log(isReleasedDateFromPast);
     if(!input.name){
         errors.name = 'Name is required'
+    } else if(!regexName.test(input.name)){
+        errors.name = 'Name must be only letters or numbers'
     } else if(!input.image){
         errors.image = 'Image is required'
-    } else if(!input.description){
-        errors.description = 'Description is required'
     } else if(input.genres.length===0){
         errors.genres = 'Genre is required'
     } else if(!input.released){
         errors.released = 'Released date is required'
+    }  else if(!isReleasedDateFromPast){
+        errors.released = "Released date must be from past, before today's date: " + today
     } else if(!input.rating || input.rating < 1 || input.rating > 5){
         errors.rating = 'Rating must be a number between "1" to "5"'
     } else if(input.platforms.length === 0){
         errors.platforms = 'Platform is required'
-    } 
+    } else if(!input.description){
+        errors.description = 'Description is required'
+    }
     return errors
 }
 
@@ -160,7 +170,7 @@ export default function CreateGame(){
                         name="genres" value={data.genres[data.genres.length-1]}
                         onChange={handleChangeGenres}>
                             <option>Select one or more options...</option>
-                            {genres.sort((a,b)=>a?.name.localeCompare(b?.name)).map(genre=>{
+                            {genres.sort((a,b)=>a?.name.localeCompare(b?.name)).map((genre)=>{
                                 return <option name={genre?.name} key={genre?.name} value={genre?.name}>{genre?.name}</option>
                                 // return <option name={genre.name} key={genre.name} value={genre.name}>{genre.name}</option>
                             })}
@@ -207,7 +217,7 @@ export default function CreateGame(){
                         : <div className={styles.genre_platf_str}> 
                             {data?.platforms.map((d,index)=>{
                                 return(<>
-                                    <button type="button" onClick={()=>deleteSelectValue("platforms", d)}>x</button>
+                                    <button type="button" onClick={()=>deleteSelectValue("platforms", d)} key={index}>x</button>
                                     <label>{d}
                                     {index===data.platforms.length-1 ? "" : ","}</label> {/* separando por coma menos al final */}
                                 </>)
