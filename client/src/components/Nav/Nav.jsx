@@ -43,10 +43,11 @@ export default function Nav(){ //only search is active in games
                         <li><NavLink to="/create" className={({isActive}) => isActive ? styles.active : ""}>Create</NavLink></li>
                         <li><NavLink to="/about" className={({isActive}) => isActive ? styles.active : ""}>About</NavLink></li>
                         <li><NavLink to="/favorites" className={({isActive}) => isActive ? styles.active : ""}>Favorites({favorites.length})</NavLink></li>
+                        
                     </ul>
                 </nav>
-                <button className={`light_mode_button`} aria-label="Toggle Light Mode" 
-                onClick={handleChangeMode}>
+                <button className={`light_mode_button ${styles.light_mode_button}`} aria-label="Toggle Light Mode" 
+                    onClick={handleChangeMode}>
                     <span></span>
                     <span></span>
                 </button>

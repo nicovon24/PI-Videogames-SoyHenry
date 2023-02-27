@@ -58,55 +58,58 @@ export default function Card({game}){
 
     return(
         <>
-        {Object.values(game).length>0 &&
-        <div>
-            
-            <div className={styles.card}>
-                <div className={styles.fav_btn}>
-                    {!isFavorite 
-                        ? <img src={require("../../../assets/unfavorite.png")} alt="fav btn"
-                        onClick={handleChangeFav}/>
-                        : <img src={require("../../../assets/favorite.png")} alt="fav btn"
-                        onClick={handleChangeFav}/>
-                    }
-                </div>
+            {Object.values(game).length>0 &&
+            <div>
                 
-                <NavLink to={`/videogames/${game?.id}`} style={{textDecoration: "none"}}>
-                    {/* default image */}
-                    <img src={(game.image.match(/\.(jpeg|jpg|gif|png)$/) || !game.image) ? game?.image : "https://media.discordapp.net/attachments/1073407771166380107/1079132104325087362/xbox-series-x-controller.webp"} className={styles.card_img} alt="videogame img"/>
-                </NavLink>
-                <h1 className={`${styles.card_name} card_title`}>{game?.name}</h1>
-                {/* <ul>
-                    {game?.genres?.map((el, index)=>{
-                        if(game?.genres?.length-1===index) return <span key={index}>{el}</span>
-                        else return <span key={index}>{el}, </span>
-                    })}
-                </ul> */}
-                <ul className={styles.genres}>
-                    {game?.genres?.map((el, index)=>{
-                        const img = <img className={styles.genre_img}
-                        src={require(`../../../assets/genres/${el.split(" ").join("-")}.png`)} alt="img genre"/>
+                <div className={styles.card}>
+                    <div className={styles.card_subcontainer}> {/* responsively adjust vertically in screens height
+                    lowe than 720px */}
+                        <div className={styles.fav_btn}>
+                            {!isFavorite 
+                                ? <img src={require("../../../assets/unfavorite.png")} alt="fav btn"
+                                onClick={handleChangeFav}/>
+                                : <img src={require("../../../assets/favorite.png")} alt="fav btn"
+                                onClick={handleChangeFav}/>
+                            }
+                        </div>
                         
-                        if(img) {
-                            return (
-                                <div key={index}>
-                                    {img}
-                                    <p>{el}</p>
-                                </div>
-                            )
+                        <NavLink to={`/videogames/${game?.id}`} style={{textDecoration: "none"}}>
+                            {/* default image */}
+                            <img src={(game.image.match(/\.(jpeg|jpg|gif|png)$/) || !game.image) ? game?.image : "https://media.discordapp.net/attachments/1073407771166380107/1079132104325087362/xbox-series-x-controller.webp"} className={styles.card_img} alt="videogame img"/>
+                        </NavLink>
+                        <h1 className={`${styles.card_name} card_title`}>{game?.name}</h1>
+                        {/* <ul>
+                            {game?.genres?.map((el, index)=>{
+                                if(game?.genres?.length-1===index) return <span key={index}>{el}</span>
+                                else return <span key={index}>{el}, </span>
+                            })}
+                        </ul> */}
+                        <ul className={styles.genres}>
+                            {game?.genres?.map((el, index)=>{
+                                const img = <img className={styles.genre_img}
+                                src={require(`../../../assets/genres/${el.split(" ").join("-")}.png`)} alt="img genre"/>
+                                
+                                if(img) {
+                                    return (
+                                        <div key={index}>
+                                            {img}
+                                            <p>{el}</p>
+                                        </div>
+                                    )
+                                }
+                                else return null
+                            })}
+                        </ul>
+                        {ratingStars}
+                        <span className={styles.rating_string}>Rating: {game?.rating}</span>
+                        {   
+                            game.hasOwnProperty("createdByUser") &&
+                            <button className={styles.btn_delete} onClick={(id)=>handleDeleteGame(game?.id)}>Delete</button>
                         }
-                        else return null
-                    })}
-                </ul>
-                {ratingStars}
-                <span className={styles.rating_string}>Rating: {game?.rating}</span>
-                {   
-                    game.hasOwnProperty("createdByUser") &&
-                    <button className={styles.btn_delete} onClick={(id)=>handleDeleteGame(game?.id)}>Delete</button>
-                }
-                {/* <p>{game?.released}</p> */}
-            </div>
-        </div>}
+                        {/* <p>{game?.released}</p> */}
+                    </div>
+                </div>
+            </div>}
         </>
     )
 }

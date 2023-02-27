@@ -2,12 +2,7 @@
     width: 100%;
     min-height: 100vh;
     background-color: var(--background-cards);
-    /* background-image: var(--background-cards); */
     padding: 30px 0px;
-    /* background: #74b9a5; */
-    /* background: url('https://st3.depositphotos.com/1177973/12632/i/600/depositphotos_126328712-stock-photo-grey-abstract-texture-background.jpg'); */
-    /* background: url('https://w0.peakpx.com/wallpaper/793/1001/HD-wallpaper-synthwave-planet-retro-wave.jpg'); */
-    /* background: linear-gradient(90deg, rgb(232, 241, 236) 0%, rgb(225, 236, 227) 50%, rgb(222, 232, 223) 50%, rgb(220, 234, 220) 98%, rgb(227, 217, 220) 99%); */
     background-position: center;
     background-size: cover;
     object-fit: cover;
@@ -27,9 +22,10 @@
     text-align: center;
     font-family: 'Retro';
 }
+
 .card{
     width: 100%;
-    height: 48vh;
+    height: 100%;
     box-shadow: var(--shadow-card) 0px 0px 8px;
     background-image: var(--background-card);
     color: var(--white_black);
@@ -39,18 +35,25 @@
     font-size: 0.7rem;
     position: relative;
     overflow: hidden;
+    border-radius: 7px;
+}
+.cards_subcontainer{
+    min-height: 48vh;
 }
 .card:hover{
     box-shadow: var(--shadow-card) 0px 0px 25px;
     position: relative;
     bottom: 5px;
     transition: 0.5s;
+    height: 100%;
 }
 .card_img{
     width: 100%;
     height: 200px;
     object-fit: cover;
     cursor: pointer;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 .card_img:hover{
     transform: scale(1.10);
@@ -90,6 +93,9 @@
     color: var(--gold);
 }
 .btn_delete{
+    display: block;
+    height: 50px;
+    width: 100%;
     padding: 7px;
 }
 .fav_btn{
@@ -103,6 +109,8 @@
 }
 .fav_btn img{
     width: 30px;
+    position: relative;
+    right: 5px;
 }
 .genres{
     display: flex;
