@@ -92,16 +92,18 @@ export default function CreateGame(){
     const handleSubmitForm = (e)=>{
         e.preventDefault()
         dispatch(createGame(data)) 
-        setData({
-            name: "",
-            description: "",
-            image: "",
-            platforms: [],
-            genres: [],
-            released: "",
-            rating: ""
-        })
-        alert("You have created the game successfully!")
+        if(Object.values(data).length===7){
+            setData({
+                name: "",
+                description: "",
+                image: "",
+                platforms: [],
+                genres: [],
+                released: "",
+                rating: ""
+            })
+            alert("You have created the game successfully!")
+        }
     }
 
     function deleteSelectValue(property, value){
@@ -212,7 +214,11 @@ export default function CreateGame(){
                             })}
                         </div>}
     
-                        <button type="submit" className={styles.submit}>Submit</button>
+                        <button 
+                            type="submit" 
+                            className={styles.submit}
+                            disabled={Object.values(errors).length>0}
+                        >Submit</button>
                     </div>    
                     <div className={styles.description_desktop}>
                         <label htmlFor="description" className={styles.property}>Description</label>  
@@ -220,7 +226,8 @@ export default function CreateGame(){
                                 type="text" 
                                 name="description"
                                 id="description"
-                                value={data.description} placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                                value={data.description} 
+                                placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
                                 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
                                 numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
                                 optio, eaque rerum! Provident similique accusantium nemo autem...."

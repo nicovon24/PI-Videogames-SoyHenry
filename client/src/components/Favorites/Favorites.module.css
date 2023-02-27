@@ -35,7 +35,7 @@
     align-items: center;
 }
 .cards_container2 h1{
-    color: var(--gold);
+    color: var(--retro-fonts);
     font-family: 'retro';
     font-size: 1.4rem;
     padding-bottom: 20px;
