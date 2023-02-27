@@ -7,11 +7,6 @@
     justify-content: center;
     align-items: center;
 }
-.forms_filters{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 .select{
     width: 110px;
     height: 40px;
@@ -21,10 +16,13 @@
 }
 
 /* todo search forms */
-.form_search_container .input{
+.form_search_container{
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.form_search_container .input{
     width: 230px;
     font-size: 0.8rem;
     background-color: transparent;
@@ -57,8 +55,9 @@
     color: var(--retro-input-color);
 }
 .btn_filters{
-    height: 35px;
+    height: 40px;
     font-size: 0.55rem;
+    border-radius: 5px;
     margin: 12px 0px;
     margin-right: 20px;
     font-family: 'retro';
@@ -68,7 +67,7 @@
     background: var(--background-btn);
     cursor: pointer;
 }
-.btn_filters_container{
+.btn_filters_container_desktop{
     display: flex;
     align-items: center;
 }
@@ -78,10 +77,57 @@
     font-family: 'retro';
     font-size: 0.8rem;
     border: 3px solid var(--retro-fonts);
-    border-radius: 5px;
+    border-radius: 10px;
     margin-top: 10px;
     padding: 3px 15px;
 }
-/* .btn_filters.btn-retro{
-    width: 30px;
-} */
+.forms_desktop{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.forms_mobile{
+    display: none;
+}
+.forms_filters{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.btn_filters_container_mobile{
+    display: none;
+}
+.show{
+    color: var(--retro-fonts);
+    font-family: 'retro';
+    text-decoration: underline;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 0.9rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+.show:hover{
+    color: blueviolet;
+}
+@media(max-width: 800px){
+    .forms_mobile{
+        display: grid;
+    }
+    .forms_desktop{
+        display: none;
+    }
+    .btn_filters_container_desktop{
+        display: none;
+    }
+    .btn_filters_container_mobile{
+        display: flex;
+        position: relative;
+        top: 3px;
+        left: 15px;
+    }
+    .forms_filters_grid{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+    }
+}

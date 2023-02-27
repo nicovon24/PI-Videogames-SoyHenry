@@ -55,10 +55,8 @@ export function FilterBy(){
     }
 
     return(
-        <form 
-            // onSubmit={handleSubmit} 
-            className={styles.forms_filters}>
-            <div>
+        <form className={styles.forms_filters}>
+            <div className={styles.forms_filters_grid}>
                 <select className={`${styles.select} retro-input`} name="genre" value={filters.genre} onChange={handleChangeValue}>
                     <option className={styles.option} value="" >genre</option>
                     {genres.map(genre=>{
@@ -94,9 +92,16 @@ export function FilterBy(){
                     <option value="db">DB</option>
                     <option value="api">API</option>
                 </select>
+
+                <div className={styles.btn_filters_container_mobile}>
+                {/* <button type="submit" className={`${styles.btn_filters} retro-input`}>Submit</button> */}
+                    <button onClick={()=>handleRestart()} 
+                    className={`${styles.btn_filters} retro-input`}
+                    >Clear</button>
+                </div>
             </div>
 
-            <div className={styles.btn_filters_container}>
+            <div className={styles.btn_filters_container_desktop}>
                 {/* <button type="submit" className={`${styles.btn_filters} retro-input`}>Submit</button> */}
                 <button onClick={()=>handleRestart()} 
                 className={`${styles.btn_filters} retro-input`}

@@ -293,7 +293,7 @@ https://ep01.epimg.net/verne/imagenes/2014/11/24/articulo/1416811151_000008_1417
     left: 5px;
     width: 30px;
     height: 28px;
-    background-color: var(--white_black);
+    background-color: white;
     border-radius: 50%;
     box-shadow: 1px 1px 3px 0 rgb(3 3 3 / 40%);
     transition: 0.3s;
@@ -310,5 +310,5 @@ https://ep01.epimg.net/verne/imagenes/2014/11/24/articulo/1416811151_000008_1417
 
 .dark .light_mode_button span:nth-child(2) {
     left: 46px;
-    background-color: #141516;
+    background-color: white;
 }
