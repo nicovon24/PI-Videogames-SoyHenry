@@ -1,7 +1,5 @@
 import styles from "./Nav.module.css"
-import {NavLink} from "react-router-dom"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserPlus, faUser, faGamepad, faHeart, faBars, faClose } from '@fortawesome/free-solid-svg-icons'
+import { NavLink } from "react-router-dom"
 import { useDispatch, useSelector} from "react-redux"
 import { toggleDarkMode } from "../../redux/actions"
 import { useState } from "react"
@@ -24,15 +22,22 @@ export default function Nav(){ //only search is active in games
         <header className={styles.header_container}>
             <div className={styles.header_desktop}>
                 <div className={styles.title}>
-                    <NavLink to="/">Videospedia</NavLink>
+                    Videospedia
                 </div>
                 <nav className={styles.nav_desktop}>
                     <ul>
-                        <li><NavLink to="/videogames" className={({isActive}) => isActive ? styles.active : ""}><FontAwesomeIcon icon={faGamepad}/>Games</NavLink></li>
-                        <li><NavLink to="/create" className={({isActive}) => isActive ? styles.active : ""}><FontAwesomeIcon icon={faUserPlus}/>Create</NavLink></li>
-                        <li><NavLink to="/about" className={({isActive}) => isActive ? styles.active : ""}><FontAwesomeIcon icon={faUser}/>About</NavLink></li>
-                        <li><NavLink to="/favorites" className={({isActive}) => isActive ? styles.active : ""}><FontAwesomeIcon icon={faHeart}/>Favorites({favorites.length})</NavLink></li>
-                        
+                        <li><NavLink to="/videogames" className={({isActive}) => isActive ? styles.active : ""}>
+                            Games
+                        </NavLink></li>
+                        <li><NavLink to="/create" className={({isActive}) => isActive ? styles.active : ""}>
+                            Create
+                        </NavLink></li>
+                        <li><NavLink to="/about" className={({isActive}) => isActive ? styles.active : ""}>
+                            About
+                        </NavLink></li>
+                        <li><NavLink to="/favorites" className={({isActive}) => isActive ? styles.active : ""}>
+                            Favorites({favorites.length})
+                        </NavLink></li>
                     </ul>
                 </nav>
                 <button className={`light_mode_button`} aria-label="Toggle Light Mode" 
@@ -43,8 +48,7 @@ export default function Nav(){ //only search is active in games
             </div>
 
             <div className={styles.header_mobile_icon}>
-                <FontAwesomeIcon icon={!showMobileNav ? faBars : faClose}
-                onClick={toggleMobileNav}/> 
+                <p onClick={toggleMobileNav}>{showMobileNav ? "X" : "Show"}</p>
             </div>
             <div className={`${styles.header_mobile} ${showMobileNav ? styles.active : styles.inactive}`}>
                 <nav className={styles.nav_mobile}>

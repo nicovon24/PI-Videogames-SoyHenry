@@ -81,7 +81,6 @@ const rootReducer = (state = initialState, {type, payload})=>{
             allGames: [...state.allGames, payload]
         }
 
-
         case DELETE_GAME: return {
             ...state,
             allGames: state.allGames.filter(g=>g.id!==payload)

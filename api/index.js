@@ -19,17 +19,15 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { saveAllVideogames, getAllVideogames } = require("./src/controllers/videogames/saveVideogames.js")
-// const { saveAllGenres } = require('./src/controllers/others/genre.js');
-// const { saveAllPlatforms } = require('./src/controllers/others/platforms.js')
+const { saveAllGenres } = require('./src/controllers/others/genre.js');
+const { saveAllPlatforms } = require('./src/controllers/others/platforms.js')
 const { conn } = require('./src/db.js');
-// const { saveUsersData } = require('./src/controllers/others/users.js');
 const {PORT} = process.env
 
 // Syncing all the models at once.
-conn.sync({ alter: true }).then(async () => {
-  // await saveAllGenres()
-  // await saveAllPlatforms()
-  // await saveUsersData()
+conn.sync({ force: true }).then(async () => {
+  await saveAllGenres()
+  await saveAllPlatforms()
   server.listen(PORT, () => {
     console.log(`%s listening at ${PORT}`); // eslint-disable-line no-console
   });

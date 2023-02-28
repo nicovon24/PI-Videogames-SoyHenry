@@ -35,13 +35,16 @@ export function FilterBy(){
     }, [dispatch, allGames, pages, page])
 
     const handleRestart = ()=>{
-        setFilters({
-            genre: "",
-            platform: "",
-            order: "",
-            originData: ""
-        })
-        dispatch(restartCurrentPage(allGames))
+        const find = Object.values(filters).find(e=>e!=="") //["", "", "", ""] => not clearing the data
+        if(find){  
+            setFilters({
+                genre: "",
+                platform: "",
+                order: "",
+                originData: ""
+            })
+            dispatch(restartCurrentPage(allGames))
+        }
     }
 
     return(
@@ -84,18 +87,18 @@ export function FilterBy(){
                 </select>
 
                 <div className={styles.btn_filters_container_mobile}>
-                {/* <button type="submit" className={`${styles.btn_filters} retro-input`}>Submit</button> */}
                     <button onClick={()=>handleRestart()} 
-                    className={`${styles.btn_filters} retro-input`}
-                    >Clear</button>
+                        className={`${styles.btn_filters} retro-input`}
+                        >Clear
+                    </button>
                 </div>
             </div>
 
             <div className={styles.btn_filters_container_desktop}>
-                {/* <button type="submit" className={`${styles.btn_filters} retro-input`}>Submit</button> */}
-                <button onClick={()=>handleRestart()} 
-                className={`${styles.btn_filters} retro-input`}
-                >Clear</button>
+                <button onClick={()=>handleRestart()} type="button"
+                    className={`${styles.btn_filters} retro-input`}
+                    >Clear
+                </button>
             </div>
         </form>
     )

@@ -50,6 +50,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    color: var(--retro-fonts);
 }
 
 .title a{
@@ -93,8 +94,9 @@
     padding-right: 10px;
 }
 
-.header_mobile_icon svg{
+.header_mobile_icon p{
     cursor: pointer;
+    font-size: 1.1rem;
 }
 
 .light_mode_button{

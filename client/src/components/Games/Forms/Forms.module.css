@@ -109,6 +109,11 @@
 .show:hover{
     color: blueviolet;
 }
+.btn_search img{
+    width: 28px;
+    position: relative;
+    bottom: 4px;
+}
 @media(max-width: 800px){
     .forms_mobile{
         display: grid;

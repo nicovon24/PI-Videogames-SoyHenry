@@ -2,8 +2,6 @@ import { useState } from "react"
 import {useDispatch, useSelector} from "react-redux"
 import { getCurrentPages, searchGame } from "../../../redux/actions"
 import styles from "./Forms.module.css"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 export default function Search(){
     const [search, setSearch] = useState("")
@@ -24,7 +22,7 @@ export default function Search(){
         <form className={styles.form_search_container} onSubmit={handleSubmit}>
             <div className={`retro-input ${styles.btn_search_container}`}>
                 <input type="text" placeholder="Search..." className={`${styles.input_search}`} onChange={e=>setSearch(e.target.value)}/>
-                <button className={`${styles.btn_search}`} type="submit"><FontAwesomeIcon icon={faSearch}></FontAwesomeIcon></button>   
+                <button className={`${styles.btn_search}`} type="submit"><img src={require("../../../assets/nav/search.png")} alt="search img"/></button>   
             </div>
         </form>
     )
