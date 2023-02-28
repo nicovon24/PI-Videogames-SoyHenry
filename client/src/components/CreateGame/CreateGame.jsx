@@ -59,16 +59,18 @@ export default function CreateGame(){
 
     const handleChangeGenres = (e)=>{
         const {genres} = data
-        const find = genres.find(f=>f===e.target.value)
-        if(!find){
-            setData({
-                ...data,
-                genres: [...data.genres, e.target.value]
-            })
-            setErrors(validate({
-                ...data,
-                [e.target.name]: e.target.value
-            }))
+        if(e.target.value!=='Select one or more options...'){
+            const find = genres.find(f=>f===e.target.value)
+            if(!find){
+                setData({
+                    ...data,
+                    genres: [...data.genres, e.target.value]
+                })
+                setErrors(validate({
+                    ...data,
+                    [e.target.name]: e.target.value
+                }))
+            }
         }
     }
 
@@ -80,16 +82,19 @@ export default function CreateGame(){
                 image: 'https://thumbs.dreamstime.com/b/gorila-gorila-del-silverback-22730829.jpg'
             })
         }
-        const find = platforms.find(f=>f===e.target.value)
-        if(!find){
-            setData({
-                ...data,
-                platforms: [...data.platforms, e.target.value]
-            })
-            setErrors(validate({
-                ...data,
-                [e.target.name]: e.target.value
-            }))
+        if(e.target.value!=='Select one or more options...'){
+            const find = platforms.find(f=>f===e.target.value)
+            if(!find){
+                setData({
+                    ...data,
+                    platforms: [...data.platforms, e.target.value]
+                })
+                setErrors(validate({
+                    ...data,
+                    [e.target.name]: e.target.value
+                }))
+            }
+
         }
         
     }
