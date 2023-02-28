@@ -2,17 +2,12 @@ import Nav from "../Nav/Nav"
 import styles from "./CreateGame.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
-import { createGame } from "../../redux/actions"
+import { useNavigate } from "react-router-dom"
+import { changePage, createGame } from "../../redux/actions"
 
 function validate(input){
     let errors = {}
-    const regexName = new RegExp('^[A-Za-z0-9]+$', 'i');
-    let today = new Date()
-    const month = today.getMonth()+1
-    today = today.getFullYear() + "-" + month  + "-" + today.getDate();
-    // console.log(today, input.released);
-    const isReleasedDateFromPast = Date.parse(today)>Date.parse(input.released);
-    console.log(isReleasedDateFromPast);
+    const regexName = new RegExp('^[A-Za-z0-9 ]+$', 'i');
     if(!input.name){
         errors.name = 'Name is required'
     } else if(!regexName.test(input.name)){
@@ -23,8 +18,6 @@ function validate(input){
         errors.genres = 'Genre is required'
     } else if(!input.released){
         errors.released = 'Released date is required'
-    }  else if(!isReleasedDateFromPast){
-        errors.released = "Released date must be from past, before today's date: " + today
     } else if(!input.rating || input.rating < 1 || input.rating > 5){
         errors.rating = 'Rating must be a number between "1" to "5"'
     } else if(input.platforms.length === 0){
@@ -49,7 +42,9 @@ export default function CreateGame(){
     let [errors, setErrors] = useState({})
 
     const dispatch = useDispatch()
-    const {platforms, genres} = useSelector(state=>state)
+    const navigate = useNavigate()
+
+    const {platforms, genres, pages} = useSelector(state=>state)
 
     const handleChangeInput= (e)=>{
         setData({
@@ -102,7 +97,7 @@ export default function CreateGame(){
     const handleSubmitForm = (e)=>{
         e.preventDefault()
         dispatch(createGame(data)) 
-        if(Object.values(data).length===7){
+        if(Object.values(data).length===7){ //getting all data
             setData({
                 name: "",
                 description: "",
@@ -113,6 +108,8 @@ export default function CreateGame(){
                 rating: ""
             })
             alert("You have created the game successfully!")
+            navigate("/videogames")
+            dispatch(changePage(pages)) //reinitiating the page to 
         }
     }
 
@@ -122,7 +119,6 @@ export default function CreateGame(){
             [property]: data[property].filter(p=>p!==value)
         })
     }
-    
     return(
         <div className={styles.create_container}>
             <Nav/>
@@ -167,22 +163,24 @@ export default function CreateGame(){
 
                         <label htmlFor="platforms" className={styles.property}>Genres</label>
                         <select className={styles.genres_container} 
-                        name="genres" value={data.genres[data.genres.length-1]}
+                        name="genres" value={data.genres.length===0 ? "" : data.genres[data.genres.length-1]}
                         onChange={handleChangeGenres}>
-                            <option>Select one or more options...</option>
+                            <option value="">Select one or more options...</option>
                             {genres.sort((a,b)=>a?.name.localeCompare(b?.name)).map((genre)=>{
                                 return <option name={genre?.name} key={genre?.name} value={genre?.name}>{genre?.name}</option>
-                                // return <option name={genre.name} key={genre.name} value={genre.name}>{genre.name}</option>
                             })}
                         </select>
                         {errors.genres ? <label className={styles.errors}>{errors.genres}</label>
                         : <div className={styles.genre_platf_str}> 
                             {data.genres.map((d,index)=>{
-                                return(<>
-                                    <button key={index} type="button" onClick={()=>deleteSelectValue("genres", d)}>x</button>
-                                    <label>{d}
-                                    {index===data?.genres.length-1 ? "" : ","}</label> {/* separando por coma menos al final */}
-                                </>)
+                                if(d){ //select one or more can not be selected
+                                    return(<>
+                                        <button key={index} type="button" onClick={()=>deleteSelectValue("genres", d)}>x</button>
+                                        <label>{d}
+                                        {index===data?.genres.length-1 ? "" : ","}</label> {/* separando por coma menos al final */}
+                                    </>)
+                                }
+                                return null
                             })}
                         </div>}
 
@@ -199,15 +197,15 @@ export default function CreateGame(){
                         <input type="number" 
                             name="rating" 
                             id="rating" 
-                            min={1} max={5}
+                            min={1} max={5} step={0.1}
                             value={data?.rating} 
                             onChange={handleChangeInput}
-                            placeholder="4.5">
+                            placeholder="4.5"> 
                         </input>
                         {errors.rating && <label className={styles.errors}>{errors.rating}</label>}
 
                         <label htmlFor="platforms" className={styles.property}>Platforms</label>
-                        <select name="platforms" id="platforms" value={data.platforms[data.platforms.length-1]} onChange={handleChangePlatforms}>
+                        <select name="platforms" id="platforms" value={data.platforms.length===0 ? "" : data.platforms[data.platforms.length-1]} onChange={handleChangePlatforms}>
                             <option>Select one or more options...</option>
                             {platforms.sort((a,b)=>a.name.localeCompare(b.name)).map(platf=>{
                                 return <option name={platf.name} key={platf.name} value={platf.name}>{platf.name}</option>
@@ -216,11 +214,14 @@ export default function CreateGame(){
                         {errors.platforms ? <label className={styles.errors}>{errors.platforms}</label>
                         : <div className={styles.genre_platf_str}> 
                             {data?.platforms.map((d,index)=>{
-                                return(<>
-                                    <button type="button" onClick={()=>deleteSelectValue("platforms", d)} key={index}>x</button>
-                                    <label>{d}
-                                    {index===data.platforms.length-1 ? "" : ","}</label> {/* separando por coma menos al final */}
-                                </>)
+                                if(d){
+                                    return(<>
+                                        <button type="button" onClick={()=>deleteSelectValue("platforms", d)} key={index}>x</button>
+                                        <label>{d}
+                                        {index===data.platforms.length-1 ? "" : ","}</label> {/* separando por coma menos al final */}
+                                    </>)
+                                }
+                                return null
                             })}
                         </div>}
     

@@ -24,13 +24,15 @@ export function FilterBy(){
         dispatch(filterGames(allGames, filters))
     }, [dispatch, filters])
 
-    let {allGames, page, pages, pageGames, platforms, genres} = useSelector(state=>state)
+    let {allGames, page, pages, platforms, genres} = useSelector(state=>state)
 
+    //executed every time the page and pages change, we get new data
     useEffect(()=>{
-        if(pageGames.length===0 && pages>page){
-            dispatch(getCurrentPages(pageGames))
+        //updating the data from current pages based by page
+        if(pages>page){
+            dispatch(getCurrentPages(allGames)) //pageGames=currentGames data 
         }
-    }, [dispatch, pageGames, pages, page])
+    }, [dispatch, allGames, pages, page])
 
     // const handleSubmit = e=>{
     //     e.preventDefault()

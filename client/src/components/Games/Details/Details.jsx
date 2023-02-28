@@ -2,7 +2,7 @@ import styles from "./Details.module.css"
 import { useEffect, useState } from "react"
 import {useParams} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
-import {getGameByID} from "../../../redux/actions.js"
+import {clearDetails, getGameByID} from "../../../redux/actions.js"
 import Nav from "../../Nav/Nav.jsx"
 import Loader from "../../Loader/Loader.jsx"
 
@@ -12,11 +12,13 @@ export default function Details(){
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(()=>{
-        dispatch(getGameByID())
         dispatch(getGameByID(id))
         setTimeout(()=>{
             setIsLoaded(true)
         }, [4500])
+        return ()=>{
+            dispatch(clearDetails())
+        }
     }, [dispatch, id])
 
     const game = useSelector(state=>state.detailsGame)

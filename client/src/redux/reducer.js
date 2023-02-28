@@ -1,12 +1,12 @@
 import { 
 GET_ALL_GAMES, GET_GAME_BY_ID, GET_INITIAL_GAMES,  FILTER_GAMES, GET_PLATFORMS_GENRES,
-INCREASE_PAGE, DECREASE_PAGE, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, CHANGE_PAGE, SEARCH_GAME, DELETE_GAME, CREATE_GAME, ADD_FAVORITE, REMOVE_FAVORITE, GET_FAVORITES, TOGGLE_DARK_MODE } from "./action-types.js"
+INCREASE_PAGE, DECREASE_PAGE, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, CHANGE_PAGE, SEARCH_GAME, DELETE_GAME, CREATE_GAME, ADD_FAVORITE, REMOVE_FAVORITE, GET_FAVORITES, TOGGLE_DARK_MODE, CLEAR_DETAILS } from "./action-types.js"
 
 const initialState = {
     allGames: [],
     initialGames: [],
-    // isLoading: false,
-    pageGames: [], //todo VER COMO BORRAR
+    // pageGames: [], //used in filter by function, used to pass it the current page 
+    //data to current pages
     currentPages: [],
     filteredPages: [],
     detailsGame: {},
@@ -27,7 +27,7 @@ const rootReducer = (state = initialState, {type, payload})=>{
 
         case GET_INITIAL_GAMES: return {
             ...state,
-            pageGames: payload,
+            // pageGames: payload,
             initialGames: payload,
             page: 1
         }
@@ -69,6 +69,11 @@ const rootReducer = (state = initialState, {type, payload})=>{
         case GET_GAME_BY_ID: return {
             ...state,
             detailsGame: {...payload}
+        }
+
+        case CLEAR_DETAILS: return {
+            ...state, 
+            detailsGame: {}
         }
 
         case CREATE_GAME: return {

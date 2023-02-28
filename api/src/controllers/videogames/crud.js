@@ -11,6 +11,23 @@ const postVideogame = async (newData)=>{
     }
 }
 
+const deleteVideogame = async (id)=>{
+    try{
+        const deletedGame = await Videogame.destroy({ //deleting it
+            where: {id: id}
+        })
+        return deletedGame
+    }
+    catch(err){
+        throw new Error(err)
+    }
+}
+
+module.exports = {postVideogame, deleteVideogame}
+
+
+//{"name": "shadow of rome", "description": "", "image": "https://media.vandal.net/m/3220/2004129113946_1.jpg", "released": "2022-12-01", "rating": "3.5"}
+
 // const putVideogame = async (id, attributes)=>{
 //     try{
 //         if(attributes.length>0){ //checking if the are attributes
@@ -45,20 +62,3 @@ const postVideogame = async (newData)=>{
 //         throw new Error(err)
 //     }
 // }
-
-const deleteVideogame = async (id)=>{
-    try{
-        const deletedGame = await Videogame.destroy({ //deleting it
-            where: {id: id}
-        })
-        return deletedGame
-    }
-    catch(err){
-        throw new Error(err)
-    }
-}
-
-module.exports = {postVideogame, deleteVideogame}
-
-
-//{"name": "shadow of rome", "description": "", "image": "https://media.vandal.net/m/3220/2004129113946_1.jpg", "released": "2022-12-01", "rating": "3.5"}

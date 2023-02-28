@@ -106,7 +106,6 @@ export default function Card({game}){
                             game.hasOwnProperty("createdByUser") &&
                             <button className={styles.btn_delete} onClick={(id)=>handleDeleteGame(game?.id)}>Delete</button>
                         }
-                        {/* <p>{game?.released}</p> */}
                     </div>
                 </div>
             </div>}

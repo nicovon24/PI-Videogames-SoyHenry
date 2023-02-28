@@ -1,5 +1,5 @@
 import axios from "axios"
-import { GET_ALL_GAMES, GET_INITIAL_GAMES, GET_GAME_BY_ID, SEARCH_GAME, INCREASE_PAGE, DECREASE_PAGE, GET_PLATFORMS_GENRES, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, FILTER_GAMES, CHANGE_PAGE, DELETE_GAME, CREATE_GAME, ADD_FAVORITE, REMOVE_FAVORITE, GET_FAVORITES, TOGGLE_DARK_MODE } from "./action-types.js"
+import { GET_ALL_GAMES, GET_INITIAL_GAMES, GET_GAME_BY_ID, SEARCH_GAME, INCREASE_PAGE, DECREASE_PAGE, GET_PLATFORMS_GENRES, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, FILTER_GAMES, CHANGE_PAGE, DELETE_GAME, CREATE_GAME, ADD_FAVORITE, REMOVE_FAVORITE, GET_FAVORITES, TOGGLE_DARK_MODE, CLEAR_DETAILS } from "./action-types.js"
 
 export const getAllGames = ()=>{ //the 100 games
     return async function(dispatch){
@@ -59,6 +59,38 @@ export function getCurrentPages(currentGames){ //pages, getting the data for the
         throw new Error('Could not get the current pages')
     }
 }
+
+export function getGameByID(id){
+    return async function(dispatch){
+        try{
+            if(id){
+                const response = await axios.get(`/videogames/${id}`)
+                return dispatch({
+                        type: GET_GAME_BY_ID,
+                        payload: response.data
+                    }
+                )
+            }
+            else{
+                return dispatch({
+                    type: GET_GAME_BY_ID,
+                    payload: {}
+                }
+            )
+            }
+        }
+        catch(err){
+            throw new Error('Could not find the videogame')
+        }
+    }
+}
+
+export function clearDetails(){
+    return {
+        type: CLEAR_DETAILS
+    }
+}
+
 export function searchGame(search){
     return async function(dispatch){
         try{
@@ -180,31 +212,6 @@ export function filterGames(allGames, {genre, platform, order, originData}){ //f
     }
     catch(err){
         throw new Error('Could not filter the videogames neither by platform nor by genre')
-    }
-}
-
-export function getGameByID(id){
-    return async function(dispatch){
-        try{
-            if(id){
-                const response = await axios.get(`/videogames/${id}`)
-                return dispatch({
-                        type: GET_GAME_BY_ID,
-                        payload: response.data
-                    }
-                )
-            }
-            else{
-                return dispatch({
-                    type: GET_GAME_BY_ID,
-                    payload: {}
-                }
-            )
-            }
-        }
-        catch(err){
-            throw new Error('Could not find the videogame')
-        }
     }
 }
 

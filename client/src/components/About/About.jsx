@@ -10,7 +10,7 @@ export default function About(){
                 <div className={styles.about}>
                     <div className={styles.about_text}>
                         <h2 className={styles.about_name_descr}>Hi, I am Nicolás.</h2>
-                        <h2 className={styles.about_profession}>Full-stack MERN developer</h2>
+                        <h2 className={styles.about_profession}>Full-stack developer</h2>
                         <p className={styles.about_descript}>I am 22 years old and currently I am learning web development with tools such as Tailwind, Express and React. I have no experience working in IT yet, but I am interested in becoming a Software Developer in the near future. Previously, I studied Human Resources for 4 years and I have been a soccer referee for many years so my unique background will be a valuable asset to an IT company.</p>  
                         
                         <figure className={styles.about_techno}>

@@ -14,7 +14,6 @@
     background-color: transparent;
     border-radius: 10px;
 }
-
 /* todo search forms */
 .form_search_container{
     width: 100%;
@@ -128,6 +127,6 @@
     }
     .forms_filters_grid{
         display: grid;
-        grid-template-columns: repeat(3,1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
