@@ -165,7 +165,7 @@ export default function CreateGame(){
                         <select className={styles.genres_container} 
                         name="genres" value={data.genres.length===0 ? "" : data.genres[data.genres.length-1]}
                         onChange={handleChangeGenres}>
-                            <option value="">Select one or more options...</option>
+                            <option>Select one or more options...</option>
                             {genres.sort((a,b)=>a?.name.localeCompare(b?.name)).map((genre)=>{
                                 return <option name={genre?.name} key={genre?.name} value={genre?.name}>{genre?.name}</option>
                             })}
@@ -173,7 +173,7 @@ export default function CreateGame(){
                         {errors.genres ? <label className={styles.errors}>{errors.genres}</label>
                         : <div className={styles.genre_platf_str}> 
                             {data.genres.map((d,index)=>{
-                                if(d){ //select one or more can not be selected
+                                if(d!=='Select one or more options...'){ //select one or more can not be selected
                                     return(<>
                                         <button key={index} type="button" onClick={()=>deleteSelectValue("genres", d)}>x</button>
                                         <label>{d}
@@ -214,7 +214,7 @@ export default function CreateGame(){
                         {errors.platforms ? <label className={styles.errors}>{errors.platforms}</label>
                         : <div className={styles.genre_platf_str}> 
                             {data?.platforms.map((d,index)=>{
-                                if(d){
+                                if(d!=='Select one or more options...'){
                                     return(<>
                                         <button type="button" onClick={()=>deleteSelectValue("platforms", d)} key={index}>x</button>
                                         <label>{d}
