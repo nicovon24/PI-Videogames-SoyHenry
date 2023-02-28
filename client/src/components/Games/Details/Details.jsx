@@ -1,21 +1,23 @@
 import styles from "./Details.module.css"
 import { useEffect, useState } from "react"
-import {useParams} from "react-router-dom"
+import {useNavigate, useParams} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import {clearDetails, getGameByID} from "../../../redux/actions.js"
 import Nav from "../../Nav/Nav.jsx"
 import Loader from "../../Loader/Loader.jsx"
 
 export default function Details(){
+    const [isLoaded, setIsLoaded] = useState(false)
+
     const {id} = useParams()
     const dispatch = useDispatch()
-    const [isLoaded, setIsLoaded] = useState(false)
+    const navigate = useNavigate()
 
     useEffect(()=>{
         dispatch(getGameByID(id))
         setTimeout(()=>{
             setIsLoaded(true)
-        }, [4500])
+        }, [3000])
         return ()=>{
             dispatch(clearDetails())
         }
@@ -24,6 +26,10 @@ export default function Details(){
     const game = useSelector(state=>state.detailsGame)
 
     const {description, platforms, genres} = game
+
+    const handleBackHome = ()=>{
+        navigate("/videogames")
+    }
 
     return(
         <>
@@ -46,6 +52,7 @@ export default function Details(){
                             {description}
                         </div>
                     </div>
+                    <button className={styles.back_home} onClick={handleBackHome}>Back to home</button>
                 </div>
             </> :
             <Loader/>}

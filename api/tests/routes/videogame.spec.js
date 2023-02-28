@@ -48,18 +48,6 @@ describe('Videogame routes', () => {
 });
 
 describe('POST /videogames', () => {
-  //todo REVISAR
-  // it('/ adds a new videogames and find it in the data base', function () {
-  //   return supertest
-  //     .post('/videogames')
-  //     .send(videogame)
-  //     .expect(200)
-  //     .expect('Content-Type', /json/)
-  //     // .expect(async function () {
-  //     //   expect(await Videogame.findOne({where: {name: videogame.name}})).to.have.length(1)
-  //     // })
-  // })
-
   it('/ returns status 400 if data is uncompleted', function () {
     return supertest
       .post('/videogames')

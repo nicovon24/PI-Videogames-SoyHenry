@@ -8,6 +8,7 @@
     background-size: cover;
     background-position: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
@@ -41,6 +42,15 @@
     color: var(--retro-fonts);
     font-family: 'retro';
     font-size: 0.6rem;
+}
+.back_home{
+    margin-top: 20px;
+    padding: 12px 15px;
+    border-radius: 5px;
+    background-color: var(--retro-fonts);
+    font-family: 'retro';
+    color: white;
+    font-size: 0.7rem;
 }
 @media(max-width: 800px){
     .details{

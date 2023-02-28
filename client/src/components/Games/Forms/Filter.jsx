@@ -34,18 +34,6 @@ export function FilterBy(){
         }
     }, [dispatch, allGames, pages, page])
 
-    // const handleSubmit = e=>{
-    //     e.preventDefault()
-
-    //     //*filtering
-    //     // if(filters.genre || filters.platform || filters.order || filters.originData){
-    //     //     dispatch(filterGames(allGames, filters))
-    //     // }
-    //     // if(!filters.genre && !filters.platform && filters.order && filters.originData){
-    //     //     dispatch(restartCurrentPage(allGames))
-    //     // }
-    // }
-
     const handleRestart = ()=>{
         setFilters({
             genre: "",
