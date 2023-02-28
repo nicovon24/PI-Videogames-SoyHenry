@@ -72,17 +72,12 @@
     min-height: 30px;
     padding-left: 8px;
     font-size: 0.65rem;    
-    color: rgb(162, 168, 172); 
+    color: var(--white_black);
 }
 .description_mobile textarea{
     resize: vertical;
     max-height: 100px; 
 }
-
-.create_container select option{
-    color: rgb(162, 168, 172);
-}
-
 .create_container .submit{
     background-color: #04b1b1;
     border: none;
@@ -106,9 +101,17 @@
 .genres_container{
     display: flex;
 }
-.create_container_subform input::placeholder, .create_container_subform textarea::placeholder{
+.create_container_subform input::placeholder, .create_container_subform textarea::placeholder, 
+.create_container_subform select{
     color: rgb(162, 168, 172);
 }
+
+.create_container .valid{
+    border: 2.5px solid green;
+    box-shadow: green 0px 0px 3px;
+    transition: 1s;
+}
+
 
 @media(min-width: 800px){
     .create_container_form{

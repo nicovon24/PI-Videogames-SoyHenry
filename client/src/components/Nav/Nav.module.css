@@ -92,6 +92,7 @@
     position: relative;
     z-index: 900000;
     padding-right: 10px;
+    padding: 5px 0px;
 }
 
 .header_mobile_icon p{
@@ -128,7 +129,10 @@
         font-size: 0.8rem;
     }
     .header_mobile_icon{
-        display: block;
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+        align-items: center;
     }
     .header_mobile.active{
         display: flex;

@@ -18,15 +18,15 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const { saveAllGenres } = require('./src/controllers/others/genre.js');
-const { saveAllPlatforms } = require('./src/controllers/others/platforms.js')
+// const { saveAllGenres } = require('./src/controllers/others/genre.js');
+// const { saveAllPlatforms } = require('./src/controllers/others/platforms.js')
 const { conn } = require('./src/db.js');
 const {PORT} = process.env
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(async () => {
-  await saveAllGenres() //true
-  await saveAllPlatforms()
+conn.sync({ alter: true }).then(async () => {
+  // await saveAllGenres() //true
+  // await saveAllPlatforms()
   server.listen(PORT, () => {
     console.log(`%s listening at ${PORT}`); // eslint-disable-line no-console
   });

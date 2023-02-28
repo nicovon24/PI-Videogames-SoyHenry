@@ -10,7 +10,9 @@ function validate(input){
     const regexName = new RegExp('^[A-Za-z0-9 ]+$', 'i');
     if(!input.name){
         errors.name = 'Name is required'
-    } else if(!regexName.test(input.name)){
+    } if(input.name.length>40){
+        errors.name = 'Name must have less than 40 characters'
+    }else if(!regexName.test(input.name)){
         errors.name = 'Name must be only letters or numbers'
     } else if(!input.image){
         errors.image = 'Image is required'
@@ -23,7 +25,9 @@ function validate(input){
     } else if(input.platforms.length === 0){
         errors.platforms = 'Platform is required'
     } else if(!input.description){
-        errors.description = 'Description is required'
+        errors.description = 'Description is required and must have less than 800 characters'
+    } else if(input.description.length > 800){
+        errors.description = 'Description must have less than 800 characters'
     }
     return errors
 }
@@ -59,8 +63,8 @@ export default function CreateGame(){
 
     const handleChangeGenres = (e)=>{
         const {genres} = data
-        if(e.target.value!=='Select one or more options...'){
-            const find = genres.find(f=>f===e.target.value)
+        if(e.target.value!=='Select one or more options...'){ //select one or more can not be added
+            const find = genres.find(f=>f===e.target.value) 
             if(!find){
                 setData({
                     ...data,
@@ -82,7 +86,7 @@ export default function CreateGame(){
                 image: 'https://thumbs.dreamstime.com/b/gorila-gorila-del-silverback-22730829.jpg'
             })
         }
-        if(e.target.value!=='Select one or more options...'){
+        if(e.target.value!=='Select one or more options...'){ //select one or more can not be added
             const find = platforms.find(f=>f===e.target.value)
             if(!find){
                 setData({
@@ -132,45 +136,55 @@ export default function CreateGame(){
                 <h1>Register your game!</h1>
                 <form className={styles.create_container_form} onSubmit={handleSubmitForm}>
                     <div className={styles.create_container_subform}>
+
+                        {/****  NAME ******/}
                         <label htmlFor="name" className={styles.property}>Name</label>
                         <input type="text" 
                             id="name" 
                             name="name" 
+                            className={!errors.name && styles.valid}
                             value={data.name} placeholder="Nati"
                             onChange={handleChangeInput}>
                         </input>
                         {errors.name && <label className={styles.errors}>{errors.name}</label>}
 
+
+                        {/****  IMAGE ******/}
                         <label htmlFor="image" className={styles.property}>Image</label>
                         <input 
                             type="url" 
                             name="image" 
                             id="image" 
                             accept='.jpg, .jpeg, .png, .webp' //todo REVISAR
+                            className={(!errors.image && data.image) && styles.valid}
                             value={data.image} 
                             placeholder="https://thumbs.dreamstime.com/b/gorila-gorila-del-silverback-22730829.jpg"
                             onChange={handleChangeInput}>
                         </input>
                         {errors.image && <label className={styles.errors}>{errors.image}</label>}
 
+
+                        {/****  DESCRIPTION IN MOBILE ******/}
                         <div className={styles.description_mobile}>
                             <label htmlFor="description" className={styles.property}>Description</label>
                             <textarea 
                                 type="text" 
                                 name="description"
                                 id="description"
-                                r
+                                className={(!errors.description && data.description) && styles.valid}
                                 value={data.description} placeholder="Lorem ipsum..."
                                 onChange={handleChangeInput}> 
                             </textarea>
                             {errors.description && <label className={styles.errors}>{errors.description}</label>}      
                         </div>
 
-                        <label htmlFor="platforms" className={styles.property}>Genres</label>
-                        <select className={styles.genres_container} 
+
+                        {/****  GENRES ******/}
+                        <label htmlFor="genres" className={styles.property}>Genres</label>
+                        <select className={`${styles.genres_container} ${(!errors.genres && data.genres.length>0) && styles.valid}`} 
                         name="genres" value={data.genres.length===0 ? "" : data.genres[data.genres.length-1]}
                         onChange={handleChangeGenres}>
-                            <option>Select one or more options...</option>
+                            <option className={styles.none_option} style={{color: "gray"}}>Select one or more options...</option>
                             {genres.sort((a,b)=>a?.name.localeCompare(b?.name)).map((genre)=>{
                                 return <option name={genre?.name} key={genre?.name} value={genre?.name}>{genre?.name}</option>
                             })}
@@ -189,29 +203,40 @@ export default function CreateGame(){
                             })}
                         </div>}
 
+
+                        {/****  RELEASED DATE ******/}
                         <label htmlFor="released" className={styles.property}>Released date</label>
                         <input type="date"
                             name="released" 
                             id="released"
                             value={data?.released}
+                            className={(!errors.released && data.released) && styles.valid}
                             onChange={handleChangeInput}>
                         </input>
                         {errors.released && <label className={styles.errors}>{errors.released}</label>}
 
+
+                        {/****  RATING ******/}
                         <label htmlFor="rating">Rating</label>
                         <input type="number" 
                             name="rating" 
                             id="rating" 
                             min={1} max={5} step={0.1}
                             value={data?.rating} 
+                            className={(!errors.rating && data.rating) && styles.valid}
                             onChange={handleChangeInput}
                             placeholder="4.5"> 
                         </input>
                         {errors.rating && <label className={styles.errors}>{errors.rating}</label>}
 
+
+                        {/****  PLATFORMS ******/}
                         <label htmlFor="platforms" className={styles.property}>Platforms</label>
-                        <select name="platforms" id="platforms" value={data.platforms.length===0 ? "" : data.platforms[data.platforms.length-1]} onChange={handleChangePlatforms}>
-                            <option>Select one or more options...</option>
+                        <select name="platforms" id="platforms" 
+                        value={data.platforms.length===0 ? "" : data.platforms[data.platforms.length-1]} 
+                        className={(!errors.platforms && data.platforms.length>0) && styles.valid}
+                        onChange={handleChangePlatforms}>
+                            <option className={styles.none_option}>Select one or more options...</option>
                             {platforms.sort((a,b)=>a.name.localeCompare(b.name)).map(platf=>{
                                 return <option name={platf.name} key={platf.name} value={platf.name}>{platf.name}</option>
                             })}
@@ -229,13 +254,17 @@ export default function CreateGame(){
                                 return null
                             })}
                         </div>}
-    
+
+
+                        {/****  SUBMIT ******/}
                         <button 
                             type="submit" 
                             className={styles.submit}
                             disabled={Object.values(errors).length>0}
                         >Submit</button>
                     </div>    
+
+                    {/****  DESCRIPTION IN DESKTOP ******/}
                     <div className={styles.description_desktop}>
                         <label htmlFor="description" className={styles.property}>Description</label>  
                         <textarea 

@@ -208,7 +208,9 @@ font-family: 'Roboto', sans-serif; */
   background-color: rgb(48, 48, 203);
 }
 .btn-retro-fourth:hover{
-  background-color: rgb(204, 178, 30);
+  background-color: green;
+  transition: 0.5s;
+  transform: scale(1.1);
 }
 .fondo-celeste{
   /* background-color: #008081; */

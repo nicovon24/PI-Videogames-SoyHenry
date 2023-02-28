@@ -18,7 +18,7 @@
 .form_search_container{
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 .form_search_container .input{
@@ -113,6 +113,9 @@
     width: 28px;
     position: relative;
     bottom: 4px;
+}
+.error{
+    color: red;
 }
 @media(max-width: 800px){
     .forms_mobile{

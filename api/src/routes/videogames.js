@@ -1,8 +1,8 @@
 const axios  = require('axios');
 const { Router } = require('express');
 const { Videogame, Platform, Genre } = require('../db.js');
-const { searchByName, searchByPage } = require('../controllers/videogames/searches.js');
-const { postVideogame, deleteVideogame, putVideogame } = require('../controllers/videogames/crud.js');
+const { searchByName } = require('../controllers/videogames/searches.js');
+const { postVideogame, deleteVideogame } = require('../controllers/videogames/crud.js');
 const getGameById = require('../controllers/videogames/getGameById.js');
 const { getAllVideogames } = require('../controllers/videogames/saveVideogames.js');
 
@@ -114,44 +114,6 @@ routerVideogames.post("/", async (req, res)=>{
         res.status(400).json({error: err.message})
     }
 })
-
-//{
-//     "idAPI": 45566666,
-//     "name" : "fer",
-//     "description": "lorem ipsum",
-//     "image": "sss",
-//     "released": "2022-12-01",
-//     "platforms": ["Playstation 5"],
-//     "genres": ["Action"],
-//     "rating": "5",
-//     "createdByUser": "false"
-//   }
-
-routerVideogames.put("/:id", async (req, res)=>{
-    try{
-        let {id} = req.params
-        let {body} = req
-
-        if(id){
-            const exists = await Videogame.findByPk(id)
-            if(exists){
-                await putVideogame(id, body)
-
-                res.status(200).json({success: true})
-            }
-            else{
-                throw new Error(`The videogame with id ${id} does not exist`)
-            }
-        }
-        else{
-            throw new Error(`Uncompleted data`)
-        }
-    }
-    catch(err){
-        res.status(400).json({error: err.message})
-    }
-})
-
 
 routerVideogames.delete("/:id", async (req, res)=>{
     try{

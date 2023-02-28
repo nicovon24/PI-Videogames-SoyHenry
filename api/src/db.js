@@ -42,9 +42,6 @@ Genre.belongsToMany(Videogame, {through: 'games_genres', timestamps: false})
 Videogame.belongsToMany(Platform, {through: 'games_platforms', timestamps: false}) 
 Platform.belongsToMany(Videogame, {through: 'games_platforms', timestamps: false}) 
 
-Videogame.belongsToMany(Favorite, {through: 'games_favorites', timestamps: false}) 
-Favorite.belongsToMany(Videogame, {through: 'games_favorites', timestamps: false}) 
-
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
