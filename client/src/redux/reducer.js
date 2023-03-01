@@ -13,6 +13,12 @@ const initialState = {
     platforms: [],
     genres: [],
     favorites: [],
+    // filters: {
+    //     genre: "",
+    //     platform: "",
+    //     order: "",
+    //     originData: ""
+    // },
     page: 1,  //current page
     pages: 5,  //total pages
     darkmode: true

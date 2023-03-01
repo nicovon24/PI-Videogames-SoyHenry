@@ -142,8 +142,8 @@ export default function CreateGame(){
                         <input type="text" 
                             id="name" 
                             name="name" 
-                            className={!errors.name && styles.valid}
-                            value={data.name} placeholder="Nati"
+                            className={(!errors.name && data.name) && styles.valid}
+                            value={data.name} placeholder="e.g. Nati"
                             onChange={handleChangeInput}>
                         </input>
                         {errors.name && <label className={styles.errors}>{errors.name}</label>}
@@ -158,7 +158,7 @@ export default function CreateGame(){
                             accept='.jpg, .jpeg, .png, .webp' //todo REVISAR
                             className={(!errors.image && data.image) && styles.valid}
                             value={data.image} 
-                            placeholder="https://thumbs.dreamstime.com/b/gorila-gorila-del-silverback-22730829.jpg"
+                            placeholder="e.g. https://messi.png"
                             onChange={handleChangeInput}>
                         </input>
                         {errors.image && <label className={styles.errors}>{errors.image}</label>}
@@ -171,8 +171,8 @@ export default function CreateGame(){
                                 type="text" 
                                 name="description"
                                 id="description"
+                                value={data.description} placeholder="e.x. Mario Bros is a game from the 1980s..."
                                 className={(!errors.description && data.description) && styles.valid}
-                                value={data.description} placeholder="Lorem ipsum..."
                                 onChange={handleChangeInput}> 
                             </textarea>
                             {errors.description && <label className={styles.errors}>{errors.description}</label>}      
@@ -225,7 +225,7 @@ export default function CreateGame(){
                             value={data?.rating} 
                             className={(!errors.rating && data.rating) && styles.valid}
                             onChange={handleChangeInput}
-                            placeholder="4.5"> 
+                            placeholder="Must be a number between 1 and 5"> 
                         </input>
                         {errors.rating && <label className={styles.errors}>{errors.rating}</label>}
 
@@ -272,10 +272,8 @@ export default function CreateGame(){
                                 name="description"
                                 id="description"
                                 value={data.description} 
-                                placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                                numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                                optio, eaque rerum! Provident similique accusantium nemo autem...."
+                                className={(!errors.description && data.description) && styles.valid}
+                                placeholder="e.x. Mario Bros is an adventure game from the 1980s, designed by  Shigeru Miyamoto and released on 11/13/1985 and produced by Nintendo company..."
                                 onChange={handleChangeInput}> 
                         </textarea>
                         {errors.description && <label className={styles.errors}>{errors.description}</label>}      

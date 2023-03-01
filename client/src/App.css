@@ -4,7 +4,6 @@
   font-weight: normal;
   src: local('Rick and Morty font'), url('./assets/fonts/prstart.ttf') format('woff');
 }
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 :root{
