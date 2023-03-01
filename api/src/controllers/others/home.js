@@ -6,8 +6,7 @@ const printHomeMessage = ()=>{
             {get_videogames_per_name: `https://pi-videogames-soyhenry-production-b313.up.railway.app/videogames?name=the&witcher`},
             {get_platform: `https://pi-videogames-soyhenry-production-b313.up.railway.app/platforms`},
             {get_genres: `https://pi-videogames-soyhenry-production-b313.up.railway.app/genres`},
-            {get_favorites: `https://pi-videogames-soyhenry-production-b313.up.railway.app/favorites`},
-            {get_users: `https://pi-videogames-soyhenry-production-b313.up.railway.app/users`}
+            {get_favorites: `https://pi-videogames-soyhenry-production-b313.up.railway.app/favorites`}
         ]
         return message
     }
