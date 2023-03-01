@@ -46,11 +46,6 @@ const rootReducer = (state = initialState, {type, payload})=>{
             page: 1
         }
 
-        // const CHANGE_IS_LOADING: return {
-        //     ...state,
-        //     isLoading: state.loading
-        // }
-
         case RESTART_CURRENT_PAGE: return {
             ...state,
             currentPages: payload,

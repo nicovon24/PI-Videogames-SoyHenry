@@ -19,6 +19,7 @@ export default function Games(){
     }, [dispatch])
 
     let data = currentPages[page-1]
+    
     return(
         <div>
             {isLoaded ? 

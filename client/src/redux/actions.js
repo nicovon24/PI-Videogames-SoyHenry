@@ -37,13 +37,12 @@ export function getCurrentPages(currentGames){ //pages, getting the data for the
     try{
         if(currentGames){
             let games= currentGames
-            let max = Math.ceil(games.length / 15)
-    
-            let i = 2
+            let max = Math.ceil(games.length / 15) //7
     
             let slicedGames = [[1, games.slice(0, 15)]]
+            let i = 2
     
-            while(max>1){
+            while(max>1){ //7>1, 6>1, etc
                 slicedGames.push([i, games.slice(15*(i-1), 15*i)])
                 i++
                 max--
@@ -57,6 +56,23 @@ export function getCurrentPages(currentGames){ //pages, getting the data for the
     }
     catch(err){
         throw new Error('Could not get the current pages')
+    }
+}
+
+export function restartCurrentPage(allGames){ //pages 
+    return async function(dispatch){
+        try{
+            if(allGames){
+                const games = await getCurrentPages(allGames).payload
+                return dispatch({
+                    type: RESTART_CURRENT_PAGE,
+                    payload: games
+                })
+            }
+        }
+        catch(err){
+            throw new Error('Could not restart the current pages')
+        }
     }
 }
 
@@ -107,23 +123,6 @@ export function searchGame(search){
         }
         catch(err){
             throw new Error('Could not get the searched games')
-        }
-    }
-}
-
-export function restartCurrentPage(allGames){ //pages 
-    return async function(dispatch){
-        try{
-            if(allGames){
-                const games = await getCurrentPages(allGames).payload
-                return dispatch({
-                    type: RESTART_CURRENT_PAGE,
-                    payload: games
-                })
-            }
-        }
-        catch(err){
-            throw new Error('Could not restart the current pages')
         }
     }
 }

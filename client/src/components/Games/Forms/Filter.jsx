@@ -30,7 +30,7 @@ export function FilterBy(){
     useEffect(()=>{
         //updating the data from current pages based by page
         if(pages>page){
-            dispatch(getCurrentPages(allGames)) //pageGames=currentGames data 
+            dispatch(getCurrentPages(allGames))
         }
     }, [dispatch, allGames, pages, page])
 
