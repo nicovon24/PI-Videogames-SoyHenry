@@ -123,10 +123,17 @@ export default function CreateGame(){
     }
 
     function deleteSelectValue(property, value){
+        const filter = data[property].filter(p=>p!==value)
         setData({
             ...data,
-            [property]: data[property].filter(p=>p!==value)
+            [property]: filter
         })
+        if(filter.length===0){
+            setErrors(validate({
+                ...data,
+                [property]: []
+            }))
+        }
     }
     return(
         <div className={styles.create_container}>
@@ -260,7 +267,8 @@ export default function CreateGame(){
                         <button 
                             type="submit" 
                             className={styles.submit}
-                            disabled={Object.values(errors).length>0}
+                            disabled={Object.values(errors).length>0 
+                            || data.platforms.length===0 || data.genres.length===0}
                         >Submit</button>
                     </div>    
 

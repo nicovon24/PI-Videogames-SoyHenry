@@ -28,8 +28,9 @@ export default function Favorites(){
                                         <img src={require('../../assets/delete_blue.png')}
                                         className={styles.card_deleteImage} alt="delete img"
                                         onClick={()=>deleteFav(f.idGame.toString())}/>
-                                        <img src={f.image} alt="img of the fav game"
-                                        className={styles.card_mainImage}/>
+                                        <img alt="fav img"
+                                        src={(f.image.match(/\.(jpeg|jpg|gif|png)$/) || !f.image) ? f?.image : "https://media.discordapp.net/attachments/1073407771166380107/1079132104325087362/xbox-series-x-controller.webp"}
+                                        className={styles.card_mainImage} />
                                         <p className={`${styles.card_name} card_title`}>{f.name}</p>
                                     </div>
                                 )

@@ -7,8 +7,7 @@ import { addFavorite, deleteGame, removeFavorite } from "../../../redux/actions"
 import { useEffect, useState } from "react"
 
 export default function Card({game}){
-    let [isFavorite, setIsFavorite] = useState(false)
-                
+    let [isFavorite, setIsFavorite] = useState(false)         
 
     const dispatch = useDispatch()
     
@@ -78,12 +77,7 @@ export default function Card({game}){
                             <img src={(game.image.match(/\.(jpeg|jpg|gif|png)$/) || !game.image) ? game?.image : "https://media.discordapp.net/attachments/1073407771166380107/1079132104325087362/xbox-series-x-controller.webp"} className={styles.card_img} alt="videogame img"/>
                         </NavLink>
                         <h1 className={`${styles.card_name} card_title`}>{game?.name}</h1>
-                        {/* <ul>
-                            {game?.genres?.map((el, index)=>{
-                                if(game?.genres?.length-1===index) return <span key={index}>{el}</span>
-                                else return <span key={index}>{el}, </span>
-                            })}
-                        </ul> */}
+                        
                         <ul className={styles.genres}>
                             {game?.genres?.map((el, index)=>{
                                 const img = <img className={styles.genre_img}

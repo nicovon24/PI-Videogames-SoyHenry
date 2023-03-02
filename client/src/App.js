@@ -1,7 +1,6 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-// import Loader from "./components/Loader/Loader.jsx"
-import Home from "./components/Home/Home.jsx";
+import Landing from './components/Landing/Landing';
 import Games from "./components/Games/Games/Games.jsx"
 import Details from './components/Games/Details/Details.jsx';
 import About from "./components/About/About.jsx"
@@ -20,8 +19,8 @@ function App() {
   useEffect(()=>{
     dispatch(getAllGames()) //getting the 100 games and storing in an array
     dispatch(getInitialGames())
-    dispatch(getPlatformsGenres()) //getting the platf and genres for the select options
     dispatch(getFavorites())
+    dispatch(getPlatformsGenres()) //getting the platf and genres for the select options
   }, [dispatch])
 
   const {allGames, darkmode} = useSelector(state=>state)
@@ -33,7 +32,7 @@ function App() {
   return (
       <div className={`${darkmode ? "dark" : ""}`}>
           <Routes>
-            <Route exact path="/" element={<Home/>}></Route>
+            <Route exact path="/" element={<Landing/>}></Route>
             <Route exact path="/videogames/" element={<Games/>}></Route>
             <Route exact path="/videogames/:id" element={<Details/>}></Route>
             <Route exact path="/create" element={<CreateGame/>}></Route>

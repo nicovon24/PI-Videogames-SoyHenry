@@ -63,7 +63,7 @@ export default function Details(){
                         <div className={styles.details_image_container}>
                             <img src={(game?.image?.match(/\.(jpeg|jpg|gif|png)$/) || !game.image) ? game?.image : "https://media.discordapp.net/attachments/1073407771166380107/1079132104325087362/xbox-series-x-controller.webp"} alt="game img"/>
                             <div className={styles.details_info}>
-                                <h1>{game?.name}</h1>
+                                <h1 className={styles.name}>{game?.name}</h1>
                                 {platforms && <p><b>Platforms:</b> {platforms.join(",")}</p>}
                                 {genres && <p><b>Genres:</b> {genres?.join(",")}</p>}
                                 <p><b>Rating:</b> {game?.rating}</p>

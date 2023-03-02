@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
-import styles from "./Home.module.css"
+import styles from "./Landing.module.css"
 
-export default function Home(){
+export default function Landing(){
     return(
         <div className={styles.home}>
             <div className="btn-retro-container">
