@@ -24,6 +24,15 @@ export default function Search(){
             dispatch(getCurrentPages(allGames))
             setError("The search must be only numbers and text")
         }
+        else if(!regexOnlyNumText.test(search)){
+            dispatch(getCurrentPages(allGames))
+            setError("The search must be only numbers and text")
+        }
+        
+        else if(search.length>40){
+            dispatch(getCurrentPages(allGames))
+            setError("The search must have less than 40 characters")
+        }
         else{ 
             setError("")
             dispatch(searchGame(search))

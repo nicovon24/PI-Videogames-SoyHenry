@@ -16,14 +16,14 @@ const deleteVideogame = async (id)=>{
         const deletedGame = await Videogame.destroy({ //deleting it
             where: {id: id}
         })
-        const findFav = await Favorite.findOne({
-            where: {idGame: id}
-        })
-        if(findFav){
-            await Favorite.destroy({
-                where: {idGame: id}
-            })
-        }
+        // const findFav = await Favorite.findOne({
+        //     where: {idGame: id}
+        // })
+        // if(findFav){
+        //     await Favorite.destroy({
+        //         where: {idGame: id}
+        //     })
+        // }
         return deletedGame
     }
     catch(err){
