@@ -1,30 +1,26 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getCurrentPages, filterGames, restartCurrentPage } from "../../../redux/actions"
+import { getCurrentPages, restartCurrentPage, clearFilters,  filterChangeValue, filterGames } from
+ "../../../redux/actions"
 import styles from "./Forms.module.css"
 
 export function FilterBy(){
-    const [filters, setFilters] = useState({
-        genre: "",
-        platform: "",
-        order: "",
-        originData: ""
-    })
+    const [flagExecuteFilterGames, setFlagExecuteFilterGames] = useState(false) //flag to execute the filter
 
     const dispatch = useDispatch()
 
     const handleChangeValue = (e)=>{ //getting checkboxes values
-        setFilters({
-            ...filters,
-            [e.target.name]: e.target.value
-        })
+        dispatch(filterChangeValue(e.target.name, e.target.value))
+        setFlagExecuteFilterGames(prev=>!prev)
     }
 
-    useEffect(()=>{
-        dispatch(filterGames(allGames, filters))
-    }, [dispatch, filters])
+    let {allGames, filters, page, pages, platforms, genres} = useSelector(s=>s)
 
-    let {allGames, page, pages, platforms, genres} = useSelector(state=>state)
+    useEffect(()=>{ //executng the function filter
+        dispatch(filterGames(allGames, filters))
+    }, [dispatch, allGames, filters, flagExecuteFilterGames])
+
+    allGames = useSelector(s=>s.allGames) //updating it
 
     //executed every time the page and pages change, we get new data
     useEffect(()=>{
@@ -37,12 +33,7 @@ export function FilterBy(){
     const handleRestart = ()=>{
         const find = Object.values(filters).find(e=>e!=="") //["", "", "", ""] => not clearing the data
         if(find){  
-            setFilters({
-                genre: "",
-                platform: "",
-                order: "",
-                originData: ""
-            })
+            dispatch(clearFilters())
             dispatch(restartCurrentPage(allGames))
         }
     }

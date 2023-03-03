@@ -1,7 +1,7 @@
 import axios from "axios"
 import { GET_ALL_GAMES, GET_INITIAL_GAMES, GET_GAME_BY_ID, SEARCH_GAME, INCREASE_PAGE, DECREASE_PAGE, 
 GET_PLATFORMS_GENRES, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, FILTER_GAMES, CHANGE_PAGE, DELETE_GAME, 
-CREATE_GAME, ADD_FAVORITE, REMOVE_FAVORITE, GET_FAVORITES, TOGGLE_DARK_MODE, CLEAR_DETAILS } from "./action-types.js"
+CREATE_GAME, ADD_FAVORITE, REMOVE_FAVORITE, GET_FAVORITES, TOGGLE_DARK_MODE, CLEAR_DETAILS,  CLEAR_FILTERS, FILTER_CHANGE_VALUE } from "./action-types.js"
 
 export const getAllGames = ()=>{ //the 100 games
     return async function(dispatch){
@@ -129,91 +129,88 @@ export function searchGame(search){
     }
 }
 
-export function filterGames(allGames, {genre, platform, order, originData}){ //filtering
-    try{
-        let results = [...allGames] //spread operator to not pisar de array
 
-        //*filter by genre
-        if(genre){
-            let filterByGenre = results.filter(game=>{
-                let flag = false
-                game.genres.forEach(g=>{
-                    const some = g===genre
-                    if(some) flag = true
-                })
-                if(flag) return game
-                else return null
+export const filterGames = (allGames, {genre, platform, order, originData})=> {
+    let results = [...allGames] //spread operator to not pisar de array
+
+    //*filter by genre
+    if(genre){
+        let filterByGenre = results.filter(game=>{
+            let flag = false
+            game.genres.forEach(g=>{
+                const some = g===genre
+                if(some) flag = true
             })
-            results = filterByGenre
-        }
+            if(flag) return game
+            else return null
+        })
+        results = filterByGenre
+    }
 
-        //*filter by platform
-        if(platform){
-            let filterByPlatform = results.filter(game=>{
-                let flag = false
-                game.platforms.forEach(p=>{
-                    const some = p===platform
-                    if(some) flag = true
-                })
-                if(flag) return game
-                else return null
+    //*filter by platform
+    if(platform){
+        let filterByPlatform = results.filter(game=>{
+            let flag = false
+            game.platforms.forEach(p=>{
+                const some = p===platform
+                if(some) flag = true
             })
-            results = filterByPlatform
-        }
+            if(flag) return game
+            else return null
+        })
+        results = filterByPlatform
+    }
 
-        //*order
-        if(order){
-            switch(order){
-                case "max-min":
-                    results = results.sort((a, b) => b.rating - a.rating);
-                    break;
-                case "min-max": 
-                    results = results.sort((a, b) => a.rating - b.rating);
-                    break;
-                case "A-Z": 
-                    results = results.sort((a,b)=>a.name.localeCompare(b.name))
-                    break;
-                case "Z-A": 
-                    results = results.sort((a,b)=>b.name.localeCompare(a.name))
-                    break;
-                default: 
-                    break;
-            }
-        }
-
-        if(originData){
-            switch(originData){
-                case "all":
-                    results = allGames
-                    break;
-                case "db": 
-                    results = results.filter(game=>{
-                        if(game.id.toString().length>10) return game
-                        return null
-                    })
-                    break;
-                case "api":
-                    results = results.filter(game=>{
-                        if(typeof(game.id)==="number") return game
-                        return null
-                    })
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        const passToPages = getCurrentPages(results).payload //lo paso a formato 
-        //[[1: { [ {...}]} ]...]
-
-        return {
-            type: FILTER_GAMES,
-            payload: passToPages
+    //*order
+    if(order){
+        switch(order){
+            case "max-min":
+                results = results.sort((a, b) => b.rating - a.rating);
+                break;
+            case "min-max": 
+                results = results.sort((a, b) => a.rating - b.rating);
+                break;
+            case "A-Z": 
+                results = results.sort((a,b)=>a.name.localeCompare(b.name))
+                break;
+            case "Z-A": 
+                results = results.sort((a,b)=>b.name.localeCompare(a.name))
+                break;
+            default: 
+                break;
         }
     }
-    catch(err){
-        throw new Error('Could not filter the videogames neither by platform nor by genre')
+
+    if(originData){
+        switch(originData){
+            case "all":
+                results = allGames
+                break;
+            case "db": 
+                results = results.filter(game=>{
+                    if(game.id.toString().length>10) return game
+                    return null
+                })
+                break;
+            case "api":
+                results = results.filter(game=>{
+                    if(game.id.toString().length<10) return game
+                    return null
+                })
+                break;
+            default:
+                break;
+        }
     }
+
+    const passToPages = getCurrentPages(results).payload //lo paso a formato 
+    // console.log(passToPages);
+
+    return {
+        type: FILTER_GAMES,
+        payload: passToPages
+    }
+
 }
 
 export function createGame(data){
@@ -355,4 +352,19 @@ export const toggleDarkMode = ()=>{
     return {
         type: TOGGLE_DARK_MODE
     }
+}
+
+export const filterChangeValue = (property, value)=>{
+    return {
+        type: FILTER_CHANGE_VALUE,
+        payload: {property, value}
+    }
+}
+
+export const clearFilters = ()=> {
+
+    return {
+        type: CLEAR_FILTERS
+    }
+
 }

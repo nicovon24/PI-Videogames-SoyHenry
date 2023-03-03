@@ -1,6 +1,7 @@
 import { 
 GET_ALL_GAMES, GET_GAME_BY_ID, GET_INITIAL_GAMES,  FILTER_GAMES, GET_PLATFORMS_GENRES,
-INCREASE_PAGE, DECREASE_PAGE, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, CHANGE_PAGE, SEARCH_GAME, DELETE_GAME, CREATE_GAME, ADD_FAVORITE, REMOVE_FAVORITE, GET_FAVORITES, TOGGLE_DARK_MODE, CLEAR_DETAILS } from "./action-types.js"
+INCREASE_PAGE, DECREASE_PAGE, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, CHANGE_PAGE, SEARCH_GAME,
+DELETE_GAME, CREATE_GAME, ADD_FAVORITE, REMOVE_FAVORITE, GET_FAVORITES, TOGGLE_DARK_MODE, CLEAR_DETAILS,  CLEAR_FILTERS, FILTER_CHANGE_VALUE } from "./action-types.js"
 
 const initialState = {
     allGames: [],
@@ -8,6 +9,12 @@ const initialState = {
     currentPages: [],
     filteredPages: [],
     detailsGame: {},
+    filters: {
+        genre: "",
+        platform: "",
+        order: "",
+        originData: ""
+    },
     platforms: [],
     genres: [],
     favorites: [],
@@ -50,12 +57,23 @@ const rootReducer = (state = initialState, {type, payload})=>{
             page: 1,
         }
 
-        case FILTER_GAMES: return { //filtering games
-            ...state, 
-            currentPages: payload,
-            filteredPages: payload,
-            page: 1,
-            pages: payload.length
+        case FILTER_GAMES: 
+            return {
+                ...state, 
+                currentPages: payload,
+                filteredPages: payload,
+                page: 1,
+                pages: payload.length
+            }
+
+        case CLEAR_FILTERS: return {
+            ...state,
+            filters: {
+                genre: "",
+                platform: "",
+                order: "",
+                originData: ""
+            }
         }
 
         case GET_GAME_BY_ID: return {
@@ -119,6 +137,14 @@ const rootReducer = (state = initialState, {type, payload})=>{
         case TOGGLE_DARK_MODE: return {
             ...state,
             darkmode: state.darkmode ? false : true
+        }
+
+        case FILTER_CHANGE_VALUE: return {
+            ...state, 
+            filters: {
+                ...state.filters,
+                [payload.property]: payload.value
+            }
         }
 
         default: return {
