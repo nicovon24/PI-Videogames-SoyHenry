@@ -222,7 +222,7 @@ export function createGame(data){
             await axios.post(`/videogames`, data)
             return dispatch({
                 type: CREATE_GAME,
-                payload: data
+                payload: {...data, createdByUser: true}
             }
         )
         }
