@@ -1,6 +1,3 @@
-const {Op} = require('sequelize')
-const axios = require('axios')
-const {Videogame} = require("../../db.js");
 const getRevelantDataFromAPI = require('../../functions/getRevelantData.js');
 const { getAllVideogames } = require('./saveVideogames.js');
 

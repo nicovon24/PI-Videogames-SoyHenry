@@ -3,16 +3,16 @@
     min-height: 100vh;
     background-color: var(--background);
     padding: 30px 0px;
-    /* background: #74b9a5; */
-    /* background: url('https://st3.depositphotos.com/1177973/12632/i/600/depositphotos_126328712-stock-photo-grey-abstract-texture-background.jpg'); */
-    /* background: url('https://w0.peakpx.com/wallpaper/793/1001/HD-wallpaper-synthwave-planet-retro-wave.jpg'); */
-    /* background: linear-gradient(90deg, rgb(232, 241, 236) 0%, rgb(225, 236, 227) 50%, rgb(222, 232, 223) 50%, rgb(220, 234, 220) 98%, rgb(227, 217, 220) 99%); */
     background-position: center;
     background-size: cover;
     object-fit: cover;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    /* background: #74b9a5; */
+    /* background: url('https://st3.depositphotos.com/1177973/12632/i/600/depositphotos_126328712-stock-photo-grey-abstract-texture-background.jpg'); */
+    /* background: url('https://w0.peakpx.com/wallpaper/793/1001/HD-wallpaper-synthwave-planet-retro-wave.jpg'); */
+    /* background: linear-gradient(90deg, rgb(232, 241, 236) 0%, rgb(225, 236, 227) 50%, rgb(222, 232, 223) 50%, rgb(220, 234, 220) 98%, rgb(227, 217, 220) 99%); */
 }
 .cards_subcontainer{
     padding-bottom: 60px;

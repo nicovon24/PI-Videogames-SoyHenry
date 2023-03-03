@@ -1,5 +1,5 @@
 // const axios = require("axios");
-const {Videogame, Favorite} = require("../../db.js");
+const {Videogame} = require("../../db.js");
 
 const postVideogame = async (newData)=>{
     try{
@@ -16,14 +16,6 @@ const deleteVideogame = async (id)=>{
         const deletedGame = await Videogame.destroy({ //deleting it
             where: {id: id}
         })
-        // const findFav = await Favorite.findOne({
-        //     where: {idGame: id}
-        // })
-        // if(findFav){
-        //     await Favorite.destroy({
-        //         where: {idGame: id}
-        //     })
-        // }
         return deletedGame
     }
     catch(err){

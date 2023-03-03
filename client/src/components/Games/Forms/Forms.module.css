@@ -39,7 +39,7 @@
     border: none;
     outline: none;
     background-color: transparent;
-    color: white;
+    color: var(--white_black);
     font-size: 0.55rem;
 }
 .btn_search{
@@ -119,6 +119,8 @@
 }
 .loading{
     color: gold;
+    font-family: 'retro';
+    font-size: 0.7rem;
 }
 @media(max-width: 800px){
     .forms_mobile{

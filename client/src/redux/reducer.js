@@ -5,20 +5,12 @@ INCREASE_PAGE, DECREASE_PAGE, GET_CURRENT_PAGES, RESTART_CURRENT_PAGE, CHANGE_PA
 const initialState = {
     allGames: [],
     initialGames: [],
-    // pageGames: [], //used in filter by function, used to pass it the current page 
-    //data to current pages
     currentPages: [],
     filteredPages: [],
     detailsGame: {},
     platforms: [],
     genres: [],
     favorites: [],
-    // filters: {
-    //     genre: "",
-    //     platform: "",
-    //     order: "",
-    //     originData: ""
-    // },
     page: 1,  //current page
     pages: 5,  //total pages
     darkmode: true
@@ -33,7 +25,6 @@ const rootReducer = (state = initialState, {type, payload})=>{
 
         case GET_INITIAL_GAMES: return {
             ...state,
-            // pageGames: payload,
             initialGames: payload,
             page: 1
         }
