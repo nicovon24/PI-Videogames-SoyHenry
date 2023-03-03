@@ -6,15 +6,18 @@ import styles from "./Forms.module.css"
 export default function Search(){
     const [search, setSearch] = useState("")
     const [error, setError] = useState("")
+    const [isLoaded, setIsLoaded] = useState("not yet")
     const dispatch = useDispatch()
     const {allGames} = useSelector(state=>state)
 
     const handleSubmit = (e)=>{
         e.preventDefault()
+        setIsLoaded(false)
         let trimmedSearch = search.trim()
         const regexOnlyNumText = new RegExp('^[A-Za-z0-9 ]+$', 'i');
         if(!search){ //can not the search be "   "
             dispatch(getCurrentPages(allGames))
+            setIsLoaded("not yet")
         }
         else if(!trimmedSearch){
             dispatch(getCurrentPages(allGames))
@@ -23,19 +26,22 @@ export default function Search(){
         else if(!regexOnlyNumText.test(search)){
             dispatch(getCurrentPages(allGames))
             setError("The search must be only numbers and text")
+            setIsLoaded("not yet")
         }
         else if(!regexOnlyNumText.test(search)){
             dispatch(getCurrentPages(allGames))
             setError("The search must be only numbers and text")
+            setIsLoaded("not yet")
         }
         
         else if(search.length>40){
             dispatch(getCurrentPages(allGames))
             setError("The search must have less than 40 characters")
+            setIsLoaded("not yet")
         }
         else{ 
             setError("")
-            dispatch(searchGame(search))
+            dispatch(searchGame(search)).then(d=>setIsLoaded(true))
         }
     }
 
@@ -47,6 +53,7 @@ export default function Search(){
                 
             </div>
             {error && <p className={styles.error}>{error}</p>}
+            {(!isLoaded ) && <p className={styles.loading}>Loading...</p>}
         </form>
     )
 }
