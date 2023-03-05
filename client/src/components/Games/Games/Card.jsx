@@ -38,7 +38,7 @@ export default function Card({game}){
         const find = favorites.find(f=>Number(f.idGame)===id)
         if(!find){     
             setIsFavorite(true)
-            dispatch(addFavorite({idGame: id.toString(), name, image}))
+            dispatch(addFavorite({idGame: id?.toString(), name, image}))
         }
         else{
             setIsFavorite(false)

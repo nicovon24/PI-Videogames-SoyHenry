@@ -188,7 +188,7 @@ export const filterGames = (allGames, {genre, platform, order, originData})=> {
                 break;
             case "db": 
                 results = results.filter(game=>{
-                    if(game.id.toString().length>10) return game
+                    if(game?.id?.toString().length>10) return game
                     return null
                 })
                 break;
