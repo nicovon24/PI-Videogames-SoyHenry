@@ -8,7 +8,7 @@ export default function Nav(){ //only search is active in games
     const dispatch = useDispatch()
     const [showMobileNav, setShowMobileNav] = useState(false)
 
-    const {favorites} = useSelector(s=>s)
+    const {favorites, darkmode} = useSelector(s=>s)
 
     const handleChangeMode = ()=>{
         dispatch(toggleDarkMode())
@@ -48,7 +48,9 @@ export default function Nav(){ //only search is active in games
             </div>
 
             <div className={styles.header_mobile_icon}>
-                <p onClick={toggleMobileNav}>{showMobileNav ? "X" : "Show"}</p>
+                <p onClick={toggleMobileNav}>{showMobileNav 
+                ? "X" 
+                : <img src={!darkmode ? require("../../assets/nav/blue_menu.png") : require("../../assets/nav/green_menu.png")} alt="hamburger icon"/>}</p>
             </div>
             <div className={`${styles.header_mobile} ${showMobileNav ? styles.active : styles.inactive}`}>
                 <nav className={styles.nav_mobile}>

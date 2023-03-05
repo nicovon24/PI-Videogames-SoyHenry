@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {useDispatch, useSelector} from "react-redux"
 import { getCurrentPages, searchGame } from "../../../redux/actions"
 import styles from "./Forms.module.css"
@@ -9,6 +9,13 @@ export default function Search(){
     const [isLoaded, setIsLoaded] = useState("not yet")
     const dispatch = useDispatch()
     const {allGames} = useSelector(state=>state)
+
+    //*clearing data in case no input
+    useEffect(()=>{
+        if(search===""){
+            dispatch(getCurrentPages(allGames))
+        }
+    }, [dispatch, allGames, search])
 
     const handleSubmit = (e)=>{
         e.preventDefault()
