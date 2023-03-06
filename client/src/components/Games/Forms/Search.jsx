@@ -8,7 +8,7 @@ export default function Search(){
     const [error, setError] = useState("")
     const [isLoaded, setIsLoaded] = useState("not yet")
     const dispatch = useDispatch()
-    const {allGames} = useSelector(state=>state)
+    const {allGames, filters} = useSelector(state=>state)
 
     //*clearing data in case no input
     useEffect(()=>{
@@ -48,7 +48,7 @@ export default function Search(){
         }
         else{ 
             setError("")
-            dispatch(searchGame(search)).then(d=>setIsLoaded(true))
+            dispatch(searchGame(search, filters)).then(d=>setIsLoaded(true))
         }
     }
 

@@ -109,12 +109,19 @@ export function clearDetails(){
     }
 }
 
-export function searchGame(search){
+export function searchGame(search, filters){
     return async function(dispatch){
         try{
             const searchArr = search.split(" ")
-            const response = await axios.get(`/videogames?name=${searchArr.join("&")}`)
-            const currentPages = await getCurrentPages(response.data) //formato paginas
+            let response = await axios.get(`/videogames?name=${searchArr.join("&")}`)
+            response = response.data
+            if(filters){
+                const isFiltersNull = Object.values(filters).every(f=>f!=="")
+                if(!isFiltersNull){
+                    response = getFilteredGames(response, filters)
+                }
+            }
+            const currentPages = await getCurrentPages(response) //formato paginas
             if(currentPages){
                 return dispatch({
                     type: SEARCH_GAME,
@@ -131,77 +138,8 @@ export function searchGame(search){
 
 
 export const filterGames = (allGames, {genre, platform, order, originData})=> {
-    let results = [...allGames] //spread operator to not pisar de array
-
-    //*filter by genre
-    if(genre){
-        let filterByGenre = results.filter(game=>{
-            let flag = false
-            game.genres.forEach(g=>{
-                const some = g===genre
-                if(some) flag = true
-            })
-            if(flag) return game
-            else return null
-        })
-        results = filterByGenre
-    }
-
-    //*filter by platform
-    if(platform){
-        let filterByPlatform = results.filter(game=>{
-            let flag = false
-            game.platforms.forEach(p=>{
-                const some = p===platform
-                if(some) flag = true
-            })
-            if(flag) return game
-            else return null
-        })
-        results = filterByPlatform
-    }
-
-    //*order
-    if(order){
-        switch(order){
-            case "max-min":
-                results = results.sort((a, b) => b.rating - a.rating);
-                break;
-            case "min-max": 
-                results = results.sort((a, b) => a.rating - b.rating);
-                break;
-            case "A-Z": 
-                results = results.sort((a,b)=>a.name.localeCompare(b.name))
-                break;
-            case "Z-A": 
-                results = results.sort((a,b)=>b.name.localeCompare(a.name))
-                break;
-            default: 
-                break;
-        }
-    }
-
-    if(originData){
-        switch(originData){
-            case "all":
-                results = allGames
-                break;
-            case "db": 
-                results = results.filter(game=>{
-                    if(game?.id?.toString().length>10) return game
-                    return null
-                })
-                break;
-            case "api":
-                results = results.filter(game=>{
-                    if(game.id.toString().length<10) return game
-                    return null
-                })
-                break;
-            default:
-                break;
-        }
-    }
+    
+    const results = getFilteredGames(allGames, {genre, platform, order, originData})
 
     const passToPages = getCurrentPages(results).payload //lo paso a formato 
     // console.log(passToPages);
@@ -210,7 +148,19 @@ export const filterGames = (allGames, {genre, platform, order, originData})=> {
         type: FILTER_GAMES,
         payload: passToPages
     }
+}
 
+export const filterChangeValue = (property, value)=>{
+    return {
+        type: FILTER_CHANGE_VALUE,
+        payload: {property, value}
+    }
+}
+
+export const clearFilters = ()=> {
+    return {
+        type: CLEAR_FILTERS
+    }
 }
 
 export function createGame(data){
@@ -354,17 +304,79 @@ export const toggleDarkMode = ()=>{
     }
 }
 
-export const filterChangeValue = (property, value)=>{
-    return {
-        type: FILTER_CHANGE_VALUE,
-        payload: {property, value}
-    }
-}
+function getFilteredGames(allGames, {genre, platform, order, originData}){
+    let results = [...allGames] //spread operator to not pisar de array
 
-export const clearFilters = ()=> {
-
-    return {
-        type: CLEAR_FILTERS
+    //*filter by genre
+    if(genre){
+        let filterByGenre = results.filter(game=>{
+            let flag = false
+            game.genres.forEach(g=>{
+                const some = g===genre
+                if(some) flag = true
+            })
+            if(flag) return game
+            else return null
+        })
+        results = filterByGenre
     }
+
+    //*filter by platform
+    if(platform){
+        let filterByPlatform = results.filter(game=>{
+            let flag = false
+            game.platforms.forEach(p=>{
+                const some = p===platform
+                if(some) flag = true
+            })
+            if(flag) return game
+            else return null
+        })
+        results = filterByPlatform
+    }
+
+    //*order
+    if(order){
+        switch(order){
+            case "max-min":
+                results = results.sort((a, b) => b.rating - a.rating);
+                break;
+            case "min-max": 
+                results = results.sort((a, b) => a.rating - b.rating);
+                break;
+            case "A-Z": 
+                results = results.sort((a,b)=>a.name.localeCompare(b.name))
+                break;
+            case "Z-A": 
+                results = results.sort((a,b)=>b.name.localeCompare(a.name))
+                break;
+            default: 
+                break;
+        }
+    }
+
+    if(originData){
+        switch(originData){
+            case "all":
+                results = allGames
+                break;
+            case "db": 
+                results = results.filter(game=>{
+                    if(game?.id?.toString().length>10) return game
+                    return null
+                })
+                break;
+            case "api":
+                results = results.filter(game=>{
+                    if(game.id.toString().length<10) return game
+                    return null
+                })
+                break;
+            default:
+                break;
+        }
+    }
+
+    return results
 
 }
